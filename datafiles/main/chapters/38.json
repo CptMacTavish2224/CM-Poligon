@@ -137,6 +137,18 @@
         "description": "An ancient Iron Halo incorporating a drop of Sanguinius' blood into its top. A revered relic uncovered recently from a Space Hulk Sin of Damnation",
         "base_weapon_type": "Iron Halo",
         "slot": "gear"
+      },
+      {
+        "name": "Blood of the Sands",
+        "description": "An ancient suit of Terminator armour, created in the forge of Arrakis. It is said to be blessed by the Shai-Hulud and grants its wearer protection from the worst of wounds.",
+        "base_weapon_type": "Terminator Armour",
+        "slot": ""
+      },
+      {
+        "name": "Tooth of Shai-Hulud",
+        "description": "A relic blade of fearsome potency, said to be made from the tooth of a sandworm. It is a symbol of the chapter's ties to Arrakis and its people.",
+        "base_weapon_type": "Relic Blade",
+        "slot": ""
       }
     ],
     "names":

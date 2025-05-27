@@ -33,7 +33,7 @@ icon_gap_x = 53;
 /// x coord of left edge of the icon grid
 icon_grid_left_edge = 441;
 /// Max number of columns of icons until a new row is made
-max_cols = 10;
+max_cols = 15;
 /// x coord of the right edge of the icon grid
 icon_grid_right_edge = function() {return icon_grid_left_edge + (icon_gap_x * max_cols -1)}; // icon_gap_x * max number of desired columns - 1
 /// y coord of Founding section heading
