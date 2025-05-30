@@ -1,4 +1,3 @@
-
 function new_company_struct(){
 	with (obj_controller){
 		if (struct_exists(company_data,"company")){
@@ -28,6 +27,11 @@ function CompanyStruct(comp) constructor{
 			var cur_squad;
 			for (var i=0;i<array_length(_squads);i++){
 				cur_squad = _squads[i];
+				if (cur_squad.display_name == "First Wing") {
+                show_debug_message("First Wing found at index " + string(i));
+                show_debug_message("First Wing members: " + string(array_length(cur_squad.members)));
+                show_debug_message("First Wing base_company: " + string(cur_squad.base_company));
+            }
 				if (cur_squad.base_company != company) then continue;
 				cur_squad.update_fulfilment();
 				if (array_length(_squads[i].members)>0 && _squads[i].base_company == company){
@@ -54,6 +58,14 @@ function CompanyStruct(comp) constructor{
 				}
 			}
 		}
+		// Debug output: print squad indices and their display names
+    var debug_str = "company_squads: ";
+    for (var i = 0; i < array_length(company_squads); i++) {
+        var idx = company_squads[i];
+        var squad = obj_ini.squads[idx];
+        debug_str += string(idx) + " (" + string(squad.display_name) + "), ";
+    }
+    show_debug_message(debug_str);
 	}
 	var xx=__view_get( e__VW.XView, 0 )+0;
 	var yy=__view_get( e__VW.YView, 0 )+0;	

@@ -1,6 +1,7 @@
 // // Global singletons
 // global.NameGenerator = new NameGenerator();
 show_debug_message("Creating obj_ini");
+obj_ini.squads = []; //trying to fix command squad issue
 
 // // normal stuff
 specials=0;firsts=0;seconds=0;thirds=0;fourths=0;fifths=0;

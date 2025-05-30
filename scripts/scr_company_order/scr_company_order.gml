@@ -279,8 +279,18 @@ function scr_company_order(company) {
 				new_squad_index = empty_squads[0];
 				array_delete(empty_squads,0,1);
 				create_squad("command_squad", co, false, new_squad_index);
+				var last_squad = obj_ini.squads[new_squad_index];
+            show_debug_message("Created command_squad at index " + string(new_squad_index));
+            show_debug_message("Squad display_name: " + string(last_squad.display_name));
+            show_debug_message("Squad members: " + string(array_length(last_squad.members)));
+            show_debug_message("Squad base_company: " + string(last_squad.base_company));
 			} else{
 				create_squad("command_squad", co, false);
+				var last_squad = obj_ini.squads[new_squad_index];
+            show_debug_message("Created command_squad at index " + string(new_squad_index));
+            show_debug_message("Squad display_name: " + string(last_squad.display_name));
+            show_debug_message("Squad members: " + string(array_length(last_squad.members)));
+            show_debug_message("Squad base_company: " + string(last_squad.base_company));
 			}
 		}
 	}

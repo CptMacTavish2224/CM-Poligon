@@ -422,6 +422,7 @@ global.astartes_trait_dist = [
 			"secretive_knights",
 			[1,1],
 			{
+				progenitor:[ePROGENITOR.DARK_ANGELS,[500,0],"required"],
 				chapter_name:[
 					"Dark Angels",[500,0]
 				],			
@@ -431,6 +432,7 @@ global.astartes_trait_dist = [
 			"warriors_of_the_wind",
 			[1,1],
 			{
+				progenitor:[ePROGENITOR.WHITE_SCARS,[500,0],"required"],
 				chapter_name:[
 					"White Scars",[500,0]
 				],			
@@ -440,6 +442,7 @@ global.astartes_trait_dist = [
 			"wolf_prince",
 			[1,1],
 			{
+				progenitor:[ePROGENITOR.SPACE_WOLVES,[500,0],"required"],
 				chapter_name:[
 					"Space Wolves",[500,0]
 				],			
@@ -449,6 +452,7 @@ global.astartes_trait_dist = [
 			"obstinate_defenders",
 			[1,1],
 			{
+				progenitor:[ePROGENITOR.IMPERIAL_FISTS,[500,0],"required"],
 				chapter_name:[
 					"Imperial Fists",[500,0]
 				],			
@@ -458,6 +462,7 @@ global.astartes_trait_dist = [
 			"host_of_angels",
 			[1,1],
 			{
+				progenitor:[ePROGENITOR.BLOOD_ANGELS,[500,0],"required"],
 				chapter_name:[
 					"Blood Angels",[500,0]
 				],			
@@ -467,6 +472,7 @@ global.astartes_trait_dist = [
 			"will_of_iron",
 			[1,1],
 			{
+				progenitor:[ePROGENITOR.IRON_HANDS,[500,0],"required"],
 				chapter_name:[
 					"Iron Hands",[500,0]
 				],			
@@ -476,6 +482,7 @@ global.astartes_trait_dist = [
 			"students_of_war",
 			[1,1],
 			{
+				progenitor:[ePROGENITOR.ULTRAMARINES,[500,0],"required"],
 				chapter_name:[
 					"Ultramarines",[500,0]
 				],			
@@ -485,6 +492,7 @@ global.astartes_trait_dist = [
 			"keepers_of_the_flame",
 			[1,1],
 			{
+				progenitor:[ePROGENITOR.SALAMANDERS,[500,0],"required"],
 				chapter_name:[
 					"Salamanders",[500,0]
 				],			
@@ -494,6 +502,7 @@ global.astartes_trait_dist = [
 			"shadow_masters",
 			[1,1],
 			{
+				progenitor:[ePROGENITOR.RAVEN_GUARD,[500,0],"required"],
 				chapter_name:[
 					"Raven Guard",[500,0]
 				],			

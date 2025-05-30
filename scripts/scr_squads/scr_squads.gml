@@ -9,13 +9,17 @@ function fetch_squad(array_id){
 	return obj_ini.squads[array_id];
 }
 function create_squad(squad_type, company, squad_loadout = true, squad_index=false){
-
+if (squad_type == "command_squad") {
+        show_debug_message("create_squad called for command_squad, company: " + string(company));
+    }
 	var squad_unit_types, fulfilled,unit, squad;
 	var squad_count = array_length(obj_ini.squads);
 	var fill_squad =  obj_ini.squad_types[$ squad_type];			//grab all the squad struct info from the squad_types struct
 	squad = new UnitSquad(squad_type, company);
 	squad.base_company = company;
-	squad.add_type_data(fill_squad[$"type_data"]);		
+	squad.add_type_data(fill_squad[$"type_data"]);
+	show_debug_message("create_squad: Created squad object: squad_id: " + string(squad.squad_id) + " | type: " + string(squad.type) + " | display_name: " + string(squad.display_name));
+	show_debug_message("create_squad called for " + string(squad_type) + ", company: " + string(company) + ", index: " + string(squad_count));
 	squad_unit_types = squad.find_squad_unit_types();
 	var squad_fulfilment = squad.squad_fulfilment;
 
@@ -50,9 +54,9 @@ function create_squad(squad_type, company, squad_loadout = true, squad_index=fal
 		}
 		unit = fetch_unit([company,i]);
 		if ((unit.name() == "") or (unit.base_group=="none")) then continue;
-		if (unit.squad== "none") and (array_contains(squad_unit_types, unit.role())){
+		if (unit.squad== "none") && (array_contains(squad_unit_types, unit.role())){
 			//if no sergeant found add one marine to standard marine selection so that a marine can be promoted
-			if ((struct_exists(squad_fulfilment ,obj_ini.role[100][18])) or (struct_exists(squad_fulfilment ,obj_ini.role[100][19]))) and (sergeant_found == false){
+			if ((struct_exists(squad_fulfilment ,obj_ini.role[100][18])) or (struct_exists(squad_fulfilment ,obj_ini.role[100][19]))) && (sergeant_found == false){
 				if (squad_fulfilment[$ unit.role()]< (fill_squad[$ unit.role()][$ "max"] + 1)){
 					squad_fulfilment[$ unit.role()]++;
 					squad.add_member(unit.company, unit.marine_number);
@@ -68,7 +72,7 @@ function create_squad(squad_type, company, squad_loadout = true, squad_index=fal
 	//(which if everything works right should be a marine with the old_guard, seasoned, or ancient trait)
 	/*and ((squad_fulfilment[$ obj_ini.role[100][8]] > 4)or (squad_fulfilment[$ obj_ini.role[100][10]] > 4) or (squad_fulfilment[$ obj_ini.role[100][9]] > 4)or (squad_fulfilment[$ obj_ini.role[100][3]] > 4) )*/
 	for (var s = 0; s< 2;s++){
-		if (struct_exists(squad_fulfilment ,sgt_types[s])) and (!sergeant_found){
+		if (struct_exists(squad_fulfilment ,sgt_types[s]) && (!sergeant_found)){
 			var highest_exp = 0;
 			var exp_unit;
 			for (var i = 0; i < array_length(squad.members);i++){
@@ -96,7 +100,7 @@ function create_squad(squad_type, company, squad_loadout = true, squad_index=fal
 	}
 	if (fulfilled){
 		for (var s = 0; s< 2;s++){
-			if (struct_exists(squad_fulfilment ,sgt_types[s])) and (sergeant_found == false){
+			if (struct_exists(squad_fulfilment ,sgt_types[s]) && (sergeant_found == false)){
 				exp_unit.update_role(sgt_types[s]); //if squad is viable promote marine to sergeant
 				if (irandom(1) == 0){
 					exp_unit.add_trait("lead_example");
@@ -107,17 +111,23 @@ function create_squad(squad_type, company, squad_loadout = true, squad_index=fal
 		squad.squad_fulfilment = squad_fulfilment;
 		for (var i = 0; i < array_length(squad.members);i++){
 			unit = fetch_unit(squad.members[i]);
-			if (!squad_index){
-				unit.squad = squad_count;
+			if (is_bool(squad_index) && squad_index == false) {
+    			unit.squad = squad_count;
 			} else {
-				unit.squad = squad_index;
+   				unit.squad = squad_index;
 			}
 		}
-		if (!squad_index){
-			array_push(obj_ini.squads, squad); //push squad to squads array thus creating squad
-		} else{
-			obj_ini.squads[squad_index] = squad;
-		}
+		if (is_bool(squad_index) && squad_index == false) {
+    array_push(obj_ini.squads, squad);
+    show_debug_message("Added squad to obj_ini.squads: " + string(squad.display_name) + " at index " + string(array_length(obj_ini.squads)-1));
+} else if (is_real(squad_index) && squad_index >= 0) {
+    obj_ini.squads[squad_index] = squad;
+    show_debug_message("Set squad at index " + string(squad_index) + " to: " + string(squad.display_name));
+} else {
+    // fallback: push if squad_index is undefined or invalid
+    array_push(obj_ini.squads, squad);
+    show_debug_message("Fallback: Added squad to obj_ini.squads: " + string(squad.display_name) + " at index " + string(array_length(obj_ini.squads)-1));
+}
 
 		if (squad_loadout){
 			squad.sort_squad_loadout(false,false);
@@ -128,6 +138,9 @@ function create_squad(squad_type, company, squad_loadout = true, squad_index=fal
 
 // constructor for new squad
 function UnitSquad(squad_type = undefined, company = undefined) constructor{
+	static squad_counter = 0;
+    squad_id = squad_counter;
+    squad_counter++;
 	type = squad_type;
 	members = [];
 	squad_fulfilment ={};
@@ -290,8 +303,14 @@ function UnitSquad(squad_type = undefined, company = undefined) constructor{
 	}
 
 	static add_type_data = function(data){
+		show_debug_message("add_type_data called on squad_id: " + string(squad_id) + " | type: " + string(type) + " | current display_name: " + (variable_struct_exists(self, "display_name") ? display_name : "<unset>") + " | new data: " + string(data));
+	    if (type == "command_squad" && variable_struct_exists(self, "display_name") && display_name == "First Wing") {
+        show_debug_message("add_type_data: Already set for command_squad, skipping.");
+        return;
+    }
 		type_data=data;
 		display_name = type_data[$"display_data"];
+		show_debug_message("Squad display_name set to: " + string(display_name));
 		if (struct_exists(type_data, "class")){
 			class = type_data.class;
 		}
@@ -301,6 +320,11 @@ function UnitSquad(squad_type = undefined, company = undefined) constructor{
 		}		
 	}
 	static change_type = function(new_type){
+		    if (type == "command_squad") {
+        show_debug_message("change_type called on command_squad! Ignoring.");
+        return;
+    }
+		show_debug_message("change_type called! Old type: " + string(type) + ", new type: " + string(new_type));
 		type=new_type;
 		add_type_data(obj_ini.squad_types[$ type].type_data)
 	}
@@ -341,7 +365,7 @@ function UnitSquad(squad_type = undefined, company = undefined) constructor{
 				exp_unit = unit;
 			};
 		}
-		if (array_length(members) > 0) and (is_struct(exp_unit)){
+		if (array_length(members) > 0) && (is_struct(exp_unit)){
 			if (exp_unit.name() != ""){
 				var new_role;
 				if (veteran == true){
