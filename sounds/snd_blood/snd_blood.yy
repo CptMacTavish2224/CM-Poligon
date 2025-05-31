@@ -1,5 +1,5 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v1",
   "%Name":"snd_blood",
   "audioGroupId":{
     "name":"audiogroup_default",
@@ -9,7 +9,8 @@
   "bitRate":192,
   "compression":3,
   "conversionMode":0,
-  "duration":120.95194,
+  "duration":120.9178,
+  "exportDir":"sounds",
   "name":"snd_blood",
   "parent":{
     "name":"Themes",

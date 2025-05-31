@@ -1,5 +1,5 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v1",
   "%Name":"snd_redownload",
   "audioGroupId":{
     "name":"audiogroup_default",
@@ -9,11 +9,12 @@
   "bitRate":192,
   "compression":0,
   "conversionMode":0,
-  "duration":1.816156,
+  "duration":1.8111565,
+  "exportDir":"sounds",
   "name":"snd_redownload",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"Unused",
+    "path":"folders/Sounds/Unused.yy",
   },
   "preload":true,
   "resourceType":"GMSound",

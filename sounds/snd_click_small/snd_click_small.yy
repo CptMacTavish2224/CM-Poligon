@@ -1,5 +1,5 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v1",
   "%Name":"snd_click_small",
   "audioGroupId":{
     "name":"audiogroup_default",
@@ -9,11 +9,12 @@
   "bitRate":192,
   "compression":0,
   "conversionMode":0,
-  "duration":0.187857,
+  "duration":0.18285714,
+  "exportDir":"sounds",
   "name":"snd_click_small",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"UI",
+    "path":"folders/Sounds/UI.yy",
   },
   "preload":true,
   "resourceType":"GMSound",

@@ -1,5 +1,5 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v1",
   "%Name":"snd_legal",
   "audioGroupId":{
     "name":"audiogroup_default",
@@ -9,7 +9,8 @@
   "bitRate":192,
   "compression":3,
   "conversionMode":0,
-  "duration":30.280918,
+  "duration":30.249727,
+  "exportDir":"sounds",
   "name":"snd_legal",
   "parent":{
     "name":"Themes",

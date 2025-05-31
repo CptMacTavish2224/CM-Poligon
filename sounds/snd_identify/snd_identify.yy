@@ -1,5 +1,5 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v1",
   "%Name":"snd_identify",
   "audioGroupId":{
     "name":"audiogroup_default",
@@ -9,11 +9,12 @@
   "bitRate":192,
   "compression":0,
   "conversionMode":0,
-  "duration":0.773,
+  "duration":0.76800454,
+  "exportDir":"sounds",
   "name":"snd_identify",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"UI",
+    "path":"folders/Sounds/UI.yy",
   },
   "preload":true,
   "resourceType":"GMSound",

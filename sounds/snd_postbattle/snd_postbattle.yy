@@ -1,5 +1,5 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v1",
   "%Name":"snd_postbattle",
   "audioGroupId":{
     "name":"audiogroup_default",
@@ -9,11 +9,12 @@
   "bitRate":192,
   "compression":3,
   "conversionMode":0,
-  "duration":279.72418,
+  "duration":137.55646,
+  "exportDir":"sounds",
   "name":"snd_postbattle",
   "parent":{
-    "name":"Themes",
-    "path":"folders/Sounds/Themes.yy",
+    "name":"Unused",
+    "path":"folders/Sounds/Unused.yy",
   },
   "preload":true,
   "resourceType":"GMSound",

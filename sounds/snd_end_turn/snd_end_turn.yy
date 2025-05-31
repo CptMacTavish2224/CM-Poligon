@@ -1,5 +1,5 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v1",
   "%Name":"snd_end_turn",
   "audioGroupId":{
     "name":"audiogroup_default",
@@ -9,11 +9,12 @@
   "bitRate":192,
   "compression":0,
   "conversionMode":0,
-  "duration":0.331667,
+  "duration":0.32666665,
+  "exportDir":"sounds",
   "name":"snd_end_turn",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"UI",
+    "path":"folders/Sounds/UI.yy",
   },
   "preload":true,
   "resourceType":"GMSound",

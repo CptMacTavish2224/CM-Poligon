@@ -1,5 +1,5 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v1",
   "%Name":"snd_defeat",
   "audioGroupId":{
     "name":"audiogroup_default",
@@ -9,7 +9,8 @@
   "bitRate":192,
   "compression":3,
   "conversionMode":0,
-  "duration":267.6556,
+  "duration":0.0,
+  "exportDir":"sounds",
   "name":"snd_defeat",
   "parent":{
     "name":"Themes",

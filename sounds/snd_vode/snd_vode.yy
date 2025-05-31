@@ -1,5 +1,5 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v1",
   "%Name":"snd_vode",
   "audioGroupId":{
     "name":"audiogroup_default",
@@ -9,11 +9,12 @@
   "bitRate":256,
   "compression":3,
   "conversionMode":0,
-  "duration":118.42445,
+  "duration":118.41306,
+  "exportDir":"sounds",
   "name":"snd_vode",
   "parent":{
-    "name":"Themes",
-    "path":"folders/Sounds/Themes.yy",
+    "name":"Unused",
+    "path":"folders/Sounds/Unused.yy",
   },
   "preload":true,
   "resourceType":"GMSound",

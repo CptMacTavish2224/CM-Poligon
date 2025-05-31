@@ -1,5 +1,5 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v1",
   "%Name":"snd_prologue",
   "audioGroupId":{
     "name":"audiogroup_default",
@@ -9,7 +9,8 @@
   "bitRate":192,
   "compression":3,
   "conversionMode":0,
-  "duration":146.21767,
+  "duration":103.17932,
+  "exportDir":"sounds",
   "name":"snd_prologue",
   "parent":{
     "name":"Themes",
