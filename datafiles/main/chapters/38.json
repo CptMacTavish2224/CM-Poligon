@@ -1285,6 +1285,10 @@
     ],
     "custom_roles":
     {
+      "chapter_master":
+      {
+        "name":"Angelus Regens"
+      },
       "techmarine":
       {
         "wep1":"Power Axe",
@@ -1300,7 +1304,7 @@
         "wep2":"Chainaxe",
         "gear":"",
         "armour":"MK7 Aquila",
-        "name":"Tactical",
+        "name":"Tarshishim",
         "mobi":""
       },
       "terminator":
@@ -1309,7 +1313,7 @@
         "wep2":"Assault Cannon",
         "gear":"",
         "armour":"Any Terminator Armour",
-        "name":"Terminator",
+        "name":"Seraphim",
         "mobi":""
       },
       "assault":
@@ -1318,7 +1322,7 @@
         "wep2":"Boarding Shield",
         "gear":"",
         "armour":"MK5 Heresy",
-        "name":"Assault",
+        "name":"Ishim",
         "mobi":"Jump Pack"
       },
       "honour_guard":
@@ -1336,7 +1340,7 @@
         "wep2":"Power Axe",
         "gear":"",
         "armour":"MK4 Maximus",
-        "name":"Veteran",
+        "name":"Erelim",
         "mobi":""
       },
       "chaplain":
@@ -1345,7 +1349,7 @@
         "wep2":"Plasma Pistol",
         "gear":"Rosarius",
         "armour":"Any Terminator Armour",
-        "name":"Chaplain",
+        "name":"Elohim",
         "mobi":""
       },
       "scout":
@@ -1354,7 +1358,7 @@
         "wep2":"Combat Knife",
         "gear":"",
         "armour":"Scout Armour",
-        "name":"Scout",
+        "name":"Shinanim",
         "mobi":""
       },
       "devastator":
@@ -1363,7 +1367,7 @@
         "wep2":"Combat Knife",
         "gear":"",
         "armour":"MK6 Corvus",
-        "name":"Devastator",
+        "name":"Hashmalim",
         "mobi":"Heavy Weapons Pack"
       },
       "apothecary":
@@ -1399,7 +1403,7 @@
         "wep2":"Storm Shield",
         "gear":"",
         "armour":"Any Power Armour",
-        "name":"Champion",
+        "name":"Eshim",
         "mobi":""
       },
       "ancient":
@@ -1408,7 +1412,7 @@
         "wep2":"Power Fist",
         "gear":"",
         "armour":"Any Power Armour",
-        "name":"Ancient",
+        "name":"Cherubim",
         "mobi":""
       },
       "sergeant":
@@ -1417,16 +1421,16 @@
         "wep2":"Bolt Pistol",
         "gear":"",
         "armour":"Any Power Armour",
-        "name":"Sergeant",
+        "name":"Ophanim",
         "mobi":""
       },
       "veteran_sergeant":
       {
         "wep1":"",
         "wep2":"",
-        "gear":"",
-        "armour":"",
-        "name":"Veteran Sergeant",
+        "gear":"Iron Halo",
+        "armour":"MK4 Maximus",
+        "name":"Dominion",
         "mobi":""
       }
     },
@@ -1476,10 +1480,161 @@
     },
     "custom_advisors":
     {
+      "forge_master": 17,
+      "apothecary": 16,
+      //"librarian": , This chapter does not have librarians
+      "chaplain": 15,
+      "admiral": 13,
+      "recruiter": 14
     },
-    "squad_name":"Squad",
+    /*
+      "terminator_squad": [
+                // Terminator Sergeant
+                [
+                    "Veteran Sergeant",
+                    {
+                        "max": 1,
+                        "min": 1,
+                        "role": "Deathwing Sergeant",
+                        "loadout": {
+                            "required": {
+                                "wep1": [
+                                    "Power Sword",
+                                    1
+                                ]
+                            }
+                        }
+                    }
+                ],
+                // Terminator
+                [
+                    "Terminator",
+                    {
+                        "max": 4,
+                        "min": 2,
+                        "role": "Deathwing Terminator",
+                        "loadout": {
+                            "required": {
+                                "wep1": [
+                                    "",
+                                    0
+                                ],
+                                "wep2": [
+                                    "Storm Bolter",
+                                    3
+                                ]
+                            },
+                            "option": {
+                                "wep1": [
+                                    [
+                                        [
+                                            "Power Fist",
+                                            "Chainfist"
+                                        ],
+                                        4
+                                    ]
+                                ],
+                                "wep2": [
+                                    [
+                                        [
+                                            "Heavy Flamer",
+                                            "Heavy Flamer",
+                                            "Heavy Flamer",
+                                            "Assault Cannon",
+                                            "Assault Cannon",
+                                            "Plasma Cannon"
+                                        ],
+                                        1
+                                    ]
+                                ]
+                            }
+                        }
+                    }
+                ],
+      */
+      
+    "squad_name":"Wing",
     "custom_squads":
-    {
+    {/*
+      "command_squad":[
+        [ "captain",
+          {
+            "max": 1,"min": 1,
+            "role": "Captain"
+          }
+        ],
+        [
+          "champion",
+          {
+            "max": 1,"min": 0,
+            "role": "Eshim"
+          }
+        ],
+        [
+          "apothecary",
+          {
+            "max": 1,"min": 0,
+            "role": "Sanguinary Priest"
+          }
+        ],
+        [
+          "chaplain",
+          {
+            "max": 1,"min": 0,
+            "role": "Elohim"
+          }
+        ],
+        [
+          "ancient",
+          {
+            "max": 1,"min": 1,
+            "role": "Cherubim"
+          }
+        ],
+        [
+          "techmarine",
+          {
+            "max": 2,"min": 0,
+            "role": "Techmarine"
+          }
+        ],
+        [
+          "type_data", 
+          {
+				  "display_data": "First Wing",
+				  "formation_options": ["champion", "command", "terminator", "veteran", "assault", "devastator", "scout", "tactical"]
+			    }
+        ]
+      ]*/
     }
+        /*
+        * * Custom squad roles, loadouts and formations
+        * When companies are made, squads are formed based on these rules: 
+        * - squad name: one of captain, terminator, terminator_assault, sternguard_veteran,
+                vanguard_veteran, devastator, tactical, assault, scout, scout_sniper
+        * - squad array layout [Role, Role, ...Role, type_data]
+        * - each element of the array is a default Role, and their settings.
+            - if you changed the role using `custom_roles` you need to reference the role with this new name
+            - for non-leader roles it is better to change the name of the role in the squad layout instead
+        * - unit layout [Role Name, Settings Struct]
+        * - settings struct: 
+        *   - max: The most amount of this unit is allowed per squad
+        *   - min: The squad can't be formed unless at least 1 of this unit is in it
+        *   - role: The name of the unit when it is a member of the squad. This is where you rename roles e.g. 
+                "Terminator" > "Deathwing Terminator" 
+        **  - loadout: Struct containing Required and Optional weaponry this unit can equip 
+                a required loadout always follows this syntax <loadout_slot>:[<loadout_item>,<required number>]
+				so "wep1":["Bolter",4], will mean four marines are always equipped with 4 bolters in the wep1 slot
+        *       option loadouts follow the following syntax <loudout_slot>:[[<loadout_item_list>],<allowed_number>]
+				for example [["Flamer", "Meltagun"],1], means the role can have a max of one flamer or meltagun
+					[["Plasma Pistol","Bolt Pistol"], 4] means the role can have a mix of 4 plasma pistols and bolt pistols on top
+						of all required loadout options
+                - wep1: right hand weapon
+                - wep2: left hand weapon
+                - mobi: Mobility item, e.g. Jump Packs. 
+                - armour: required armour 
+                - gear: special equipment needed for certain roles, like a Roasrius or Narthecium
+        *   - type_data: names the squad, allows certain formations ? idk what that does yet
+        */
   }
 }
