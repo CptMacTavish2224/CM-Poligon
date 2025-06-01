@@ -194,15 +194,15 @@
     [
       {//[1] Chapter Master
         "weapon_primary":11,
-        "metallic_trim":20,
+        "metallic_trim":11,
         "weapon_secondary":20,
         "is_changed":true,
         "left_arm":20,
         "left_backpack":20,
-        "left_chest":11,
+        "left_chest":20,
         "right_arm":20,
         "right_backpack":20,
-        "right_chest":11,
+        "right_chest":20,
         "left_hand":11,
         "left_head":20,
         "left_leg_knee":20,
@@ -219,9 +219,9 @@
         "right_muzzle":20,
         "right_pauldron":11,
         "left_thorax":20,
-        "left_trim":11,
+        "left_trim":20,
         "right_thorax":20,
-        "right_trim":11,
+        "right_trim":20,
         "company_marks":0,
         "company_marks_loc":0
       },
@@ -813,9 +813,9 @@
         "right_muzzle":11,
         "right_pauldron":20,
         "left_thorax":0,
-        "left_trim":20,
+        "left_trim":11,
         "right_thorax":0,
-        "right_trim":11,
+        "right_trim":20,
         "company_marks":0,
         "company_marks_loc":0
       },
@@ -846,9 +846,9 @@
         "right_muzzle":11,
         "right_pauldron":20,
         "left_thorax":0,
-        "left_trim":20,
+        "left_trim":11,
         "right_thorax":0,
-        "right_trim":11,
+        "right_trim":20,
         "company_marks":0,
         "company_marks_loc":0
       },
@@ -965,19 +965,19 @@
         "right_chest":-1,
         "left_hand":-1,
         "left_head":-1,
-        "left_leg_knee":20,
+        "left_leg_knee":-1,
         "right_hand":-1,
         "eye_lense":-1,
         "right_head":-1,
         "left_leg_lower":-1,
         "left_leg_upper":-1,
         "left_muzzle":-1,
-        "right_leg_knee":-1,
-        "left_pauldron":20,
+        "right_leg_knee":20,
+        "left_pauldron":-1,
         "right_leg_lower":-1,
         "right_leg_upper":-1,
         "right_muzzle":-1,
-        "right_pauldron":-1,
+        "right_pauldron":20,
         "left_thorax":-1,
         "left_trim":-1,
         "right_thorax":-1,
@@ -998,19 +998,19 @@
         "right_chest":-1,
         "left_hand":-1,
         "left_head":-1,
-        "left_leg_knee":1,
+        "left_leg_knee":-1,
         "right_hand":-1,
         "eye_lense":-1,
         "right_head":-1,
         "left_leg_lower":-1,
         "left_leg_upper":-1,
         "left_muzzle":-1,
-        "right_leg_knee":-1,
-        "left_pauldron":1,
+        "right_leg_knee":1,
+        "left_pauldron":-1,
         "right_leg_lower":-1,
         "right_leg_upper":-1,
         "right_muzzle":-1,
-        "right_pauldron":-1,
+        "right_pauldron":1,
         "left_thorax":-1,
         "left_trim":-1,
         "right_thorax":-1,
@@ -1031,19 +1031,19 @@
         "right_chest":-1,
         "left_hand":-1,
         "left_head":-1,
-        "left_leg_knee":21,
+        "left_leg_knee":-1,
         "right_hand":-1,
         "eye_lense":-1,
         "right_head":-1,
         "left_leg_lower":-1,
         "left_leg_upper":-1,
         "left_muzzle":-1,
-        "right_leg_knee":-1,
-        "left_pauldron":21,
+        "right_leg_knee":21,
+        "left_pauldron":-1,
         "right_leg_lower":-1,
         "right_leg_upper":-1,
         "right_muzzle":-1,
-        "right_pauldron":-1,
+        "right_pauldron":21,
         "left_thorax":-1,
         "left_trim":-1,
         "right_thorax":-1,
@@ -1064,19 +1064,19 @@
         "right_chest":-1,
         "left_hand":-1,
         "left_head":-1,
-        "left_leg_knee":9,
+        "left_leg_knee":-1,
         "right_hand":-1,
         "eye_lense":-1,
         "right_head":-1,
         "left_leg_lower":-1,
         "left_leg_upper":-1,
         "left_muzzle":-1,
-        "right_leg_knee":-1,
-        "left_pauldron":9,
+        "right_leg_knee":9,
+        "left_pauldron":-1,
         "right_leg_lower":-1,
         "right_leg_upper":-1,
         "right_muzzle":-1,
-        "right_pauldron":-1,
+        "right_pauldron":9,
         "left_thorax":-1,
         "left_trim":-1,
         "right_thorax":-1,
@@ -1097,19 +1097,19 @@
         "right_chest":-1,
         "left_hand":-1,
         "left_head":-1,
-        "left_leg_knee":14,
+        "left_leg_knee":-1,
         "right_hand":-1,
         "eye_lense":-1,
         "right_head":-1,
         "left_leg_lower":-1,
         "left_leg_upper":-1,
         "left_muzzle":-1,
-        "right_leg_knee":-1,
-        "left_pauldron":14,
+        "right_leg_knee":14,
+        "left_pauldron":-1,
         "right_leg_lower":-1,
         "right_leg_upper":-1,
         "right_muzzle":-1,
-        "right_pauldron":-1,
+        "right_pauldron":14,
         "left_thorax":-1,
         "left_trim":-1,
         "right_thorax":-1,
@@ -1130,19 +1130,19 @@
         "right_chest":-1,
         "left_hand":-1,
         "left_head":-1,
-        "left_leg_knee":27,
+        "left_leg_knee":-1,
         "right_hand":-1,
         "eye_lense":-1,
         "right_head":-1,
         "left_leg_lower":-1,
         "left_leg_upper":-1,
         "left_muzzle":-1,
-        "right_leg_knee":-1,
-        "left_pauldron":27,
+        "right_leg_knee":27,
+        "left_pauldron":-1,
         "right_leg_lower":-1,
         "right_leg_upper":-1,
         "right_muzzle":-1,
-        "right_pauldron":-1,
+        "right_pauldron":27,
         "left_thorax":-1,
         "left_trim":-1,
         "right_thorax":-1,
@@ -1163,19 +1163,19 @@
         "right_chest":-1,
         "left_hand":-1,
         "left_head":-1,
-        "left_leg_knee":34,
+        "left_leg_knee":-1,
         "right_hand":-1,
         "eye_lense":-1,
         "right_head":-1,
         "left_leg_lower":-1,
         "left_leg_upper":-1,
         "left_muzzle":-1,
-        "right_leg_knee":-1,
-        "left_pauldron":34,
+        "right_leg_knee":34,
+        "left_pauldron":-1,
         "right_leg_lower":-1,
         "right_leg_upper":-1,
         "right_muzzle":-1,
-        "right_pauldron":-1,
+        "right_pauldron":34,
         "left_thorax":-1,
         "left_trim":-1,
         "right_thorax":-1,
@@ -1196,19 +1196,19 @@
         "right_chest":-1,
         "left_hand":-1,
         "left_head":-1,
-        "left_leg_knee":19,
+        "left_leg_knee":-1,
         "right_hand":-1,
         "eye_lense":-1,
         "right_head":-1,
         "left_leg_lower":-1,
         "left_leg_upper":-1,
         "left_muzzle":-1,
-        "right_leg_knee":-1,
-        "left_pauldron":19,
+        "right_leg_knee":19,
+        "left_pauldron":-1,
         "right_leg_lower":-1,
         "right_leg_upper":-1,
         "right_muzzle":-1,
-        "right_pauldron":-1,
+        "right_pauldron":19,
         "left_thorax":-1,
         "left_trim":-1,
         "right_thorax":-1,
@@ -1229,19 +1229,19 @@
         "right_chest":-1,
         "left_hand":-1,
         "left_head":-1,
-        "left_leg_knee":0,
+        "left_leg_knee":-1,
         "right_hand":-1,
         "eye_lense":-1,
         "right_head":-1,
         "left_leg_lower":-1,
         "left_leg_upper":-1,
         "left_muzzle":-1,
-        "right_leg_knee":-1,
-        "left_pauldron":0,
+        "right_leg_knee":0,
+        "left_pauldron":-1,
         "right_leg_lower":-1,
         "right_leg_upper":-1,
         "right_muzzle":-1,
-        "right_pauldron":-1,
+        "right_pauldron":0,
         "left_thorax":-1,
         "left_trim":-1,
         "right_thorax":-1,
@@ -1262,19 +1262,19 @@
         "right_chest":-1,
         "left_hand":-1,
         "left_head":-1,
-        "left_leg_knee":35,
+        "left_leg_knee":-1,
         "right_hand":-1,
         "eye_lense":-1,
         "right_head":-1,
         "left_leg_lower":-1,
         "left_leg_upper":-1,
         "left_muzzle":-1,
-        "right_leg_knee":-1,
-        "left_pauldron":35,
+        "right_leg_knee":35,
+        "left_pauldron":-1,
         "right_leg_lower":-1,
         "right_leg_upper":-1,
         "right_muzzle":-1,
-        "right_pauldron":-1,
+        "right_pauldron":35,
         "left_thorax":-1,
         "left_trim":-1,
         "right_thorax":-1,
@@ -1304,7 +1304,7 @@
         "wep2":"Chainaxe",
         "gear":"",
         "armour":"MK7 Aquila",
-        "name":"Tarshishim",
+        //"name":"Tarshishim",
         "mobi":""
       },
       "terminator":
@@ -1313,7 +1313,7 @@
         "wep2":"Assault Cannon",
         "gear":"",
         "armour":"Any Terminator Armour",
-        "name":"Seraphim",
+        //"name":"Seraphim",
         "mobi":""
       },
       "assault":
@@ -1322,7 +1322,7 @@
         "wep2":"Boarding Shield",
         "gear":"",
         "armour":"MK5 Heresy",
-        "name":"Ishim",
+        //"name":"Ishim",
         "mobi":"Jump Pack"
       },
       "honour_guard":
@@ -1340,7 +1340,7 @@
         "wep2":"Power Axe",
         "gear":"",
         "armour":"MK4 Maximus",
-        "name":"Erelim",
+        //"name":"Erelim",
         "mobi":""
       },
       "chaplain":
@@ -1349,7 +1349,7 @@
         "wep2":"Plasma Pistol",
         "gear":"Rosarius",
         "armour":"Any Terminator Armour",
-        "name":"Elohim",
+        //"name":"Elohim",
         "mobi":""
       },
       "scout":
@@ -1358,7 +1358,7 @@
         "wep2":"Combat Knife",
         "gear":"",
         "armour":"Scout Armour",
-        "name":"Shinanim",
+        //"name":"Shinanim",
         "mobi":""
       },
       "devastator":
@@ -1367,7 +1367,7 @@
         "wep2":"Combat Knife",
         "gear":"",
         "armour":"MK6 Corvus",
-        "name":"Hashmalim",
+        //"name":"Hashmalim",
         "mobi":"Heavy Weapons Pack"
       },
       "apothecary":
@@ -1403,7 +1403,7 @@
         "wep2":"Storm Shield",
         "gear":"",
         "armour":"Any Power Armour",
-        "name":"Eshim",
+        //"name":"Eshim",
         "mobi":""
       },
       "ancient":
@@ -1412,7 +1412,7 @@
         "wep2":"Power Fist",
         "gear":"",
         "armour":"Any Power Armour",
-        "name":"Cherubim",
+        //"name":"Cherubim",
         "mobi":""
       },
       "sergeant":
@@ -1421,7 +1421,7 @@
         "wep2":"Bolt Pistol",
         "gear":"",
         "armour":"Any Power Armour",
-        "name":"Ophanim",
+        //"name":"Ophanim",
         "mobi":""
       },
       "veteran_sergeant":
@@ -1430,7 +1430,7 @@
         "wep2":"",
         "gear":"Iron Halo",
         "armour":"MK4 Maximus",
-        "name":"Dominion",
+        //"name":"Dominion",
         "mobi":""
       }
     },
@@ -1555,44 +1555,44 @@
       
     "squad_name":"Wing",
     "custom_squads":
-    {/*
+    {
       "command_squad":[
-        [ "captain",
+        [ "Captain",
           {
             "max": 1,"min": 1,
             "role": "Captain"
           }
         ],
         [
-          "champion",
+          "Champion",
           {
             "max": 1,"min": 0,
             "role": "Eshim"
           }
         ],
         [
-          "apothecary",
+          "Sanguinary Priest",
           {
             "max": 1,"min": 0,
             "role": "Sanguinary Priest"
           }
         ],
         [
-          "chaplain",
+          "Chaplain",
           {
             "max": 1,"min": 0,
             "role": "Elohim"
           }
         ],
         [
-          "ancient",
+          "Ancient",
           {
             "max": 1,"min": 1,
             "role": "Cherubim"
           }
         ],
         [
-          "techmarine",
+          "Techmarine",
           {
             "max": 2,"min": 0,
             "role": "Techmarine"
@@ -1605,8 +1605,13 @@
 				  "formation_options": ["champion", "command", "terminator", "veteran", "assault", "devastator", "scout", "tactical"]
 			    }
         ]
-      ]*/
+      ]
     }
+    // Add squads and rename troops outside in the main custom_roles. Use the custom names for reference
+    //Then make squads and see if they replace the default ones
+
+
+
         /*
         * * Custom squad roles, loadouts and formations
         * When companies are made, squads are formed based on these rules: 
