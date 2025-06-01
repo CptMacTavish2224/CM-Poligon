@@ -56,30 +56,30 @@
     ],
     "mutations":
     {
-      "mucranoid":0.0,
-      "zygote":0.0,
-      "secretions":0.0,
-      "doomed":0.0,
-      "occulobe":0.0,
-      "membrane":0.0,
-      "lyman":0.0,
-      "betchers":0.0,
-      "ossmodula":0.0,
-      "omophagea":0.0,
-      "voice":0.0,
-      "catalepsean":0.0,
-      "preomnor":0.0
+      "mucranoid":0,
+      "zygote":0,
+      "secretions":0,
+      "doomed":0,
+      "occulobe":0,
+      "membrane":0,
+      "lyman":0,
+      "betchers":0,
+      "ossmodula":0,
+      "omophagea":0,
+      "voice":0,
+      "catalepsean":0,
+      "preomnor":0
     },
     "disposition":
     [
-      0.0,
-      100.0,
-      100.0,
-      100.0,
-      100.0,
-      100.0,
-      100.0,
-      0.0
+      0,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      0
     ],
     "colors":
     {
@@ -1439,44 +1439,45 @@
     ],
     "extra_marines":
     {
-      "fifth":0.0,
-      "eighth":0.0,
-      "ninth":0.0,
-      "tenth":0.0,
-      "third":0.0,
-      "fourth":0.0,
-      "second":0.0,
-      "seventh":0.0,
-      "sixth":0.0
+      "fifth":0,
+      "eighth":0,
+      "ninth":0,
+      "tenth":0,
+      "third":0,
+      "fourth":0,
+      "second":0,
+      "seventh":0,
+      "sixth":0
     },
     "extra_ships":
     {
-      "battle_barges":0.0,
-      "strike_cruisers":0.0,
-      "gladius":0.0,
-      "hunters":0.0
+      "gloriana": 0,
+      "battle_barges":0,
+      "strike_cruisers":0,
+      "gladius":0,
+      "hunters":0
     },
 
     "extra_specialists":
     {
-      "chaplains":0.0,
-      "techmarines":0.0,
-      "lexicanum":0.0,
-      "terminator":0.0,
-      "assault":0.0,
-      "veteran":0.0,
-      "epistolary":0.0,
-      "apothecary":0.0,
-      "devastator":0.0,
-      "codiciery":0.0
+      "chaplains":0,
+      "techmarines":0,
+      "lexicanum":0,
+      "terminator":0,
+      "assault":0,
+      "veteran":0,
+      "epistolary":0,
+      "apothecary":0,
+      "devastator":0,
+      "codiciery":0
     },
     "extra_vehicles":
     {
-      "whirlwind":0.0,
-      "predator":0.0,
-      "rhino":0.0,
-      "land_raider":0.0,
-      "land_speeder":0.0
+      "whirlwind":0,
+      "predator":0,
+      "rhino":0,
+      "land_raider":0,
+      "land_speeder":0
     },
     "custom_advisors":
     {
