@@ -61,8 +61,8 @@
         "names": {
             //Chapter Staff
             "hchaplain": "Sapphon",
-            "clibrarian": "Ezekial",
-            "fmaster": "Sepharon",
+            "clibrarian": "Ezekiel",
+            "fmaster": "Belaphor",  //Sepharon is the Master of the Logisticiam, Belaphor is the Forgemaster
             "hapothecary": "Razaek",
             //Company Captains 1 - 10
             "honorcapt": "Belial",
@@ -151,6 +151,7 @@
         * use negative numbers to subtract ships
         */
         "extra_ships": {
+            "gloriana": 1,
             "battle_barges": 1,
             "gladius": 0,
             "strike_cruisers": 0,

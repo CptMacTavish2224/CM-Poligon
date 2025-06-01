@@ -835,7 +835,7 @@
             "Sunderers",
             "Redeemers"
         ],
-        "flagship_name": "Spear of Vengeance",
+        "flagship_name": "Red Tear",
         /**
         * * Default fleet composition
         * * Homeworld 
@@ -846,6 +846,7 @@
         * use negative numbers to subtract ships
         */
         "extra_ships": {
+            "gloriana": 1, //Red Tear is not confirmed to be destroyed, last mention is it's taken to Baal for repairs
             "battle_barges": 0,
             "gladius": 0,
             "strike_cruisers": 0,

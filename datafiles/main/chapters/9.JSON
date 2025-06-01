@@ -147,6 +147,7 @@
         * use negative numbers to subtract ships
         */
         "extra_ships": {
+            "gloriana": 0,//Shadow of the Emperor has been destroyed
             "battle_barges": 0,
             "gladius": 0,
             "strike_cruisers": 0,

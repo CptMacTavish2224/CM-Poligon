@@ -134,7 +134,7 @@
             "The Wardens",
             "The Eyes of Dorn"
         ],
-        "flagship_name": "Phalanx",
+        "flagship_name": "Burden of Duty",
         /**
         * * Default fleet composition
         * * Homeworld 
@@ -145,6 +145,7 @@
         * use negative numbers to subtract ships
         */
         "extra_ships": {
+            "gloriana": 1, //Burden of Duty has not been confirmed to be destroyed, so it is added
             "battle_barges": 1,
             "gladius": 0,
             "strike_cruisers": 0,

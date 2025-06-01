@@ -151,7 +151,7 @@
             "Wolf Cult",
             "Runic"
         ],
-        "flagship_name": "",
+        "flagship_name": "Hrafnkel",
         /**
         * * Default fleet composition
         * * Homeworld 
@@ -162,6 +162,7 @@
         * use negative numbers to subtract ships
         */
         "extra_ships": {
+            "gloriana": 1, //Unknown, but added for fun
             "battle_barges": 0,
             "gladius": 0,
             "strike_cruisers": 0,
