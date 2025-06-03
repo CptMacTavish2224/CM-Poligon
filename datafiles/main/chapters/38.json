@@ -1304,7 +1304,7 @@
         "wep2":"Chainaxe",
         "gear":"",
         "armour":"MK7 Aquila",
-        //"name":"Tarshishim",
+        "name":"Tarshishim",
         "mobi":""
       },
       "terminator":
@@ -1313,7 +1313,7 @@
         "wep2":"Assault Cannon",
         "gear":"",
         "armour":"Any Terminator Armour",
-        //"name":"Seraphim",
+        "name":"Seraphim",
         "mobi":""
       },
       "assault":
@@ -1322,7 +1322,7 @@
         "wep2":"Boarding Shield",
         "gear":"",
         "armour":"MK5 Heresy",
-        //"name":"Ishim",
+        "name":"Ishim",
         "mobi":"Jump Pack"
       },
       "honour_guard":
@@ -1340,7 +1340,7 @@
         "wep2":"Power Axe",
         "gear":"",
         "armour":"MK4 Maximus",
-        //"name":"Erelim",
+        "name":"Erelim",
         "mobi":""
       },
       "chaplain":
@@ -1349,7 +1349,7 @@
         "wep2":"Plasma Pistol",
         "gear":"Rosarius",
         "armour":"Any Terminator Armour",
-        //"name":"Elohim",
+        "name":"Elohim",
         "mobi":""
       },
       "scout":
@@ -1358,7 +1358,7 @@
         "wep2":"Combat Knife",
         "gear":"",
         "armour":"Scout Armour",
-        //"name":"Shinanim",
+        "name":"Shinanim",
         "mobi":""
       },
       "devastator":
@@ -1367,7 +1367,7 @@
         "wep2":"Combat Knife",
         "gear":"",
         "armour":"MK6 Corvus",
-        //"name":"Hashmalim",
+        "name":"Hashmalim",
         "mobi":"Heavy Weapons Pack"
       },
       "apothecary":
@@ -1388,6 +1388,15 @@
         "name":"template",
         "mobi":""
       },*/
+      /*"honor_captain":
+      {
+        "wep1":"Chainfist",
+        "wep2":"Chainfist",
+        "gear":"Iron Halo",
+        "armour":"MK7 Aquila",
+        "name":"First Captain",
+        "mobi":""
+      },*/
       "captain":
       {
         "wep1":"Thunder Hammer",
@@ -1403,7 +1412,7 @@
         "wep2":"Storm Shield",
         "gear":"",
         "armour":"Any Power Armour",
-        //"name":"Eshim",
+        "name":"Eshim",
         "mobi":""
       },
       "ancient":
@@ -1412,7 +1421,7 @@
         "wep2":"Power Fist",
         "gear":"",
         "armour":"Any Power Armour",
-        //"name":"Cherubim",
+        "name":"Cherubim",
         "mobi":""
       },
       "sergeant":
@@ -1421,7 +1430,7 @@
         "wep2":"Bolt Pistol",
         "gear":"",
         "armour":"Any Power Armour",
-        //"name":"Ophanim",
+        "name":"Ophanim",
         "mobi":""
       },
       "veteran_sergeant":
@@ -1430,7 +1439,7 @@
         "wep2":"",
         "gear":"Iron Halo",
         "armour":"MK4 Maximus",
-        //"name":"Dominion",
+        "name":"Dominion",
         "mobi":""
       }
     },
@@ -1565,7 +1574,7 @@
           }
         ],
         [
-          "Champion",
+          "Eshim",
           {
             "max": 1,"min": 0,
             "role": "Eshim"
@@ -1574,19 +1583,19 @@
         [
           "Sanguinary Priest",
           {
-            "max": 1,"min": 0,
+            "max": 2,"min": 0,
             "role": "Sanguinary Priest"
           }
         ],
         [
-          "Chaplain",
+          "Elohim",
           {
             "max": 1,"min": 0,
             "role": "Elohim"
           }
         ],
         [
-          "Ancient",
+          "Cherubim",
           {
             "max": 1,"min": 1,
             "role": "Cherubim"

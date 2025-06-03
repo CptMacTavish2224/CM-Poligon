@@ -18,6 +18,7 @@ enum eROLE {
 	Librarian = 17,
 	Sergeant = 18,
 	VeteranSergeant = 19,
+	HonorCaptain = 20,
 	LandRaider = 50,
     Rhino = 51,
     Predator = 52,
@@ -1414,6 +1415,7 @@ function scr_initialize_custom() {
 
 	load_default_gear(eROLE.ChapterMaster, "Chapter Master", "Power Sword", "Bolt Pistol", _hi_qual_armour, "","Iron Halo");
 	load_default_gear(eROLE.HonourGuard, "Honour Guard", "Power Sword", "Bolter", _hi_qual_armour, "", "");
+	load_default_gear(eROLE.HonorCaptain, "Honor Captain", "Power Spear", "Storm Bolter", "Tartaros", "", "Iron Halo");
 	load_default_gear(eROLE.Veteran, "Veteran", "Combiflamer", "Combat Knife",STR_ANY_POWER_ARMOUR, "", "");
 	load_default_gear(eROLE.Terminator, "Terminator", "Power Fist", "Storm Bolter", "Terminator Armour", "", "");
 	load_default_gear(eROLE.Captain, "Captain", "Power Sword", "Bolt Pistol", STR_ANY_POWER_ARMOUR, "", "Iron Halo");
@@ -1453,6 +1455,7 @@ function scr_initialize_custom() {
 			["librarian",eROLE.Librarian],
 			["sergeant",eROLE.Sergeant],
 			["veteran_sergeant",eROLE.VeteranSergeant],
+			["honor_captain",eROLE.HonorCaptain],
 		];
 		var possible_custom_attributes = [
 			"name", "wep1", "wep2", "mobi","gear","armour"
@@ -1492,6 +1495,7 @@ function scr_initialize_custom() {
 	var roles = {
 		chapter_master: role[defaults_slot][eROLE.ChapterMaster],
 		honour_guard: role[defaults_slot][eROLE.HonourGuard],
+		honor_captain: role[defaults_slot][eROLE.HonorCaptain],
 		veteran: role[defaults_slot][eROLE.Veteran],
 		terminator: role[defaults_slot][eROLE.Terminator],
 		captain: role[defaults_slot][eROLE.Captain],
@@ -2856,8 +2860,24 @@ function scr_initialize_custom() {
 				case "captains":
 					switch (_coy.coy) {
 						case 1:
+							if (struct_exists(obj_creation, "honor_captain")) {
+							show_debug_message("Honor Captain detected in obj_creation for 1st company.");
 							name[_coy.coy][k] = honor_captain_name != "" ? honor_captain_name : global.name_generator.generate_space_marine_name();
-							break;
+							_rolename = roles.honor_captain;
+							_erole = eROLE.HonorCaptain;
+							}else{
+								show_debug_message("Honor Captain NOT found, using regular Captain for 1st company.");
+								name[_coy.coy][k] = honor_captain_name != "" ? honor_captain_name : global.name_generator.generate_space_marine_name();
+								_rolename = roles.captain;
+								_erole = eROLE.Captain;
+							}
+							repeat(_count){
+                			add_unit_to_company(_unit_type, _coy.coy, k, _rolename, _erole, _wep1, _wep2, _gear, _mobi, _armour);
+               				show_debug_message("Added company 1 command unit: " + string(_rolename) + " (" + string(_erole) + ")");
+							k++;
+                			man_size++;
+            				}
+            				continue;
 						case 2:
 							name[_coy.coy][k] = watch_master_name != "" ? watch_master_name : global.name_generator.generate_space_marine_name();
 							break;
@@ -2887,6 +2907,7 @@ function scr_initialize_custom() {
 							break;
 					}
 					commands++;
+					show_debug_message("Final captain role for company " + string(_coy.coy) + ": " + string(_rolename) + " (" + string(_erole) + ")");
 					_rolename = roles.captain;
 					_erole = eROLE.Captain;
 					_wep2 = choose_weighted(weapon_weighted_lists.pistols);
