@@ -1,0 +1,56 @@
+{
+    "chapter":
+    {
+        "id": 0, //number for your JSON file to be referenced in game files
+        "name": "", //name of the chapter
+        "flavor": "", //the short description that appears on popup when you hover over a chapter image
+        "battle_cry": "", //this is where you cry. I mean this is where you say what are you crying about. I mean... fuck it just type shit here to scream at people
+        "origin": "", //[1] Founding [2] Successor [3] Other [4] Custom
+        "points": 0, //creation points, feel free to cheat here for more wild stuff in custom if you don't like doing it via files
+        "founding_id": 0, //ID of the progenitor chapter, as per fiels in datafiles/main/chapters
+        "successors": "", //write how many successors your chapter has. Go bonkers. Show them you got the seed to have 666 successors
+        "splash": 0, //the more artsy image on the left side of selection screen. Highly advised to use the same number as chapter ID
+        "icon_name": "", //name for the chapter icon you'll be using. Standing 
+        "fleet_type": 0, //[1] Homeworld [2] Fleetbased [3] Penitent
+        "strength": 0, //1-10
+        "purity": 0, //1-10
+        "stability": 0, //1-99
+        "cooperation": 0, //1-10
+        "homeworld_exists:": , //dunno how it works
+        "recruiting_exists": ,
+        "home_warp": ,
+        "homeplanets": ,
+        "homeworld_rule": ,
+        "monastary_name": ,
+        "recruiting": ,
+        "recruiting_name": ,
+        "recruit_home_relationship": ,
+        "discipline": ,
+        "aspirant_trial": ,
+        "advantages": ,
+        "disadvantages": ,
+        "mutations": ,
+        "disposition": ,
+        "colors": ,
+        "culture_styles": ,
+        "chapter_master": ,
+        "artifact": ,
+        "names": ,
+        "company_titles": ,
+        "equal_specialists": ,
+        "flagship_name": ,
+        "load_to_ships": ,
+        "full_liveries": ,
+        "complex_livery_data": ,
+        "company_liveries": ,
+        "custom_roles": ,
+        "extra_equipment": ,
+        "extra_marines": ,
+        "extra_ships": ,
+        "extra_specialists": ,
+        "extra_vehicles": ,
+        "custom_advisors": ,
+        "squad_name": ,
+        "custom_squads": ,
+    }
+}

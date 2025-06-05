@@ -1,33 +1,34 @@
 {
     "chapter": {
-        "id": 1,
-        "name": "Dark Angels",
-        "flavor": "The Dark Angels claim complete allegiance and service to the Emperor of Mankind, though their actions and secret goals seem to run counter to this- above all other things they strive to atone for an ancient crime of betrayal.",
-        "origin": 1, // 1 - Founding, 2 -successor, 3 - Other/non-canon/fanmade, 4 - Custom
-        "points": 150,
-        "founding": 0, // The id of the founding chapter, 0 for unknown or none
-        "splash": 1,
-        "icon_name": "dark_angels", // ? dunno what this is used for yet but the icon breaks if you dont use it 
-        "fleet_type": 1, // 1= Homeworld, 2 = Fleet based, 3 = Penitent
-        "strength": 10, // 1-10
-        "purity": 10, // 1-10
+        "id": 10,
+        "name": "Black Templars",
+        "flavor": "Not adhering to the Codex Astartes, Black Templars are a Chapter on an Eternal Crusade with unique organization and high numbers. Masters of assault, they charge at the enemy with zeal unmatched. They hate psykers, and as such, have no Librarians.",
+        "origin": 2, // 1 - Founding, 2 -successor, 3 - Other/non-canon/fanmade, 4 - Custom
+        "points": 200,
+        "founding": 4, // The id of the founding chapter, 0 for unknown or none
+        "splash": 10,
+        "icon_name": "black_templars",
+        "fleet_type": 3, // 1= Homeworld, 2 = Fleet based, 3 = Penitent
+        "strength": 5, // 1-10
+        "purity": 8, // 1-10
         "stability": 96, // 1-99
         "cooperation": 5, // 1-10
         "homeworld_exists": 0, // 1 = true
         "recruiting_exists": 1, // 1 = true
         "homeworld_rule": 1, // 1 = Govenor, 2 = Countries, 3 = Personal Rule
-        "homeworld": "Dead", // "Lava" "Desert" "Forge" "Hive" "Death" "Agri" "Feudal" "Temperate" "Ice" "Dead" "Shrine"
-        "homeworld_name": "The Rock",
-        "recruiting": "Death", //"Lava" "Desert" "Forge" "Hive" "Death" "Agri" "Feudal" "Temperate" "Ice" "Dead" "Shrine"
-        "recruiting_name": "Kimmeria",
+        "homeworld": "", // "Lava" "Desert" "Forge" "Hive" "Death" "Agri" "Feudal" "Temperate" "Ice" "Dead" "Shrine"
+        "homeworld_name": "",
+        "recruit_home_relationship": 2, //recruit from different system
+        "recruiting": "", //"Lava" "Desert" "Forge" "Hive" "Death" "Agri" "Feudal" "Temperate" "Ice" "Dead" "Shrine"
+        "recruiting_name": "",
         "discipline": "librarius", // one of 'default' 'biomancy' 'pyromancy' 'telekinesis' 'rune_magic'
-        "aspirant_trial": "SURVIVAL", // ? need to find the best way to do this
+        "aspirant_trial": "APPRENTICESHIP", // ? need to find the best way to do this
         "advantages": [ //TODO something with these after rework of adv organisation
             "",
-            "Enemy: Fallen",
+            "Assault Doctrine",
+            "Kings of Space",
             "Reverent Guardians",
-            "",
-            "",
+            "Retinue of Renown",
             "",
             "",
             "",
@@ -35,8 +36,8 @@
         ],
         "disadvantages": [
             "",
-            "Never Forgive",
-            "",
+            "Psyker Intolerant",
+            "Suspicious",
             "",
             "",
             "",
@@ -45,45 +46,48 @@
             ""
         ],
         "colors": {
-            "main": "Caliban Green",
-            "secondary": "Caliban Green",
-            "pauldron_r": "Caliban Green", // todo update refs for new names
-            "pauldron_l": "Caliban Green",
-            "trim": "Grey",
-            "lens": "Red",
-            "weapon": "Dark Red",
+            "main": "Black",
+            "secondary": "Black",
+            "pauldron_r": "White",
+            "pauldron_l": "White",
+            "trim": "Silver",
+            "lens": "Dark Red",
+            "weapon": "Black",
             "special": 0, // 0 - normal, 1 - Breastplate, 2 - Vertical, 3 - Quadrant
-            //"trim_on": 0 // 0 no, 1 yes for special trim colours // todo update ref for new name
+            //"trim_on": 0 // 0 no, 1 yes for special trim colours 
         },
         "culture_styles": [
             "Knightly",
+            "Crusader"
         ],
         "names": {
             //Chapter Staff
-            "hchaplain": "Sapphon",
-            "clibrarian": "Ezekiel",
-            "fmaster": "Belaphor",  //Sepharon is the Master of the Logisticiam, Belaphor is the Forgemaster
-            "hapothecary": "Razaek",
+            "hchaplain": "Grimaldus",
+            "clibrarian": "",
+            "fmaster": "Jurisian",
+            "hapothecary": "Colber",
             //Company Captains 1 - 10
-            "honorcapt": "Belial",
-            "watchmaster": "Sammael",
-            "arsenalmaster": "Astoran",
-            "admiral": "Korahael",
-            "marchmaster": "Balthazar",
-            "ritesmaster": "Araphil",
-            "victualler": "Ezekiah",
-            "lordexec": "Molochi",
-            "relmaster": "Xerophus",
-            "recruiter": "Ranaeus"
+            "honorcapt": "",
+            "watchmaster": "",
+            "arsenalmaster": "",
+            "admiral": "Stenheir",
+            "marchmaster": "",
+            "ritesmaster": "",
+            "victualler": "",
+            "lordexec": "",
+            "relmaster": "",
+            "recruiter": "Emrik"
         },
-        "battle_cry": "Repent!  For tomorow you may die",
-        "equal_specialists": 0,
+        "battle_cry": "No Pity! No Remorse! No Fear!",
+        "equal_specialists": 1,
+        "equal_scouts": 1,
+        "scout_company_behaviour": 1, //0 default codex compliant, 1 scouts are replaced with bolter neophytes
         "load_to_ships": {
             "escort_load": 2, // 0 no, 2 yes, 1 doesnt do anything :)
             "split_scouts": 0, // 0 no, 1 yes
             "split_vets": 0 // 0 no, 1 yes
         },
-        "successors": 9, //total number of successor chapters
+        "successors": 0, //total number of successor chapters
         "mutations": {
             "preomnor": 0,
             "voice": 0,
@@ -91,9 +95,9 @@
             "lyman": 0,
             "omophagea": 0,
             "ossmodula": 0,
-            "membrane": 0,
+            "membrane": 1,
             "zygote": 0,
-            "betchers": 0,
+            "betchers": 1,
             "catalepsean": 0,
             "secretions": 0,
             "occulobe": 0,
@@ -101,46 +105,49 @@
         },
         "disposition": [ // todo maybe convert to struct
             0, // nothing
-            0, // Progenitor faction
-            65, // Imperium
-            60, // Admech
-            60, //Inquisition
-            60, // Ecclesiarchy
-            50, // Astartes
+            50, // Progenitor faction
+            60, // Imperium
+            40, // Admech
+            30, //Inquisition
+            80, // Ecclesiarchy
+            35, // Astartes
             0 // nothing
         ],
         "chapter_master": {
-            "name": "Azrael",
+            "name": "Helbrecht",
             "specialty": 2, //1 Leader, 2 Champion, 3 Psyker,
             "melee": 5, // 1 twin power fists ... 8 force staff
-            "ranged": 4, // 1 boltstorm gauntlets ... 7 storm shield
+            "ranged": 2, // 1 boltstorm gauntlets ... 7 storm shield
             // All chapter masters have the trait `Lead by Example` by default
             "traits": [
-                "old_guard",
-                "melee_enthusiast"
+                "melee_enthusiast",
+                "zealous_faith",
+                "old_guard"
             ],
             "gear": "",
-            "mobi": ""
+            "mobi": "",
+            "armour": "",
+            "bionics": 0
         },
         "artifact": {
-            "name": "Sword of Secrets",
-            "description": "A master-crafted Power Sword of formidable potency created soon after the disappearance of Lion El'Jonson. It is the mightiest of the Heavenfall Blades",
-            "base_weapon_type": "Power Sword"
+            "name": "Sword of the High Marshalls",
+            "description": "A relic blade forged from the shards of Rogal Dorn's shattered sword passed down by the High Marshalls as a sign of office",
+            "base_weapon_type": "Relic Blade"
         },
         "company_titles": [
             "",
-            "Deathwing",
-            "Ravenwing",
-            "The Unmerciful",
-            "The Feared",
-            "The Unrelenting",
-            "The Resolute",
-            "The Unbowed",
-            "The Wrathful",
-            "The Remorseless",
-            "The Redeemed"
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
         ],
-        "flagship_name": "Invincible Reason",
+        "flagship_name": "Eternal Crusader",
         /**
         * * Default fleet composition
         * * Homeworld 
@@ -151,8 +158,8 @@
         * use negative numbers to subtract ships
         */
         "extra_ships": {
-            "gloriana": 1,
-            "battle_barges": 1,
+            "gloriana":1,//Eternal Crusader lol
+            "battle_barges": 0,
             "gladius": 0,
             "strike_cruisers": 0,
             "hunters": 0
@@ -164,19 +171,23 @@
         * * Default Company specialists (divided based on `load_to_ships.split_vets` setting)
         * - 20 Terminators, 85 Veterans, 20 Devastators, 20 Assault
         * Use negative numbers to subtract
-        * Stacks with advantages/disadvantages
+        * * Stacks with advantages/disadvantages
         */
         "extra_specialists": {
             "chaplains": 0,
+            "chaplains_per_company": 0,
             "techmarines": 0,
+            "techmarines_per_company": 0,
             "apothecary": 0,
+            "apothecary_per_company": 0,
             "epistolary": 0,
+            "epistolary_per_company": 0,
             "codiciery": 0,
             "lexicanum": 0,
-            "terminator": 80,
-            "assault": 0,
-            "veteran": -80,
-            "devastator": 0
+            "terminator": 0,
+            "assault": 10,
+            "veteran": 0,
+            "devastator": -10
         },
         /**
         * * Default Marine strength
@@ -184,7 +195,6 @@
         * use negative numbers to subtract
         * Stacks with strength for non-founding chapters
         */
-        // * Not working yet
         "extra_marines": {
             "second": 0,
             "third": 0,
@@ -200,7 +210,8 @@
             "rhino": 0,
             "whirlwind": 0,
             "predator": 0,
-            "land_raider": 0
+            "land_raider": 0,
+            "land_speeder": 0
         },
         /** Add extra starting items ["Item Name", Number to add] */
         "extra_equipment": [
@@ -216,16 +227,25 @@
         */
         "custom_roles": {
             "chapter_master": {
-                "name": "Supreme Grand Master"
-            },
-            "honour_guard": {
-                "name": "Deathwing Knight",
-                "wep1": "Mace of Absolution",
-                "armour": "Terminator Armour"
+                "name": "High Marshall"
             },
             "captain": {
-                "name": "Master",
+                "name": "Marshall",
                 "wep1": "Power Sword"
+            },
+            "veteran": {
+                "name": "Sword Brother"
+            },
+            "tactical": {
+                "name": "Initiate"
+            },
+            "scout": {
+                "name": "Neophyte",
+                "wep1": "Bolter"
+            },
+            "champion": {
+                "wep1": "Relic Blade",
+                "wep2": ""
             }
         },
         /**
@@ -259,133 +279,48 @@
         */
         "squad_name": "Squad",
         "custom_squads": {
-            "terminator_squad": [
-                // Terminator Sergeant
+            "scout_squad": [
                 [
-                    "Veteran Sergeant",
+                    "Sergeant",
                     {
                         "max": 1,
                         "min": 1,
-                        "role": "Deathwing Sergeant",
+                        "role": "Sergeant",
                         "loadout": {
                             "required": {
                                 "wep1": [
-                                    "Power Sword",
+                                    "Chainsword",
+                                    1
+                                ],
+                                "wep2": [
+                                    "Bolt Pistol",
                                     1
                                 ]
                             }
                         }
                     }
                 ],
-                // Terminator
                 [
-                    "Terminator",
+                    "Neophyte",
                     {
-                        "max": 4,
-                        "min": 2,
-                        "role": "Deathwing Terminator",
+                        "max": 9,
+                        "min": 4,
                         "loadout": {
                             "required": {
                                 "wep1": [
-                                    "",
-                                    0
+                                    "Bolter",
+                                    2
                                 ],
-                                "wep2": [
-                                    "Storm Bolter",
-                                    3
-                                ]
                             },
                             "option": {
                                 "wep1": [
                                     [
                                         [
-                                            "Power Fist",
-                                            "Chainfist"
-                                        ],
-                                        4
-                                    ]
-                                ],
-                                "wep2": [
-                                    [
-                                        [
-                                            "Heavy Flamer",
-                                            "Heavy Flamer",
-                                            "Heavy Flamer",
-                                            "Assault Cannon",
-                                            "Assault Cannon",
-                                            "Plasma Cannon"
-                                        ],
-                                        1
-                                    ]
-                                ]
-                            }
-                        }
-                    }
-                ],
-                [
-                    "type_data",
-                    {
-                        "display_data": "Deathwing Terminator Squad",
-                        "formation_options": [
-                            "terminator",
-                            "veteran",
-                            "assault",
-                            "devastator",
-                            "scout",
-                            "tactical"
-                        ]
-                    }
-                ]
-            ],
-            "terminator_assault_squad": [
-                // Assault Terminator Sergeant
-                [
-                    "Veteran Sergeant",
-                    {
-                        "max": 1,
-                        "min": 1,
-                        "role": "Deathwing Sergeant",
-                        "loadout": {
-                            "required": {
-                                "wep1": [
-                                    "Thunder Hammer",
-                                    1
-                                ],
-                                "wep2": [
-                                    "Storm Shield",
-                                    1
-                                ]
-                            }
-                        }
-                    }
-                ],
-                // Assault Terminator
-                [
-                    "Terminator",
-                    {
-                        "max": 4,
-                        "min": 2,
-                        "role": "Deathwing Terminator",
-                        "loadout": {
-                            "required": {
-                                "wep1": [
-                                    "Thunder Hammer",
-                                    1
-                                ],
-                                "wep2": [
-                                    "Storm Shield",
-                                    1
-                                ]
-                            },
-                            "option": {
-                                "wep1": [
-                                    [
-                                        [
-                                            "Lightning Claw"
+                                            "Chainsword"
                                         ],
                                         3,
                                         {
-                                            "wep2": "Lightning Claw"
+                                            "wep2": "Bolt Pistol"
                                         }
                                     ]
                                 ]
@@ -396,18 +331,84 @@
                 [
                     "type_data",
                     {
-                        "display_data": "Deathwing Terminator Squad",
+                        "display_data": "Crusader Squad",
+                        "class": [
+                            "scout"
+                        ],
                         "formation_options": [
-                            "terminator",
-                            "veteran",
-                            "assault",
-                            "devastator",
                             "scout",
-                            "tactical"
-                        ]
+                            "tactical",
+                            "assault",
+                            "devastator"
+                        ],
                     }
                 ]
-            ]
+            ],
+            "scout_sniper_squad": [
+                [
+                    "Sergeant",
+                    {
+                        "max": 1,
+                        "min": 1,
+                        "role": "Sergeant",
+                        "loadout": {
+                            "required": {
+                                "wep1": [
+                                    "Chainsword",
+                                    1
+                                ],
+                                "wep2": [
+                                    "Bolt Pistol",
+                                    1
+                                ]
+                            }
+                        }
+                    }
+                ],
+                [
+                    "Neophyte",
+                    {
+                        "max": 9,
+                        "min": 4,
+                        "loadout": {
+                            "required": {
+                                "wep1": [
+                                    "Bolter",
+                                    2
+                                ],
+                            },
+                            "option": {
+                                "wep1": [
+                                    [
+                                        [
+                                            "Chainsword"
+                                        ],
+                                        3,
+                                        {
+                                            "wep2": "Bolt Pistol"
+                                        }
+                                    ]
+                                ]
+                            }
+                        }
+                    }
+                ],
+                [
+                    "type_data",
+                    {
+                        "display_data": "Crusader Squad",
+                        "class": [
+                            "scout"
+                        ],
+                        "formation_options": [
+                            "scout",
+                            "tactical",
+                            "assault",
+                            "devastator"
+                        ],
+                    }
+                ]
+            ],
         }
     }
 }
