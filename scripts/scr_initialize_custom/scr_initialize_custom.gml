@@ -2064,25 +2064,16 @@ function scr_initialize_custom() {
 	// show_debug_message($"{st}");
 
 
-	if(struct_exists(obj_creation, "custom_squads")){
-		var custom_squads = obj_creation.custom_squads;
-		// show_debug_message($"custom roles {custom_squads}");
-		if(array_length(struct_get_names(custom_squads)) != 0){
-			var names = struct_get_names(st);
-			// show_debug_message($"names {names}");
-			for(var n = 0; n < array_length(names); n++){
-				var squad_name = names[n];
-				// show_debug_message($"matched squad name name {squad_name}");
-
-				if(struct_exists(custom_squads, squad_name)){
-					var custom_squad = struct_get(custom_squads, squad_name);
-					// show_debug_message($"overwriting squad layout for {squad_name}");
-					// show_debug_message($"{custom_squad}")
-					variable_struct_set(st, squad_name, custom_squad);
-				}
-			}
-		}
-	}
+    if (struct_exists(obj_creation, "custom_squads")){
+        if(array_length(struct_get_names(obj_creation.custom_squads)) != 0){
+            var names = struct_get_names(obj_creation.custom_squads);
+            for(var n = 0; n < array_length(names); n++){
+                var squad_name = names[n];
+                var custom_squad = struct_get(obj_creation.custom_squads, squad_name);
+                st[$ squad_name] = custom_squad;
+            }
+        }
+    }
 
 	// show_debug_message($"roles object for chapter {chapter_name} after setting from obj");
 	// show_debug_message($"{st}");

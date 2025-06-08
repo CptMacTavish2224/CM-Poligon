@@ -717,14 +717,22 @@ function game_start_squads(){
 	company = 1;
 	create_squad("command_squad", company);
 	last_squad_count = array_length(obj_ini.squads);
-	while (last_squad_count == array_length(obj_ini.squads)){
-		last_squad_count = (array_length(obj_ini.squads) + 1);
-		if(last_squad_count%2 == 0){
-		create_squad("terminator_squad", company);
-	}else{
-		create_squad("terminator_assault_squad", company);
-			}
-	}	
+	if (struct_exists(obj_ini.squad_types,"deathwing_squad")){
+		while (last_squad_count == array_length(obj_ini.squads)){
+			last_squad_count = (array_length(obj_ini.squads) + 1);
+			create_squad("deathwing_squad", company);
+		}
+	} else {
+		while (last_squad_count == array_length(obj_ini.squads)){
+			last_squad_count = (array_length(obj_ini.squads) + 1);
+			if(last_squad_count%2 == 0){
+			create_squad("terminator_squad", company);
+		}else{
+			create_squad("terminator_assault_squad", company);
+				}
+		}	
+	}
+
 	last_squad_count = array_length(obj_ini.squads);	
 	while (last_squad_count == array_length(obj_ini.squads)){
 		last_squad_count = (array_length(obj_ini.squads) + 1);

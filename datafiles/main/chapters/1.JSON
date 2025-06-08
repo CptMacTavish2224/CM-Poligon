@@ -142,6 +142,42 @@
             "The Redeemed"
         ],
         "flagship_name": "Invincible Reason",
+        "company_liveries": [
+          {},
+          {
+            "right_trim": -1.0,
+            "left_trim": -1.0,
+            "left_chest": 17.0,
+            "right_chest": 17.0,
+            "left_thorax": 17.0,
+            "right_thorax": 17.0,
+            "left_arm": 17.0,
+            "left_hand": 17.0,
+            "right_arm": 17.0,
+            "right_hand": 17.0,
+            "left_head": 17.0,
+            "right_head": 17.0,
+            "left_muzzle": 17.0,
+            "right_muzzle": 17.0,
+            "eye_lense": -1.0,
+            "right_backpack": 17.0,
+            "left_backpack": 17.0,
+            "weapon_primary": 17.0,
+            "weapon_secondary": 17.0,
+            "company_marks": -1.0,
+            "company_marks_loc": -1.0,
+            "right_pauldron": 17.0,
+            "left_pauldron": -1.0,
+            "is_changed": false,
+            "left_leg_lower": 17.0,
+            "left_leg_upper": 17.0,
+            "left_leg_knee": 17.0,
+            "right_leg_lower": 17.0,
+            "right_leg_upper": 17.0,
+            "right_leg_knee": 17.0,
+            "metallic_trim": -1.0
+          },
+        ],
         /**
         * * Default fleet composition
         * * Homeworld 
@@ -260,7 +296,7 @@
         */
         "squad_name": "Squad",
         "custom_squads": {
-            "terminator_squad": [
+            "deathwing_squad": [
                 // Terminator Sergeant
                 [
                     "Veteran Sergeant",
@@ -339,6 +375,85 @@
                     }
                 ]
             ],
+            "terminator_squad": [
+                // Terminator Sergeant
+                [
+                    "Veteran Sergeant",
+                    {
+                        "max": 1,
+                        "min": 1,
+                        "role": "Terminator Sergeant",
+                        "loadout": {
+                            "required": {
+                                "wep1": [
+                                    "Power Sword",
+                                    1
+                                ]
+                            }
+                        }
+                    }
+                ],
+                // Terminator
+                [
+                    "Terminator",
+                    {
+                        "max": 4,
+                        "min": 2,
+                        "role": "Terminator Terminator",
+                        "loadout": {
+                            "required": {
+                                "wep1": [
+                                    "",
+                                    0
+                                ],
+                                "wep2": [
+                                    "Storm Bolter",
+                                    3
+                                ]
+                            },
+                            "option": {
+                                "wep1": [
+                                    [
+                                        [
+                                            "Power Fist",
+                                            "Chainfist"
+                                        ],
+                                        4
+                                    ]
+                                ],
+                                "wep2": [
+                                    [
+                                        [
+                                            "Heavy Flamer",
+                                            "Heavy Flamer",
+                                            "Heavy Flamer",
+                                            "Assault Cannon",
+                                            "Assault Cannon",
+                                            "Plasma Cannon"
+                                        ],
+                                        1
+                                    ]
+                                ]
+                            }
+                        }
+                    }
+                ],
+                [
+                    "type_data",
+                    {
+                        "display_data": "Assualt Terminator Squad",
+                        "formation_options": [
+                            "terminator",
+                            "veteran",
+                            "assault",
+                            "devastator",
+                            "scout",
+                            "tactical"
+                        ],
+                        "allowed_companies": [1]
+                    }
+                ]
+            ],    
             "terminator_assault_squad": 
             [
                 // Assault Terminator Sergeant
@@ -347,7 +462,7 @@
                     {
                         "max": 1,
                         "min": 1,
-                        "role": "Deathwing Sergeant",
+                        "role": "Terminator Sergeant",
                         "loadout": {
                             "required": {
                                 "wep1": [
@@ -368,7 +483,7 @@
                     {
                         "max": 4,
                         "min": 2,
-                        "role": "Deathwing Terminator",
+                        "role": "Terminator",
                         "loadout": {
                             "required": {
                                 "wep1": [
@@ -399,7 +514,7 @@
                 [
                     "type_data",
                     {
-                        "display_data": "Deathwing Terminator Squad",
+                        "display_data": "Terminator Squad",
                         "formation_options": [
                             "terminator",
                             "veteran",
