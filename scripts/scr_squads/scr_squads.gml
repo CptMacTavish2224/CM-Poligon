@@ -9,10 +9,15 @@ function fetch_squad(array_id){
 	return obj_ini.squads[array_id];
 }
 function create_squad(squad_type, company, squad_loadout = true, squad_index=false){
-
+	var fill_squad = obj_ini.squad_types[$ squad_type];
+    var type_data = fill_squad[$"type_data"];
+    if (struct_exists(type_data, "allowed_companies")) {
+        if (!array_contains(type_data.allowed_companies, company)) {
+            return; // Not allowed in this company
+        }
+    }
 	var squad_unit_types, fulfilled,unit, squad;
 	var squad_count = array_length(obj_ini.squads);
-	var fill_squad =  obj_ini.squad_types[$ squad_type];			//grab all the squad struct info from the squad_types struct
 	squad = new UnitSquad(squad_type, company);
 	squad.base_company = company;
 	squad.add_type_data(fill_squad[$"type_data"]);		
@@ -22,6 +27,7 @@ function create_squad(squad_type, company, squad_loadout = true, squad_index=fal
 	var roles = obj_ini.role[100];
 	var sergeant_found = false;
 	var sgt_types = [roles[eROLE.Sergeant], roles[eROLE.VeteranSergeant]];
+
 
 	//if squad has sergeants in find out if there are any available sergeants
 	for (var s = 0; s < 2;s++){
@@ -301,6 +307,12 @@ function UnitSquad(squad_type = undefined, company = undefined) constructor{
 		}		
 	}
 	static change_type = function(new_type){
+		var new_type_data = obj_ini.squad_types[$ new_type].type_data;
+    if (struct_exists(new_type_data, "allowed_companies")) {
+        if (!array_contains(new_type_data.allowed_companies, base_company)) {
+            return; // Not allowed in this company
+        }
+    }
 		type=new_type;
 		add_type_data(obj_ini.squad_types[$ type].type_data)
 	}

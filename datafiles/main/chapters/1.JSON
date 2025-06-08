@@ -8,18 +8,19 @@
         "founding": 0, // The id of the founding chapter, 0 for unknown or none
         "splash": 1,
         "icon_name": "dark_angels", // ? dunno what this is used for yet but the icon breaks if you dont use it 
-        "fleet_type": 1, // 1= Homeworld, 2 = Fleet based, 3 = Penitent
+        "fleet_type": 2, // 1= Homeworld, 2 = Fleet based, 3 = Penitent
         "strength": 10, // 1-10
         "purity": 10, // 1-10
         "stability": 96, // 1-99
         "cooperation": 5, // 1-10
-        "homeworld_exists": 0, // 1 = true
-        "recruiting_exists": 1, // 1 = true
+        "homeworld_exists": 1, // 1 = true
+        "recruiting_exists": 0, // 1 = true
         "homeworld_rule": 1, // 1 = Govenor, 2 = Countries, 3 = Personal Rule
         "homeworld": "Dead", // "Lava" "Desert" "Forge" "Hive" "Death" "Agri" "Feudal" "Temperate" "Ice" "Dead" "Shrine"
         "homeworld_name": "The Rock",
         "recruiting": "Death", //"Lava" "Desert" "Forge" "Hive" "Death" "Agri" "Feudal" "Temperate" "Ice" "Dead" "Shrine"
         "recruiting_name": "Kimmeria",
+        "recruit_home_relationship": 2,
         "discipline": "librarius", // one of 'default' 'biomancy' 'pyromancy' 'telekinesis' 'rune_magic'
         "aspirant_trial": "SURVIVAL", // ? need to find the best way to do this
         "advantages": [ //TODO something with these after rework of adv organisation
@@ -199,7 +200,7 @@
         "extra_vehicles": {
             "rhino": 0,
             "whirlwind": 0,
-            "predator": 0,
+            "predator": 20,
             "land_raider": 0
         },
         /** Add extra starting items ["Item Name", Number to add] */
@@ -333,11 +334,13 @@
                             "devastator",
                             "scout",
                             "tactical"
-                        ]
+                        ],
+                        "allowed_companies": [1]
                     }
                 ]
             ],
-            "terminator_assault_squad": [
+            "terminator_assault_squad": 
+            [
                 // Assault Terminator Sergeant
                 [
                     "Veteran Sergeant",
@@ -404,7 +407,8 @@
                             "devastator",
                             "scout",
                             "tactical"
-                        ]
+                        ],
+                        "allowed_companies": [1]
                     }
                 ]
             ]
