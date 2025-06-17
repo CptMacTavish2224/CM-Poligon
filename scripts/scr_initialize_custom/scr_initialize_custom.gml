@@ -2600,7 +2600,24 @@ function scr_initialize_custom() {
 			landraiders:0,
 		}
 	}
-
+if (struct_exists(obj_creation, "companies")) 
+{
+    var company_keys = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
+    for (var i = 0; i < array_length(company_keys); i++) 
+	{
+        var ckey = company_keys[i];
+        if (struct_exists(obj_creation.companies, ckey) && struct_exists(companies, ckey)) 
+		{
+            var override_struct = obj_creation.companies[$ckey];
+            var override_keys = struct_get_names(override_struct);
+            for (var j = 0; j < array_length(override_keys); j++) 
+			{
+                var okey = override_keys[j];
+                companies[$ckey][$okey] = override_struct[$okey];
+            }
+        }
+    }
+}
 	log_message($"Pre balancing company totals: {json_stringify(companies,true)}")
 	// Extra vehicles loaded from json files all get dumped into the 10th company for the player to sort out
 	
@@ -2621,8 +2638,6 @@ function scr_initialize_custom() {
 			}
 		}
 	}
-
-
 	var equal_specialists = obj_creation.equal_specialists;
 	var scout_company_behaviour = 0;
 	if(struct_exists(obj_creation, "scout_company_behaviour")){
