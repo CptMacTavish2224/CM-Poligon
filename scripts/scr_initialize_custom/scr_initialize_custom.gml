@@ -2581,7 +2581,6 @@ function scr_initialize_custom() {
 			coy: 9,
 			total: ninth,
 			dreadnoughts: dreadnought,
-
 			rhinos: rhino-6,
 			whirlwinds: whirlwind-4,
 			landspeeders: landspeeder-2,
@@ -2600,24 +2599,6 @@ function scr_initialize_custom() {
 			landraiders:0,
 		}
 	}
-if (struct_exists(obj_creation, "companies")) 
-{
-    var company_keys = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
-    for (var i = 0; i < array_length(company_keys); i++) 
-	{
-        var ckey = company_keys[i];
-        if (struct_exists(obj_creation.companies, ckey) && struct_exists(companies, ckey)) 
-		{
-            var override_struct = obj_creation.companies[$ckey];
-            var override_keys = struct_get_names(override_struct);
-            for (var j = 0; j < array_length(override_keys); j++) 
-			{
-                var okey = override_keys[j];
-                companies[$ckey][$okey] = override_struct[$okey];
-            }
-        }
-    }
-}
 	log_message($"Pre balancing company totals: {json_stringify(companies,true)}")
 	// Extra vehicles loaded from json files all get dumped into the 10th company for the player to sort out
 	
@@ -2788,7 +2769,22 @@ if (struct_exists(obj_creation, "companies"))
 
 
 		var attrs = struct_get_names(_coy);
-		
+		if (struct_exists(obj_creation, "companies")) {
+    var company_keys = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
+    for (var i = 0; i < array_length(company_keys); i++) {
+        var ckey_hash = variable_get_hash(company_keys[i]);
+        if (struct_exists_from_hash(obj_creation.companies, ckey_hash) && struct_exists_from_hash(companies, ckey_hash)) {
+            var ckey_ins = struct_get_from_hash(obj_creation.companies, ckey_hash);
+            var ckey_var = struct_get_from_hash(companies, ckey_hash);
+            var override_keys = struct_get_names(ckey_ins);
+            for (var j = 0; j < array_length(override_keys); j++) {
+                var okey_hash = variable_get_hash(override_keys[j]);
+                var okey_ins = struct_get_from_hash(ckey_ins, okey_hash);
+                struct_set_from_hash(ckey_var, okey_hash, okey_ins);
+            }
+        }
+    }
+}
 		
 		
 		// log_message($"attrs {attrs}");

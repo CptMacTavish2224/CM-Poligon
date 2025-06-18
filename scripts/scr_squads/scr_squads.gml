@@ -100,6 +100,10 @@ function create_squad(squad_type, company, squad_loadout = true, squad_index=fal
 			break
 		}
 	}
+	if (!fulfilled) {
+    show_debug_message("Could not create " + squad_type + " in company " + string(company) + ": Not enough available marines of required roles.");
+    return;
+}
 	if (fulfilled){
 		for (var s = 0; s< 2;s++){
 			if (struct_exists(squad_fulfilment ,sgt_types[s])) and (sergeant_found == false){
@@ -733,13 +737,28 @@ function game_start_squads(){
 		}	
 	}
 
-	last_squad_count = array_length(obj_ini.squads);	
+	last_squad_count = array_length(obj_ini.squads);
 	while (last_squad_count == array_length(obj_ini.squads)){
 		last_squad_count = (array_length(obj_ini.squads) + 1);
 		if(last_squad_count%2 == 0){
 		create_squad("sternguard_veteran_squad", company);
 	}else{
 		create_squad("vanguard_veteran_squad", company);
+		}
+	}
+	company=2;
+		last_squad_count = array_length(obj_ini.squads);
+		if (struct_exists(obj_ini.squad_types,"ravenwing_squad")){
+		while (last_squad_count == array_length(obj_ini.squads)){
+			last_squad_count = (array_length(obj_ini.squads) + 1);
+			create_squad("ravenwing_squad", company);
+		}
+	}
+			last_squad_count = array_length(obj_ini.squads);
+		if (struct_exists(obj_ini.squad_types,"ravenwing_command_squad")){
+		while (last_squad_count == array_length(obj_ini.squads)){
+			last_squad_count = (array_length(obj_ini.squads) + 1);
+			create_squad("ravenwing_command_squad", company);
 		}
 	}
 	company = 10;

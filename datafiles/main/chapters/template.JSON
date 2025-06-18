@@ -1317,19 +1317,19 @@
     */
     "extra_specialists": 
     {
-      "chaplains": 22,//adds them to the Reclusiam
+      "chaplains": 0,//adds them to the Reclusiam
       "chaplains_per_company": 0,//adds them to company, X per company
-      "techmarines": 2,
+      "techmarines": 0,
       "techmarines_per_company": 0,
-      "apothecary": 2,
+      "apothecary": 0,
       "apothecary_per_company": 0,
-      "epistolary": 2,
+      "epistolary": 0,
       "epistolary_per_company": 0,
-      "codiciery": 6,
-      "lexicanum": 4,
-      "terminator": 85,
+      "codiciery": 0,
+      "lexicanum": 0,
+      "terminator": 0,
       "assault": 0,
-      "veteran": -85,
+      "veteran": 0,
       "devastator": 0,
       "dreadnought": 0
     },
@@ -1340,6 +1340,19 @@
       "land_speeder": 0,
       "whirlwind": 0,
       "land_raider": 0
+    },
+    "companies":// you may use this to override default company manpower and vehicles on start.
+    {
+      "first": "",
+      "second":"",
+      "third":"",
+      "fourth":"",
+      "fifth":"",
+      "sixth":"",
+      "seventh":"",
+      "eighth":"",
+      "ninth":"",
+      "tenth":""
     },
     "custom_advisors"://here you define what image [by typing the png name] are your custom advisors using. If you add nothing here, the game uses defaults
     {/*
