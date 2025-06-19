@@ -2,7 +2,7 @@
   "$GMProject":"v1",
   "%Name":"ChapterMaster",
   "AudioGroups":[
-    {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
   ],
   "configs":{
     "children":[],
@@ -507,7 +507,6 @@
     {"$GMIncludedFile":"","%Name":"load_sets.json","CopyToMask":-1,"filePath":"datafiles/main/chapter_symbols","name":"load_sets.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"pauldron.png","CopyToMask":-1,"filePath":"datafiles/main/chapter_symbols/scythesofthemperor","name":"pauldron.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"pauldron.png","CopyToMask":-1,"filePath":"datafiles/main/chapter_symbols/ultramarines","name":"pauldron.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"1 (2).JSON","CopyToMask":-1,"filePath":"datafiles/main/chapters","name":"1 (2).JSON","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"1.JSON","CopyToMask":-1,"filePath":"datafiles/main/chapters","name":"1.JSON","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"10 (2).JSON","CopyToMask":-1,"filePath":"datafiles/main/chapters","name":"10 (2).JSON","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"10.JSON","CopyToMask":-1,"filePath":"datafiles/main/chapters","name":"10.JSON","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -555,7 +554,6 @@
     {"$GMIncludedFile":"","%Name":"8.JSON","CopyToMask":-1,"filePath":"datafiles/main/chapters","name":"8.JSON","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"9 (2).JSON","CopyToMask":-1,"filePath":"datafiles/main/chapters","name":"9 (2).JSON","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"9.JSON","CopyToMask":-1,"filePath":"datafiles/main/chapters","name":"9.JSON","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
-    {"$GMIncludedFile":"","%Name":"template (2).JSON","CopyToMask":-1,"filePath":"datafiles/main/chapters","name":"template (2).JSON","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"template.JSON","CopyToMask":-1,"filePath":"datafiles/main/chapters","name":"template.JSON","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"help.ini","CopyToMask":9223372036854775807,"filePath":"datafiles/main","name":"help.ini","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"chaos.json","CopyToMask":-1,"filePath":"datafiles/main/names","name":"chaos.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
