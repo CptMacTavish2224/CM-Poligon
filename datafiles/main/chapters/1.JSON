@@ -1433,7 +1433,7 @@
     {
       "chaplains": 12,//adds them to the Reclusiam
       "chaplains_per_company": 0,//adds them to company, X per company
-      "techmarines": 2,
+      "techmarines": 12,
       "techmarines_per_company": 0,
       "apothecary": 2,
       "apothecary_per_company": 0,
@@ -1459,6 +1459,7 @@
     {
         "first":
         {
+            "veterans": 4,
             "dreadnoughts": 9,
             "landraiders": 21
         },
@@ -1476,7 +1477,42 @@
             "scouts": 0,
             "veterans": 100
         },
+        "third":
+        {
+          "veterans": 5,
+          "dreadnoughts": 3
+        },
         "fourth":
+        {
+          "veterans": 5,
+          "dreadnoughts": 2
+        },
+        "fifth":
+        {
+          "veterans": 5,
+          "dreadnoughts": 4
+        },
+        "sixth":
+        {
+          "veterans": 5,
+          "dreadnoughts": 1
+        },
+        "seventh":
+        {
+          "veterans": 5,
+          "dreadnoughts": 3
+        },
+        "eighth":
+        {
+          "veterans": 5,
+          "dreadnoughts": 2
+        },
+        "ninth":
+        {
+          "veterans": 5,
+          "dreadnoughts": 4
+        },
+        "tenth":
         {
           "veterans": 5
         }
@@ -1493,6 +1529,149 @@
     "squad_name": "Squad", //how will any squad be referenced
     "custom_squads":
     {
+      "deathwing_command_squad":
+      [
+        [ "Captain",
+          {
+            "max": 1,"min": 1,
+            "role": "Master of the Deathwing",
+            "loadout": 
+            {
+              "required":
+              {
+                "armour": ["Terminator Armour", 1]
+              }
+            }
+          }
+        ],/* Disabled for now cause I can't have a Vet Sarge and a Champion at the same time for some reason
+        [
+          "Champion",
+          {
+            "max":1,"min":0,
+            "role": "Ravenwing Champion"
+          }
+        ],*/
+        [
+          "Chaplain",
+          {
+            "max": 1,"min": 0,
+            "role": "Chaplain",
+            "loadout": 
+            {
+              "required":
+              {
+                "armour": ["Terminator Armour", 1]
+              }
+            }
+          }
+        ],
+        [
+          "Apothecary",
+          {
+            "max": 2,"min": 0,
+            "role": "Apothecary",
+            "loadout": 
+            {
+              "required":
+              {
+                "armour": ["Terminator Armour", 1]
+              }
+            }
+          }
+        ],
+        [
+          "Ancient",
+          {
+            "max": 1,"min": 0,
+            "role": "Deathwing Ancient",
+            "loadout": 
+            {
+              "required":
+              {
+                "armour": ["Terminator Armour", 1]
+              }
+            }
+          }
+        ],
+        [
+          "Librarian",
+          {
+            "max": 1,"min": 0,
+            "role": "Librarian",
+            "loadout": 
+            {
+              "required":
+              {
+                "armour": ["Terminator Armour", 1]
+              }
+            }
+          }
+        ],
+        [
+          "Techmarine",
+          {
+            "max": 2,"min": 0,
+            "role": "Techmarine",
+            "loadout": 
+            {
+              "required":
+              {
+                "mobi": ["Servo-harness",1],
+                "armour": ["Terminator Armour", 1]
+              }
+            }
+          }
+        ],
+        [
+          "Champion",
+          {
+            "max": 1, "min": 0,
+            "role": "Knight Master",
+            "loadout":
+            {
+              "required":
+              {
+                "wep1":["Relic Blade", 1],
+                "wep2":["Storm Shield", 1],
+                "gear":["Iron Halo", 1],
+                "armour":["Tartaros", 1]
+              }
+            }
+          }
+        ],
+        [
+          "Veteran",
+          {
+          "max": 4,"min": 0,
+          "role": "Deathwing Knight",
+          "loadout":
+          {
+            "required":
+            {
+              "wep1": ["Mace of Absolution", 4],
+              "wep2":
+              [
+                "Storm Shield",
+                4
+              ],
+              "armour":
+              [
+                "Terminator Armour",
+                4
+              ]
+            }
+          }
+          }
+        ],
+        [
+          "type_data", 
+          {
+				  "display_data": "Deathwing Command Squad",
+				  "formation_options": ["champion", "command", "terminator", "veteran", "assault", "devastator", "scout", "tactical"],
+				  "allowed_companies": [1]
+          }
+        ]
+      ],
       "deathwing_squad":
       [
         // Terminator Sergeant
@@ -1519,7 +1698,7 @@
         [
           "Terminator",
             {
-              "max": 4,
+              "max": 9,
               "min": 2,
               "role": "Deathwing Terminator",
               "loadout":
@@ -1534,7 +1713,7 @@
                   "wep2":
                   [
                     "Storm Bolter",
-                    3
+                    7
                   ]
                 },
                 "option":
@@ -1546,7 +1725,7 @@
                         "Power Fist",
                         "Chainfist"
                       ],
-                      4
+                      9
                     ]
                   ],
                   "wep2":
@@ -1560,7 +1739,7 @@
                         "Assault Cannon",
                         "Plasma Cannon"
                       ],
-                      1
+                      2
                     ]
                   ]
                 }
@@ -1768,7 +1947,7 @@
             {
               "required":
               {
-                "mobi": ["Bike", 1]
+                "mobi": ["Servo-harness", 1]
               }
             }
           }
@@ -1808,7 +1987,7 @@
               "wep1":
               [
                 "Chainsword",
-                2
+                4
               ],
               "mobi":
               [

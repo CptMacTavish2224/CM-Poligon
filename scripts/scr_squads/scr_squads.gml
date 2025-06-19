@@ -96,6 +96,7 @@ function create_squad(squad_type, company, squad_loadout = true, squad_index=fal
 	fulfilled = true;
 	for (var i = 0;i < array_length(squad_unit_types);i++){
 		if (squad_fulfilment[$ squad_unit_types[i]] < fill_squad[$ squad_unit_types[i]][$ "min"]){
+			show_debug_message("Missing role: " + string(squad_unit_types[i]) + " need " + string(fill_squad[$ squad_unit_types[i]][$ "min"]) + " have " + string(squad_fulfilment[$ squad_unit_types[i]]));
 			fulfilled = false;
 			break
 		}
@@ -672,13 +673,13 @@ function game_start_squads(){
 	obj_ini.squads = [];
 	var last_squad_count
 	for (var company=2;company < 10;company++){
-					last_squad_count = array_length(obj_ini.squads);
-		if (struct_exists(obj_ini.squad_types,"ravenwing_command_squad")){
-		while (last_squad_count == array_length(obj_ini.squads)){
-			last_squad_count = (array_length(obj_ini.squads) + 1);
-			create_squad("ravenwing_command_squad", company);
-		}
-	}
+			last_squad_count = array_length(obj_ini.squads);
+			if (struct_exists(obj_ini.squad_types,"ravenwing_command_squad")){
+				while (last_squad_count == array_length(obj_ini.squads)){
+				last_squad_count = (array_length(obj_ini.squads) + 1);
+				create_squad("ravenwing_command_squad", company);
+				}
+			}
 		create_squad("command_squad", company);
 		last_squad_count = array_length(obj_ini.squads);
 		while (last_squad_count == array_length(obj_ini.squads)){ ///keep making tact squads for as long as there are enough tact marines
@@ -726,7 +727,15 @@ function game_start_squads(){
 		}
 	}
 	company = 1;
-	create_squad("command_squad", company);
+	last_squad_count = array_length(obj_ini.squads);
+	if (struct_exists(obj_ini.squad_types,"deathwing_command_squad"))
+	{
+		while (last_squad_count == array_length(obj_ini.squads)){
+		last_squad_count = (array_length(obj_ini.squads) + 1);
+		create_squad("deathwing_command_squad", company);
+		}
+	}
+	else {create_squad("command_squad", company)};
 	last_squad_count = array_length(obj_ini.squads);
 	if (struct_exists(obj_ini.squad_types,"deathwing_squad")){
 		while (last_squad_count == array_length(obj_ini.squads)){
