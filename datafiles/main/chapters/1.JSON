@@ -1657,14 +1657,7 @@
                 "wep2":
                 [
                   [
-                    [
-                      "Flamer",
-                      "Grav-gun",
-                      "Meltagun",
-                      "Plasma Gun",
-                      "Plasma Pistol"
-                    ],
-                    2
+                    ["Flamer","Grav-Gun","Meltagun","Plasma Gun","Plasma Pistol"],2
                   ]
                 ]
               }
@@ -1694,15 +1687,34 @@
           {
             "max": 1,"min": 1,
             "role": "Master of the Ravenwing",
-            "mobi": "Bike"
+            "loadout": 
+            {
+              "required":
+              {
+                "mobi": ["Bike", 1]
+              }
+            }
           }
-        ],
+        ],/* Disabled for now cause I can't have a Vet Sarge and a Champion at the same time for some reason
+        [
+          "Champion",
+          {
+            "max":1,"min":0,
+            "role": "Ravenwing Champion"
+          }
+        ],*/
         [
           "Chaplain",
           {
             "max": 1,"min": 0,
             "role": "Chaplain",
-            "mobi": "Bike"
+            "loadout": 
+            {
+              "required":
+              {
+                "mobi": ["Bike", 1]
+              }
+            }
           }
         ],
         [
@@ -1710,15 +1722,27 @@
           {
             "max": 2,"min": 0,
             "role": "Apothecary",
-            "mobi": "Bike"
+            "loadout": 
+            {
+              "required":
+              {
+                "mobi": ["Bike", 1]
+              }
+            }
           }
         ],
         [
           "Ancient",
           {
             "max": 1,"min": 0,
-            "role": "Ancient",
-            "mobi": "Bike"
+            "role": "Ravenwing Ancient",
+            "loadout": 
+            {
+              "required":
+              {
+                "mobi": ["Bike", 1]
+              }
+            }
           }
         ],
         [
@@ -1726,7 +1750,13 @@
           {
             "max": 1,"min": 1,
             "role": "Librarian",
-            "mobi": "Bike"
+            "loadout": 
+            {
+              "required":
+              {
+                "mobi": ["Bike", 1]
+              }
+            }
           }
         ],
         [
@@ -1734,14 +1764,38 @@
           {
             "max": 2,"min": 0,
             "role": "Techmarine",
-            "mobi": "Bike"
+            "loadout": 
+            {
+              "required":
+              {
+                "mobi": ["Bike", 1]
+              }
+            }
+          }
+        ],
+        [
+          "Champion",
+          {
+            "max": 1, "min": 0,
+            "role": "Huntsmaster",
+            "loadout":
+            {
+              "required":
+              {
+                "wep1":["Relic Blade", 1],
+                "wep2":["Plasma Pistol", 1],
+                "gear":["Iron Halo", 1],
+                "armour":["Artificer Armour", 1],
+                "mobi":["Bike",1]
+              }
+            }
           }
         ],
         [
           "Veteran",
           {
           "max": 4,"min": 0,
-          "role": "Ravenwing Veteran",
+          "role": "Black Knight",
           "loadout":
           {
             "required":
