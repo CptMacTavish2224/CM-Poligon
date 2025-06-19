@@ -3009,6 +3009,7 @@ function scr_initialize_custom() {
 					_rolename = "Land Speeder";
 					_erole = eROLE.LandSpeeder;
 					_wep1 = "Heavy Bolter";
+					_wep2 = "";
 					break;
 				case "whirlwinds":
 					_is_vehicle = true;
