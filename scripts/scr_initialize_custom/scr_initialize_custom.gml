@@ -1101,7 +1101,7 @@ function scr_initialize_custom() {
 		tenth += 5;
 	}
 	if  scr_has_disadv ("Small Reclusiam") {
-		chaplains -= 5;
+		chaplains = max(1, chaplains - 5);
 		tenth += 5;
 	}
 	if scr_has_adv ("Reverent Guardians") {
@@ -1374,7 +1374,6 @@ function scr_initialize_custom() {
 		name[0, i] = "";
 		role[0, i] = "";
 		wep1[0, i] = "";
-		bio[0, i] = 0;
 		spe[0, i] = "";
 		wep2[0, i] = "";
 		armour[0, i] = "";
@@ -3186,6 +3185,8 @@ function scr_initialize_custom() {
 		scr_add_item(wep1[defaults_slot, eROLE.Apothecary], 4);
 		scr_add_item(wep2[defaults_slot,  eROLE.Apothecary], 4);
 		scr_add_item("Psychic Hood", 4);
+		scr_add_item("Crozius Arcanum", 4);
+		scr_add_item("Servo-arm", 4);
 		scr_add_item("Force Staff", 4);
 		scr_add_item("Plasma Pistol", 4);
 		scr_add_item("Company Standard", 4);
