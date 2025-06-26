@@ -19,12 +19,12 @@
     "homeworld_exists": 1,
     "recruiting_exists": 1,
     "home_warp":2, //[0] low/no connection [1] connected [2] warp hub
-    "homeplanets": 3, //amount of planets in home system I think
+    "home_planets": 3, //amount of planets in home system I think, [0]=1, [3]=4
     "homeworld_rule": 3, //[1] Governor [2] Semi-independent [3] Direct Rule
     "homeworld": "Forge", //Homeworld planet type "Lava" "Desert" "Forge" "Hive" "Death" "Agri" "Feudal" "Temperate" "Ice" "Dead" "Shrine"
     "home_spawn_loc": 1, //unsure which is it, probably 0=fringe, 1=central
     "homeworld_name": "Lannus",
-    "monastary_name": "Blood of the Angel", //name of the F-M structure on the homeplanet
+    "monastery_name": "Blood of the Angel", //name of the F-M structure on the homeplanet
     "recruiting": "Shrine", //same as homeworld
     "recruiting_name": "Lannus",
     "recruit_home_relationship": 1, //apparently this means either 0 same planet, 1 same system, 2 other system
