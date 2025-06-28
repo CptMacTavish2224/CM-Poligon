@@ -1566,6 +1566,60 @@
     "squad_name":"Wing",
     "custom_squads":
     {
+      "tactical_squad":
+      [
+        [
+          "Ophanim",
+          {
+            "max":1, "min":1,
+            "role": "Ophanim",
+            "loadout":
+            {
+              "required":
+              {
+                "wep1":["Power Sword",1],
+                "armour":["MK4 Maximus",1]
+              },
+              "option":
+              {
+                "wep2":[["Ryza Plasma Pistol","Ryza Plasma Pistol","Volkite Serpenta","Phobos Bolt Pistol"],1]
+              }
+            }
+          },
+          "Tarshishim",
+          {
+            "max":9,"min":4,
+            "role":"Tarshishim",
+            "loadout":
+            {
+              "required":
+              {
+                "wep1":["Phobos Bolter", 7],
+                "wep2":["Chainaxe", 7],
+                "armour":["MK7 Aquila", 7]
+              },
+              "option":
+              {
+                "wep1":
+                [["Mars Plasma Cannon","Mars Heavy Bolter","Volkite Culverin","Volkite Caliver"],2,
+                  {
+                    "mobi":"Heavy Weapons Pack",
+                    "wep2":"Combat Knife"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        [
+          "type_data",
+          {
+            "display_data": "Tarshishim Wing",
+            "formation_options": ["champion", "command", "terminator", "veteran", "assault", "devastator", "scout", "tactical"],
+            "allowed_companies": [1,2,3,4,5,6,7,8,9,10]
+          }
+        ]
+      ],
       "command_squad":[
         [ "Captain",
           {
@@ -1612,8 +1666,9 @@
           "type_data", 
           {
 				  "display_data": "First Wing",
-				  "formation_options": ["champion", "command", "terminator", "veteran", "assault", "devastator", "scout", "tactical"]
-			    }
+				  "formation_options": ["champion", "command", "terminator", "veteran", "assault", "devastator", "scout", "tactical"],
+			    "allowed_companies": [1,2,3,4,5,6,7,8,9,10]
+          }
         ]
       ]
     }
