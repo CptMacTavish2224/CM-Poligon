@@ -1598,7 +1598,7 @@
             "role": "Captain"
           }
         ],
-        [
+        [//Champion
           "Eshim",
           {
             "max": 1,"min": 0,
@@ -1612,14 +1612,14 @@
             "role": "Sanguinary Priest"
           }
         ],
-        [
+        [//Chaplain
           "Elohim",
           {
             "max": 1,"min": 0,
             "role": "Elohim"
           }
         ],
-        [
+        [//Ancient
           "Cherubim",
           {
             "max": 1,"min": 1,
