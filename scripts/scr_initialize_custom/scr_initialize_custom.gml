@@ -2769,18 +2769,20 @@ function scr_initialize_custom() {
 
 
 		var attrs = struct_get_names(_coy);
-		if (struct_exists(obj_creation, "companies")) {
-    var company_keys = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
-    for (var i = 0; i < array_length(company_keys); i++) {
-        var ckey_hash = variable_get_hash(company_keys[i]);
-        if (struct_exists_from_hash(obj_creation.companies, ckey_hash) && struct_exists_from_hash(companies, ckey_hash)) {
-            var ckey_ins = struct_get_from_hash(obj_creation.companies, ckey_hash);
-            var ckey_var = struct_get_from_hash(companies, ckey_hash);
-            var override_keys = struct_get_names(ckey_ins);
-            for (var j = 0; j < array_length(override_keys); j++) {
-                var okey_hash = variable_get_hash(override_keys[j]);
-                var okey_ins = struct_get_from_hash(ckey_ins, okey_hash);
-                struct_set_from_hash(ckey_var, okey_hash, okey_ins);
+if (struct_exists(obj_creation, "companies")) {
+    var _company_keys = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"];
+    var _company_keys_count = array_length(_company_keys);
+    for (var i = 0; i < _company_keys_count; i++) {
+        var _ckey_hash = variable_get_hash(_company_keys[i]);
+        if (struct_exists_from_hash(obj_creation.companies, _ckey_hash) && struct_exists_from_hash(companies, _ckey_hash)) {
+            var _ckey_ins = struct_get_from_hash(obj_creation.companies, _ckey_hash);
+            var _ckey_var = struct_get_from_hash(companies, _ckey_hash);
+            var _override_keys = struct_get_names(_ckey_ins);
+            var _override_keys_count = array_length(_override_keys);
+            for (var j = 0; j < _override_keys_count; j++) {
+                var _okey_hash = variable_get_hash(_override_keys[j]);
+                var _okey_ins = struct_get_from_hash(_ckey_ins, _okey_hash);
+                struct_set_from_hash(_ckey_var, _okey_hash, _okey_ins);
             }
         }
     }
