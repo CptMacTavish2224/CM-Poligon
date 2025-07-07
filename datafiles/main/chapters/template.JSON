@@ -8,7 +8,7 @@
     "origin": "", //[1] Founding [2] Successor [3] Other [4] Custom
     "points": 0, //creation points, feel free to cheat here for more wild stuff in custom if you don't like doing it via files
     "founding": 0, //ID of the progenitor chapter, as per fiels in datafiles/main/chapters
-    "successors": , //write how many successors your chapter has. Go bonkers. Show them you got the seed to have 666 successors
+    "successors": 0, //write how many successors your chapter has. Go bonkers. Show them you got the seed to have 666 successors
     "splash": 0, //the more artsy image on the left side of selection screen. Highly advised to use the same number as chapter ID
     "icon_name": "", //name for the chapter icon you'll be using. Standing 
     "fleet_type": 0, //[1] Homeworld [2] Fleetbased [3] Penitent
@@ -1453,7 +1453,7 @@
                 "scout",
                 "tactical"
               ],
-              "allowed_companies": [1]
+              "allowed_companies": [1] //this is specifically for when squads are supposed to spawn only in specific companies. Ignore for chapter-wide changes
             }
         ]
       ]*/
