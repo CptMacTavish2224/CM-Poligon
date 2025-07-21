@@ -15,10 +15,7 @@ fancy_title=0;
 text_center=0;
 text="";
 text2="";
-option1="";
-option2="";
-option3="";
-option4="";
+reset_popup_options();
 pathway="";
 option1enter=false;
 option2enter=false;
@@ -78,12 +75,7 @@ company_promote_data = [
 
 for (var i=0;i<=10;i++){i+=1;role_name[i]="";role_exp[i]=0;}
 
-reset_options = function(){
-     option1="";
-    option2="";
-    option3="";
-    option4="";   
-}
+
 
 // TODO: connect this logic with the other_manage_data() to reduce verboseness;
 get_unit_promotion_options = function(){
