@@ -1554,12 +1554,12 @@
                 "armour":["MK4 Maximus",1],
                 "gear":["Rosarius",1],
                 "wep1":["",0],
-                "wep2":["",0]
+                "wep2":["",0]// check if uncalled in required actually work or not cause Tarshishim squads have it and work
               },
               "option":
               {
-                "wep2":[[["Ryza Plasma Pistol","Phobos Bolt Pistol","Volkite Serpenta"],1]],
-                "wep1":[[["Power Sword","Power Axe","Eviscerator","Power Fist"],1]]
+                "wep1":[[["Power Sword","Power Axe","Eviscerator","Power Fist"],1]],
+                "wep2":[[["Ryza Plasma Pistol","Phobos Bolt Pistol","Volkite Serpenta"],2]]
               }
             }
           }
@@ -1595,7 +1595,7 @@
           }
         ]
       ],
-      /*"assault_squad":
+      "assault_squad":
       [
         //Sergeant
         [ "Ophanim",
@@ -1605,11 +1605,50 @@
             "loadout":
             {
               "required":
+              {
+                "armour":["",0],
+                "wep1":["",0],
+                "wep2":["",0],
+                "mobi":["Serpha Jump Pack",1],
+                "gear":["Rosarius",1]
+              },
+              "option":
+              {
+                "armour":[[["MK4 Maximus", "MK5 Heresy"],1]],
+                "wep1":[[["Lightning Claw"],1,{"wep2":"Lightning Claw"}],[["Power Axe", "Power Sword", "Power Spear", "Thunder Hammer"],1,{"wep2":"Storm Shield"}]]
+              }
             }
           }
-        ]
+        ],
         //Assault
-      ],*/
+        [ "Ishim",
+          {
+            "max":9, "min":4,
+            "role":"Ishim",
+            "loadout":
+            {
+              "required":
+              {
+                "armour":["",0],
+                "mobi":["Serpha Jump Pack",9],
+                "wep1":["",0],
+                "wep2":["",0]
+              },
+              "option":
+              {
+                "armour":[[["MK3 Iron Armour", "MK5 Heresy", "MK7 Aquila", "MK7 Aquila"],9]],
+                "wep1":[[["Lightning Claws"],9,{"wep2":"Lightning Claw"}], [["Chainaxe", "Chainaxe", "Chainaxe", "Power Sword", "Power Axe", "Chainsword", "Chainsword"],9,{"wep2":"Boarding Shield"}]]
+              }
+            }
+          }
+        ],
+        ["type_data",
+          {
+            "display_data":"Ishim Wing",
+            "formation_options":["champion", "command", "terminator", "veteran", "assault", "devastator", "scout", "tactical"]
+          }
+        ]
+      ],
       "devastator_squad":
       [
         //Sergeant
@@ -1624,8 +1663,7 @@
                 "armour":["",0],
                 "wep1":["",0],
                 "wep2":["",0],
-                "mobi":["",0],
-                "quality": ["master_crafted",1]
+                "mobi":["",0]
               },
               "option":
               {
@@ -1661,7 +1699,7 @@
                 ],
                 "armour":
                 [
-                  [["MK6 Corvus","MK6 Corvus", "MK7 Aquila", "MK8 Errant"],9]
+                  [["MK7 Aquila", "MK7 Aquila", "MK6 Corvus", "MK6 Corvus", "MK8 Errant"],9]
                 ]
               }
             }
