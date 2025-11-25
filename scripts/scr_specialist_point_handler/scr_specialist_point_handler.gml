@@ -395,7 +395,7 @@ function SpecialistPointHandler() constructor{
                     obj_controller.gene_seed+=_cur_slave.num;
                     // color / type / text /x/y
                     scr_alert("green","test-slaves",$"Test-Slave Incubators Batch {i} harvested for {_cur_slave.num} Gene-Seed.",0,0);
-                    scr_event_log("green",$"Test-Slave Incubators Batch {i} harvested for {_cur_slave.num} Gene-Seed.",0,0);
+                    scr_event_log("green",$"Test-Slave Incubators Batch {i} harvested for {_cur_slave.num} Gene-Seed.");
                 } else if (_cur_slave.num==0){
                     array_push(_stack_lost_incubators, i);
                 }
@@ -409,11 +409,11 @@ function SpecialistPointHandler() constructor{
 
             }
             scr_alert("","test-slaves",_lost_inc_string ,0,0);
-            scr_event_log("","test-slaves",_lost_inc_string ,0,0);
+            scr_event_log("","test-slaves",_lost_inc_string );
         }
         if(_lost_gene_slaves>0){
             scr_alert("","test-slaves",$"{_lost_gene_slaves} gene slaves lost due to geneseed instability their incubators have been returned to the armoury",0,0);
-            scr_event_log("",$"{_lost_gene_slaves} gene slaves lost due to geneseed instability their incubators have been returned to the armoury",0,0);
+            scr_event_log("",$"{_lost_gene_slaves} gene slaves lost due to geneseed instability their incubators have been returned to the armoury");
         }
     }    
     static scr_forge_item = function(item){
@@ -445,7 +445,7 @@ function SpecialistPointHandler() constructor{
                 scr_forge_item(item);
             } else {
                 repeat(item.count){
-                    var vehicle = scr_add_vehicle(item.name,obj_controller.new_vehicles,"standard","standard","standard","standard","standard");
+                    var vehicle = scr_add_vehicle(item.name,obj_controller.new_vehicles);
                     var build_loc = array_random_element(obj_controller.player_forge_data.vehicle_hanger);
                     obj_ini.veh_loc[vehicle[0]][vehicle[1]] = build_loc[0];
                     obj_ini.veh_wid[vehicle[0]][vehicle[1]] = build_loc[1];

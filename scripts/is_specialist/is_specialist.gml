@@ -2,6 +2,7 @@
 #macro SPECIALISTS_CHAPLAINS "chaplains"
 #macro SPECIALISTS_LIBRARIANS "librarians"
 #macro SPECIALISTS_TECHS "techs"
+#macro SPECIALISTS_TECHMARINES "techmarines"
 #macro SPECIALISTS_STANDARD "standard"
 #macro SPECIALISTS_VETERANS "veterans"
 #macro SPECIALISTS_RANK_AND_FILE "rank_and_file"
@@ -70,6 +71,17 @@ function role_groups(group, include_trainee = false, include_heads = true) {
 				_roles[eROLE.Techmarine],
 				"Techpriest"
 			];
+			if (include_trainee) {
+				array_push(_role_list, $"{_roles[eROLE.Techmarine]} Aspirant");
+			}
+			if (include_heads) {
+				array_push(_role_list, "Forge Master");
+			}
+			break;
+		case SPECIALISTS_TECHMARINES:
+			_role_list = [
+				_roles[eROLE.Techmarine],
+			]
 			if (include_trainee) {
 				array_push(_role_list, $"{_roles[eROLE.Techmarine]} Aspirant");
 			}
@@ -359,7 +371,7 @@ enum MissionSelectType {
 }
 
 
-function group_selection(group, selection_data) {
+function group_selection(group, selection_data={}) {
     try {
         var unit, s, unit_location;
         obj_controller.selection_data = selection_data;
@@ -367,18 +379,14 @@ function group_selection(group, selection_data) {
         with(obj_controller) {
         	if (menu != MENU.Manage){
         		scr_toggle_manage();
+        	} else {
+        		basic_manage_settings();
         	}
-            basic_manage_settings();
-            with(obj_fleet_select) {
-                instance_destroy();
-            }
-            with(obj_star_select) {
-                instance_destroy();
-            }
 
             exit_button = new ShutterButton();
             proceed_button = new ShutterButton();
             selection_data.start_count = 0;
+           	instance_destroy(obj_managment_panel);
             if (!struct_exists(selection_data, "select_type")){
             	selection_data.select_type = MissionSelectType.Units;
             }
@@ -423,8 +431,10 @@ function group_selection(group, selection_data) {
             	company_data.has_squads = true;
             	company_data.squad_location = selection_data.system.name;
             	company_data.squad_search();
+            	managing = -1;
             }
         }
+        show_debug_message($"manage_success {obj_controller.menu}");
     } catch (_exception) {
         //handle and send player back to map
         handle_exception(_exception);

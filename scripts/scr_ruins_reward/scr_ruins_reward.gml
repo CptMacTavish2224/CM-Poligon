@@ -29,20 +29,20 @@ function scr_ruins_reward(star_system, planet, _ruins) {
 		if (ruins_type>=10) then loot="req";// 
 	}
 
-	with(obj_p_fleet){
-		if (action!="") then instance_deactivate_object(id);
-	}
-	flea=instance_nearest(star_system.x,star_system.y,obj_p_fleet);
 	var _chosen_ship = -1;
-	var _ships = fleet_full_ship_array(flea);
-	if (array_length(_ships)){
-		_chosen_ship = _ships[0];
+
+	var _fleet = scr_orbiting_player_fleet(star_system);
+	if (instance_exists(_fleet)){
+		var _ships = fleet_full_ship_array(_fleet);
+		if (array_length(_ships)){
+			_chosen_ship = _ships[0];
+		}
 	}
 	scr_event_log("",$"The Ancient Ruins on {planet_numeral_name(planet,star_system)} has been explored.", star_system.name);
 
 	// loot="artifact";
 
-	if (loot="req"){// Requisition
+	if (loot == "req"){// Requisition
 	    var reqi=round(random_range(30,60)+1)*10;
 	    obj_controller.requisition+=reqi;
    
@@ -51,7 +51,7 @@ function scr_ruins_reward(star_system, planet, _ruins) {
 	    pop.title="Ancient Ruins: Resources";
 	    pop.text="My lord, your battle brothers have located several precious minerals and supplies within the ancient ruins.  Everything was taken and returned to the ship, granting "+string(reqi)+" Requisition.";
 	}
-	else if (loot="artifact"){
+	else if (loot == "artifact"){
 		if (_chosen_ship>-1){
 	        var last_artifact = scr_add_artifact("random", "random", 4, planet, _chosen_ship + 500);
 	    
@@ -94,14 +94,14 @@ if (ruins_type<=2) or (ruins_type>=10){
 	wen4=choose(0,1);
 	wep5=choose("Company Standard","Narthecium","Psychic Hood","Rosarius");
 	wen5=choose(0,1);
-	wep6=choose("Storm Shield");
+	wep6="Storm Shield";
 	wen6=choose(1,2,3);
 }
 //Fallen Tactical Squad
 else if (ruins_type=3){
 	wep1=choose("MK3 Iron Armour","MK4 Maximus","MK5 Heresy");
 	wen1=choose(3,4,5,6);
-	wep2=choose("Phobos Bolter");
+	wep2="Phobos Bolter";
 	wen2=choose(2,3);
 	wep3=choose("Ryza Plasma Gun","Volkite Charger","Volkite Caliver");
 	wen3=choose(1,2);
@@ -113,14 +113,14 @@ else if (ruins_type=3){
 	wen6=choose(0,1);
 	wep7=choose("Company Standard","Narthecium","Psychic Hood","Rosarius");
 	wen7=choose(0,1);
-	wep8=choose("Bionics");
+	wep8="Bionics";
 	wen8=choose(1,2,3);
 }
 //Fallen Devastator Squad
 else if (ruins_type=4){
 	wep1=choose("MK3 Iron","MK4 Maximus","MK6 Corvus");
 	wen1=choose(3,4,5);
-	wep2=choose("Mars Heavy Bolter");
+	wep2="Mars Heavy Bolter";
 	wen2=choose(2,3);
 	wep3=choose("Mars Plasma Cannon","Volkite Culverin",);
 	wen3=choose(1,2);
@@ -132,7 +132,7 @@ else if (ruins_type=4){
 	wen6=choose(0,1);
 	wep7=choose("Company Standard","Narthecium","Psychic Hood","Rosarius");
 	wen7=choose(0,1);
-	wep8=choose("Heavy Weapons Pack");
+	wep8="Heavy Weapons Pack";
 	wen8=choose(1,2,3);
 }
 //Fallen Assault Squad
@@ -151,15 +151,14 @@ else if (ruins_type=5){
 	wen6=choose(0,1);
 	wep7=choose("Company Standard","Narthecium","Psychic Hood","Rosarius");
 	wen7=choose(0,1);
-
-	wep8=choose("Serpha Jump Pack");
+	wep8="Serpha Jump Pack";
 	wen8=choose(1,2,3);
 }
 //Fallen Breacher Squad
 else if (ruins_type=6){
 wep1=choose("MK3 Iron Armour","MK4 Maximus","MK5 Heresy");
 	wen1=choose(3,4,5,6);
-	wep2=choose("Primus Melta Gun");
+	wep2="Primus Melta Gun";
 	wen2=choose(2,3);
 	wep3=choose("Ryza Plasma Gun","Volkite Charger","Volkite Caliver");
 	wen3=choose(1,2);
@@ -171,11 +170,20 @@ wep1=choose("MK3 Iron Armour","MK4 Maximus","MK5 Heresy");
 	wen6=choose(0,1);
 	wep7=choose("Company Standard","Narthecium","Psychic Hood","Rosarius");
 	wen7=choose(0,1);
-	wep8=choose("Boarding Shield");
+	wep8="Boarding Shield";
 	wen8=choose(1,2,3);
 }
-		
-    
+//Damaged Dreadnought
+else if (ruins_type==7){
+	wep1="Contemptor Dreadnought";
+	wen1=1;
+	wep2=choose("Twin-linked Volkite Culverins","Heavy Conversion Beamer","Kheres Assault Cannon");
+	wen2=1;
+	wep3="Contemptor CCW";
+	wen3=3;
+}
+
+
 	    scr_add_item(wep1,wen1);
 	    scr_add_item(wep2,wen2);
 	    scr_add_item(wep3,wen3);
@@ -192,18 +200,9 @@ wep1=choose("MK3 Iron Armour","MK4 Maximus","MK5 Heresy");
 	    pop.text="My lord, your brothers have found sealed chamber in these ruins. It bears symbols of one of the ancient legions. After your tech-marines managed to open this chamber, they've found a number of relics that can be brought back to service. They've found:  "+string(wen1)+"x "+string(wep1)+", "+string(wen2)+"x "+string(wep2)+","+string(wen3)+"x "+string(wep3)+","+string(wen4)+"x "+string(wep4)+","+string(wen5)+"x "+string(wep5)+","+string(wen6)+"x "+string(wep6)+","+string(wen7)+"x "+string(wep7)+", and "+string(wen8)+"x "+string(wep8)+" have been added to the Armamentarium.";
 	}
 	else if (loot="gene_seed"){// Requisition
-	    var gene,pop;gene=floor(random_range(20,40))+1;
-	    pop=instance_create(0,0,obj_popup);
-	    pop.image="geneseed_lab";
-	    pop.title="Ancient Ruins: Gene-seed";
-	    pop.text="My lord, your battle brothers have located a hidden, fortified laboratory within the ruins.  Contained are a number of bio-vaults with astartes gene-seed; "+string(gene)+" in number.  Your marines are not able to determine the integrity or origin.";
-	    pop.option1="Add the gene-seed to chapter vaults.";
-	    pop.option2="Salvage the laboratory for requisition.";
-	    pop.option3="Leave the laboratory as is.";
-	    pop.estimate=gene;
+		ancient_gene_lab_ruins_loot();
 	}
 	else if (loot="bunker"){// Bunker
-	    var gene=floor(random_range(20,40))+1,pop=instance_create(0,0,obj_popup);;
 	    pop.image="ruins_bunker";
 	    pop.title="Ancient Ruins: Bunker Network";
 	    pop.text="Your battle brothers have found several entrances into an ancient bunker network.  Its location has been handed over to the PDF.  The planet's defense rating has increased to ";
@@ -213,16 +212,7 @@ wep1=choose("MK3 Iron Armour","MK4 Maximus","MK5 Heresy");
 	    star_system.p_fortified[planet]=min(star_system.p_fortified[planet]+1,5);
 	}
 	else if (loot="fortress"){// Fortress
-	    var pop,gene=floor(random_range(20,40))+1;
-	    pop=instance_create(0,0,obj_popup);
-	    pop.image="ruins_fort";
-	    pop.title="Ancient Ruins: Fortress";
-	    pop.planet = planet;
-	    pop.feature = _ruins;
-	    pop.star_system = star_system;
-	    pop.text="Praise the Emperor! We have found a massive, ancient fortress in needs of repairs. The gun batteries are rusted, and the walls are covered in moss with huge hole in it. Such a pity that such a majestic building is now a pale shadow of its former glory.  It is possible to repair the structure.  What is thy will?";
-	    pop.option1="Repair the fortress to boost defenses.  (1000 Req)";
-	    pop.option2="Salvage raw materials from the fortress.";
+		ancient_fortress_ruins_loot(star_system, planet, _ruins)
 	}
 	else if (loot="starship"){// Starship
 	    var pop=instance_create(0,0,obj_popup);
@@ -239,3 +229,103 @@ wep1=choose("MK3 Iron Armour","MK4 Maximus","MK5 Heresy");
 
 	}
 }
+
+function ancient_gene_lab_ruins_loot(){
+    var _text = $"My lord, your battle brothers have located a hidden, fortified laboratory within the ruins.  Contained are a number of bio-vaults with astartes gene-seed; {gene} in number.  Your marines are not able to determine the integrity or origin.";
+
+    var _pop_data = {
+    	gene_found : gene,
+    	options : [
+		{
+			str1: "Add the gene-seed to chapter vaults.",
+			method: function() {
+				image = "";
+				var _estimate = irandom_range(3,15)
+				text = string(_estimate) + " gene-seed has been added to the chapter vaults.";
+				reset_popup_options();
+				obj_controller.gene_seed += _estimate;
+				//scr_play_sound(snd_success);
+				with (obj_ground_mission) {
+					instance_destroy();
+				}
+			},
+		},
+		{
+			str1: "Salvage the laboratory for requisition.",
+			method: function() {
+				var _req = floor(random_range(200, 500)) + 1;
+				image = "";
+				text = "Technological components have been salvaged, granting " + string(_req) + " requisition.";
+				reset_popup_options();
+				obj_controller.requisition += _req;
+				//scr_play_sound(snd_salvage);
+				with (obj_ground_mission) {
+					instance_destroy();
+				}
+			},
+		},
+		{
+			str1: "Leave the laboratory as is.",
+			method: function() {
+				with (obj_ground_mission) {
+					instance_destroy();
+				}
+				//scr_play_sound(snd_cancel);
+				popup_default_close();
+			},
+		},
+	],
+    }
+    scr_popup(
+    	"Ancient Ruins: Gene-seed",
+    	_text,
+    	"geneseed_lab",
+    	_pop_data
+    );
+
+}
+
+function ancient_fortress_ruins_loot(star_system, planet, _ruins){
+	var _pop_data = {};
+    _pop_data.planet = planet;
+    _pop_data.feature = _ruins;
+    _pop_data.star = star_system;
+    _pop_data.options = [
+	    {
+	    	str1 : "Repair the fortress to boost defenses.  (1000 Req)",
+	    	method : function(){
+	    		var _star = pop_data.star;
+	    		var _planet = pop_data.planet;
+				obj_controller.requisition -= 1000;
+				text = "Resources have been spent on the planet to restore the fortress.  The planet's defense rating has increased to 5 (";
+				reset_popup_options();
+				text += string(_star.p_fortified[_planet]) + "+";
+				text += string(5 - _star.p_fortified[_planet]) + ")";
+				_star.p_fortified[_planet] = max(_star.p_fortified[_planet], 5);
+				cooldown = 15;
+				exit;
+	    	},
+	    	requires : {
+	    		req : 1000,
+	    	}
+	    },
+	    {
+	    	str1 : "Salvage raw materials from the fortress.",
+	    	method : function(){
+				var req = irandom_range(200, 500);
+				image = "";
+				text = $"Much of the fortress is demolished in order to salvage adamantium and raw materials.  The opration has yielded {req} requisition.";
+				reset_popup_options();
+				obj_controller.requisition += req;
+				cooldown = 15;
+				exit;
+	    	}
+	    }
+    ]
+    scr_popup(
+    	"Ancient Ruins: Fortress",
+    	"Praise the Emperor! We have found a massive, ancient fortress in needs of repairs. The gun batteries are rusted, and the walls are covered in moss with huge hole in it. Such a pity that such a majestic building is now a pale shadow of its former glory.  It is possible to repair the structure.  What is thy will?",
+    	"ruins_fort",
+    	_pop_data
+    );
+};

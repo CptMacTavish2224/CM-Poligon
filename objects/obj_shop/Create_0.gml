@@ -527,6 +527,11 @@ if (shop = "equipment") {
     item_stocked[i] = scr_item_count(item[i]);
     nobuy[i] = 1;
     i += 1;
+    x_mod[i] = 9;
+    item[i] = "Webber";
+    item_stocked[i] = scr_item_count(item[i]);
+    nobuy[i] = 1;
+    i += 1;
     item[i] = "Sniper Rifle";
     forge_cost[i] = 200;
     item_stocked[i] = scr_item_count(item[i]);
@@ -553,9 +558,8 @@ if (shop = "equipment") {
         item_stocked[i] = scr_item_count(item[i]);
         item_cost[i] = 0;
         forge_cost[i] = 0;
-         nobuy[i] = 1;
-
-        i += 1;
+        nobuy[i] = 1;
+		i += 1;
         nobuy[i] = 1;
         item[i] = "Volkite Charger";
         item_stocked[i] = scr_item_count(item[i]);
@@ -654,7 +658,39 @@ if (shop = "equipment") {
         item_cost[i] = 0;
         forge_cost[i] = 0;
         i += 1;
-
+		item[i] = "Contemptor Dreadnought";
+        item_stocked[i] = scr_item_count(item[i]);
+        item_cost[i] = 0;
+        forge_cost[i] = 0;
+		nobuy[i]=1
+        i += 1;
+		nobuy[i]=1;
+		item[i] = "Twin-linked Volkite Culverins";
+        item_stocked[i] = scr_item_count(item[i]);
+        item_cost[i] = 0;
+        forge_cost[i] = 0;
+        i += 1;
+		nobuy[i]=1;
+		item[i] = "Contemptor CCW";
+        item_stocked[i] = scr_item_count(item[i]);
+        item_cost[i] = 0;
+        forge_cost[i] = 0;
+		nobuy[i]=1;
+		  i += 1;
+		item[i] = "Heavy Conversion Beamer";
+        item_stocked[i] = scr_item_count(item[i]);
+        item_cost[i] = 0;
+        forge_cost[i] = 0;
+		nobuy[i]=1;
+		  i += 1;
+		item[i] = "Kheres Assault Cannon";
+        item_stocked[i] = scr_item_count(item[i]);
+        item_cost[i] = 0;
+        forge_cost[i] = 0;
+		nobuy[i]=1;
+		  i += 1;
+		
+		
     var mc = 0;
     repeat(i) {
         mc++;

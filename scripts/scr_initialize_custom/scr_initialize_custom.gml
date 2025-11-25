@@ -809,8 +809,6 @@ function scr_initialize_custom() {
 		}
 	}
 
-	if (scr_has_adv ("Kings of Space")) {battle_barges += 1;}
-	if (scr_has_adv("Boarders")){ strike_cruisers += 2;}
 	if (scr_has_disadv("Obliterated")){ if (obj_creation.fleet_type == ePlayerBase.home_world) {
 		battle_barges = 0;
 		strike_cruisers = 2;
@@ -823,6 +821,8 @@ function scr_initialize_custom() {
 		hunters = 0;
 		}
 	}
+	if (scr_has_adv ("Kings of Space")) {battle_barges += 1;}
+	if (scr_has_adv("Boarders")){ strike_cruisers += 2;}
 	if(struct_exists(obj_creation, "extra_ships")){
 		glorianas = glorianas + obj_creation.extra_ships.gloriana;
 		battle_barges = battle_barges + obj_creation.extra_ships.battle_barges;
@@ -1256,6 +1256,7 @@ function scr_initialize_custom() {
 					devastator = devastator + real(s_val);
 					break;
 				case "dreadnought":
+				case "Contemptor Dreadnought":
 					dreadnought = dreadnought + real(s_val);
 					break;
 			}
@@ -2272,18 +2273,34 @@ function scr_initialize_custom() {
 	}
 
 
-	var squad_names = struct_get_names(st);
+	var _squad_names = struct_get_names(st);
 	// show_debug_message($" {squad_names}");
 	// show_debug_message($"^^^ Squad names");
 	
 
-	for (var st_iter = 0; st_iter < array_length(squad_names); st_iter++) {
-		var s_group = st[$squad_names[st_iter]];
-		squad_types[$squad_names[st_iter]] = {};
-		for (var iter_2 = 0; iter_2 < array_length(s_group); iter_2++) {
-			squad_types[$squad_names[st_iter]][$s_group[iter_2][0]] = s_group[iter_2][1];
-		}
+	for (var st_iter = 0; st_iter < array_length(_squad_names); st_iter++) {
+        var _squad_name = _squad_names[st_iter];
+        var _squad_data = st[$ _squad_name];
+        squad_types[$ _squad_name] = {};
+        var _new_squad_data = squad_types[$ _squad_name];
+        // Guard: ensure array and entries are well-formed before indexing
+        if (!is_array(_squad_data)) {
+            continue;
+        }
+        var _len = array_length(_squad_data);
+        for (var iter_2 = 0; iter_2 < _len; iter_2++) {
+            var _entry = _squad_data[iter_2];
+            if (!is_array(_entry) || array_length(_entry) < 2) {
+                continue;
+            }
+            var _data_name = _entry[0];
+            if (!is_string(_data_name) || _data_name == "") {
+                continue;
+            }
+            _new_squad_data[$ _data_name] = _entry[1];
+        }
 	}
+
 	if(scr_has_adv("Ambushers")){
 		var _class_data = squad_types.tactical_squad.type_data.class;
 		array_push(_class_data, "scout")

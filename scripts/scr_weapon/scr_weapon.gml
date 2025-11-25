@@ -10,7 +10,7 @@ global.weapons = {
 		},
 		"description": "The only man-portable heavy support Volkite, the Culverin has been a dreaded presence on the battlefields of the 31st millennium, where it would rend Contemptors apart and combust Marines by the dozen. Featuring the greatest range out of the family amongst the other heavier variants, its beam potency is outmatched by all heavier Volkites.",
 		"melee_hands": 1,
-		"ranged_hands": 2.2,
+		"ranged_hands": 2.5,
 		"ammo": 4,
 		"range": 22,
 		"spli": 12,
@@ -26,7 +26,7 @@ global.weapons = {
 		},
 		"description": "Featuring grater range, more precise fire and more stopping fire than the Charger, this is the rifle of the Volkite family, whereas its smaller brother is the assault rifle. A weapon most prominent in Tactical squads of the Great Crusade Legions, its potency is spoken of even those many thousands of years past their height.",
 		"melee_hands": 1,
-		"ranged_hands": 2,
+		"ranged_hands": 2.2,
 		"ammo": 6,
 		"range": 16,
 		"spli": 10,
@@ -64,6 +64,23 @@ global.weapons = {
 		"spli": 4,
 		"arp": 0,
 		"tags": ["Volkite", "energy", "pistol"]
+	},
+	"Twin-linked Volkite Culverins":{
+		"abbreviation": "T-LVolkCulv",
+		"attack": {
+			"standard": 250,
+			"master_crafted": 270,
+			"artifact": 290
+		},
+
+		"description": "Ancient volkite type weaponry usually mounted on vehicles. It features two volkite culverins and is meant for long forgotten contemptor pattern dreadnaught.",
+		"melee_hands": 0,
+		"ranged_hands": 1,
+		"ammo": 10,
+		"range": 3,
+		"spli": 4,
+		"arp": 0,
+		"tags": ["Volkite", "energy", "dreadnought"]
 	},
 	//Bolt Pack
 	"Phobos Bolt Pistol": {
@@ -107,7 +124,7 @@ global.weapons = {
 		},
 		"description": "This is the prototype that turned into the staple of all Heavy Bolter designs. Introduced in early Great Crusade, it was one of the very first heavy support weapons churned out by the forges of Mechanicum.",
 		"melee_hands": 1,
-		"ranged_hands": 2,
+		"ranged_hands": 2.2,
 		"ammo": 12,
 		"range": 17,
 		"spli": 9,
@@ -155,11 +172,11 @@ global.weapons = {
 			"artifact": 175
 		},
 		"description": "The smaller brother of the Ryzan Plasma Gun, it shares its characteristics as well as sleek design and purple glow. Once a regular weapon for Sergeants and some Moritats in the Legiones Astartes, with even some Consuls or Centurions favouring them over Volkites or Disintegrators, the humble Ryzan Plasma Pistol has earned its place as a vaunted relic of any armoury lucky enough to have it.",
-		"melee_hands": 1,
-		"ranged_hands": 2,
-		"ammo": 18,
-		"range": 14,
-		"spli": 5,
+		"melee_hands": 0,
+		"ranged_hands": 1,
+		"ammo": 6,
+		"range": 4,
+		"spli": 3,
 		"arp": 1,
 		"tags": ["plasma", "energy", "pistol"]
 	},
@@ -205,7 +222,7 @@ global.weapons = {
 		},
 		"description": "This Multi-Melta design originates, like many others used by Legiones Astartes, in the Dark Age of Technology. Deadlier than the current designs fielded by the Space Marine Chapters, it is a relic of both of the zenith of mankind's science and the last moments of the Emperor's true vision.",
 		"melee_hands": 1,
-		"ranged_hands": 2,
+		"ranged_hands": 3,
 		"ammo": 6,
 		"range": 4.5,
 		"spli": 2,
@@ -249,7 +266,7 @@ global.weapons = {
 		"range": 1.5,
 		"spli": 6,
 		"arp": 1,
-		"tags": ["power"]
+		"tags": ["power",]
 	},
 	//Laser Pack
 	"Ryza Lascannon": {
@@ -261,7 +278,7 @@ global.weapons = {
 		},
 		"description": "The Forge World of Ryza is known not only for its mastery of Plasma weaponry, but also for its genius in Las weapon designs. This revered Ryzan Lascannon pattern can be dated to the Great Crusade, and as such it is the pinnacle of its kind as the Imperium was then. A common sight across the Legiones Astartes heavy support squads as well as Solar Auxilia, any Chapter blessed with one should count themselves lucky.",
 		"melee_hands": 1,
-		"ranged_hands": 2.25,
+		"ranged_hands": 3,
 		"ammo": 10,
 		"range": 24,
 		"spli": 1,
@@ -278,7 +295,7 @@ global.weapons = {
 		},
 		"description": "Originating from the Warmaster's homeworld [allegedly untrue] of Cthonia, this Autocannon pattern was the chosen type of this weapon for Terminator Squads throughout the Great Crusade and subsequent Horus Heresy. While later designs may have outshined it in fire rate or range, this remains the hardest hitting autocannon to date, perhaps with the Kalibrax as a strong competitor.",
 		"melee_hands": 1,
-		"ranged_hands": 2.25,
+		"ranged_hands": 3,
 		"ammo": 30,
 		"range": 20,
 		"spli": 15,
@@ -412,6 +429,7 @@ global.weapons = {
 		"range": 1,
 		"spli": 1,
 		"tags": ["banner"],
+		"recovery_chance" : 99,
 	},
 	"Eviscerator": {
 		"abbreviation": "Evisc",
@@ -714,6 +732,28 @@ global.weapons = {
 		"arp": 1,
 		"maintenance" : 0.1,
 		"tags": ["power", "vehicle", "dual", "dreadnought", "fist"],
+	},
+	"Contemptor CCW": {
+		"abbreviation": "ConCCW",
+		"attack": {
+			"standard": 300,
+			"master_crafted": 400,
+			"artifact": 600
+		},
+		"melee_mod": {
+			"standard": 1.2,
+			"master_crafted": 1.2,
+			"artifact": 1.2
+		},
+		"description": "A specialized Lightning Claw variant designed for Dreadnoughts, these claws are capable of ripping through enemy vehicles and infantry with ease.",
+		"melee_hands": 5,
+		"ranged_hands": 0,
+		"ammo": 0,
+		"range": 1,
+		"spli": 15,
+		"arp": 1,
+		"maintenance" : 0.1,
+		"tags": ["power", "dual", "dreadnought", "fist"],
 	},
 	"Thunder Hammer": {
 		"abbreviation": "ThndHmr",
@@ -1122,8 +1162,8 @@ global.weapons = {
 		"description": "A pistol variant of the plasma gun, this dangerous-to-use weapon has exceptional armor-piercing capabilities.",
 		"melee_hands": 0,
 		"ranged_hands": 1,
-		"ammo": 0,
-		"range": 3.1,
+		"ammo": 4,
+		"range": 3,
 		"spli": 1,
 		"arp": 1,
 		"tags": ["plasma", "energy", "pistol"]
@@ -1224,6 +1264,22 @@ global.weapons = {
 		"arp": 1,
 		"tags": ["heavy_ranged", "dreadnought"]
 	},
+	"Kheres Assault Cannon": {
+		"abbreviation": "KhrAssCnn",
+		"attack": {
+			"standard": 280,
+			"master_crafted": 300,
+			"artifact": 320
+		},
+		"description": "Forged in the forges of Mars and carried into battle by the mightiest of the Emperor's warriors, the Kheres Assault Cannon is a weapon of devastating reputation. Its rotary barrels roar with unceasing fury, unleashing a deluge of mass-reactive shells that tear through flesh, ceramite, and adamantium alike.",
+		"melee_hands": 2.1,
+		"ranged_hands": 3,
+		"ammo": 5,
+		"range": 14,
+		"spli": 20,
+		"arp": 1,
+		"tags": ["heavy_ranged", "dreadnought", "ancient"]
+	},
 	"Autocannon": {
 		"abbreviation": "Autocnn",
 		"attack": {
@@ -1288,6 +1344,22 @@ global.weapons = {
 		"arp": 1,
 		"tags": ["heavy_ranged", "ancient"]
 	},
+	"Heavy Conversion Beamer": {
+		"abbreviation": "HvyCnvBm",
+		"attack": {
+			"standard": 500,
+			"master_crafted": 550,
+			"artifact": 600
+		},
+		"description": "An ancient relic of the Dark Age of Technology, the Heavy Conversion Beamer is a marvel of destructive science rarely entrusted to Imperial commanders. This esoteric weapon channels vast reserves of energy into a focused beam of coruscating light, tearing matter apart at the molecular level and converting it into raw energy in a cataclysmic chain reaction. The weapon’s lethality grows with distance — the further its target, the more apocalyptic the discharge. To stand at the far end of a Heavy Conversion Beamer’s wrath is to be annihilated in a searing blaze that leaves nothing but scorched ruin in its wake. Few battlefields have witnessed its fury and remained unchanged, for the weapon is as much a terror to its enemies as a reminder of the Imperium’s dwindling grasp on its most potent technologies.",
+		"melee_hands": 0,
+		"ranged_hands": 1,
+		"ammo": 1,
+		"range": 20,
+		"spli": 3,
+		"arp": 1,
+		"tags": ["heavy_ranged", "ancient", "dreadnought"]
+	},
 	"Integrated Bolter": {
 		"abbreviation": "IntgBltr",
 		"attack": {
@@ -1345,7 +1417,7 @@ global.weapons = {
 		},
 		"description": "The Heavy Bolter is a heavy weapon that fires larger and more powerful bolt shells compared to the standard Bolter.",
 		"melee_hands": 1,
-		"ranged_hands": 2,
+		"ranged_hands": 2.2,
 		"ammo": 10,
 		"range": 16,
 		"spli": 6,
@@ -1361,7 +1433,7 @@ global.weapons = {
 		},
 		"description": "The Deathwatch mag-clamp rare suspensor discs onto their infernus heavy bolters that reduce the weapon’s effective weight considerably. Such weapons are further bolstered by underslung heavy flamers that can incinerate those enemies that make it through the hail of explosive bolts.",
 		"melee_hands": 1,
-		"ranged_hands": 2,
+		"ranged_hands": 2.2,
 		"ammo": 10,
 		"range": 16,
 		"spli": 6,
@@ -1828,7 +1900,7 @@ global.weapons = {
 		"range": 2.1,
 		"spli": 3,
 		"arp": -1,
-		"tags": ["flame"]
+		"tags": ["flame", "force"],
 	},
 	"Force Staff": {
 		"attack": {
@@ -2251,7 +2323,7 @@ global.gear = {
 			"description": "Terminator Armour is the strongest and most powerful armour designed by humanity, available only to the veterans of the Adeptus Astartes. The Indomitus Pattern is the most widespread and versatile pattern as of M41.",
 			"tags": ["terminator"],
 			"req_exp": 100,
-			"maintenance" : 0.3,
+			"maintenance" : 1,
 		},
 		"Dreadnought": {
 			"abbreviation": "Drdnght",
@@ -2274,7 +2346,28 @@ global.gear = {
 			"ranged_hands": 8,
 			"description": "A massive war-machine that can be piloted by an honored Astarte, who otherwise would have fallen in combat. Some of the Astartes consider this a fate worse than death",
 			"tags": ["dreadnought"],
-			"maintenance" : 1,
+		},
+		"Contemptor Dreadnought": { 
+			"abbreviation": "Cntmptr",
+			"armour_value": {
+				"standard": 50,
+				"master_crafted": 55,
+				"artifact": 60
+			},
+			"ranged_mod": {
+				"standard": 0,
+				"master_crafted": 5, // Augmented
+				"artifact": 10 // Augmented
+			},
+			"melee_mod": {
+				"standard": 0,
+				"master_crafted": 5, // Augmented
+				"artifact": 10 // Augmented
+			},
+			"melee_hands": 8,
+			"ranged_hands": 8,
+			"description": "PLACEHOLDER",
+			"tags": ["dreadnought", "ancient"],
 		},
 		"Tartaros": {
 			"abbreviation": "Tartrs",
@@ -2298,7 +2391,7 @@ global.gear = {
 			"description": "This pattern is possibly considered the most advanced form of Terminator Armour, providing greater mobility for the wearer compared to the Indomitus with no loss in durability. In the M41 considered to be incredibly rare with wars being fought to secure more suits.",
 			"tags": ["terminator"],
 			"req_exp": 100,
-			"maintenance" : 0.5,
+			"maintenance" : 3,
 		},
 		"Cataphractii": {
 			"abbreviation": "Catphr",
@@ -2322,7 +2415,7 @@ global.gear = {
 			"description": "Among the first issued to the Space Marine Legions. Having additional plating and shield generators installed within the shoulder pads resulted in severe straining of the suit's exoskeleton and reduced the wearer's maneuverability, leading to its decline among some legions.",
 			"tags": ["terminator"],
 			"req_exp": 100,
-			"maintenance" : 0.75,
+			"maintenance" : 2.5,
 		},
 		"Scout Armour": {
 			"abbreviation": "SctArm",
@@ -2362,7 +2455,7 @@ global.gear = {
 			},
 			"description": "An ancient set of Power Armor dating back to the early Great Crusade. The Mark III has heavier armor plating but is far heavier then its contemporaries.",
 			"tags": ["power_armour"],
-			"maintenance" : 0.1,
+			"maintenance" : 0.3,
 		},
 		"MK4 Maximus": {
 			"abbreviation": "MK4",
@@ -2383,7 +2476,7 @@ global.gear = {
 			},
 			"description": "Power Armor dating back to the end of the Great Crusade. It is considered the pinnacle of Power Armor by some Astartes. However, the components are no longer reproducible, the knowledge having been lost to time.",
 			"tags": ["power_armour"],
-			"maintenance" : 0.2,
+			"maintenance" : 0.4,
 		},
 		"MK5 Heresy": {
 			"abbreviation": "MK5",
@@ -2826,7 +2919,7 @@ global.gear = {
 				"master_crafted": 35,
 				"artifact": 40
 			},
-			"tags": ["jump"],
+			"tags": ["jump", "ancient"],
 		},
 		"Heavy Weapons Pack": {
 			"abbreviation": "HvyWpPck",

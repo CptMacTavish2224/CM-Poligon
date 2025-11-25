@@ -1,5 +1,4 @@
 
-if (image="debug_banshee") then obj_controller.cooldown=8;
 if (image="chaos_symbol") and (title="Concealed Heresy") and (instance_exists(obj_drop_select)){
     with (obj_drop_select){
         obj_controller.cooldown=30;
@@ -86,7 +85,7 @@ if (instance_exists(obj_controller)){
         repeat(obj_temp_meeting.dudes){v+=1;
             if (obj_temp_meeting.present[v]=1){
                 var _unit_array = [obj_temp_meeting.co[v],obj_temp_meeting.ide[v]];
-                add_unit_to_battle(_unit_array)
+                add_unit_to_battle(_unit_array, meeting_star, true)
 
             }
         }

@@ -3,11 +3,10 @@
 
 function scr_get_planet_with_feature(star, feature){
 	for(var i = 1; i <= star.planets; i++){
-		if(planet_feature_bool(star.p_feature[i], feature) == 1)
-			{
-				return i;
-			}
+		if (planet_feature_bool(star.p_feature[i], feature)){
+			return i;
 		}
+	}
 	return -1;
 }
 
@@ -54,7 +53,6 @@ function scr_planet_owned_by_group(planet_id, group, star = "none"){
 		}
 		return is_in_group;
 	}
-	return false;
 }
 
 function scr_is_planet_owned_by_allies(star, planet_id) {
@@ -150,7 +148,7 @@ function scr_get_stars(shuffled=false, ownership=[], types = []) {
 			}
 			if (_add && _types_sort){
 				for (var i=1;i<=planets;i++){
-					array_delete_value(types, p_type[i]);
+					types = array_delete_value(types, p_type[i]);
 					if (!array_length(types)){
 						break;
 					}
@@ -174,6 +172,16 @@ function planet_imperium_ground_total(planet_check){
     return p_guardsmen[planet_check]+p_pdf[planet_check]+p_sisters[planet_check]+p_player[planet_check];
 }
 
+/// @function star_by_name(search_name)
+/// @description 
+/// Searches all `obj_star` instances and returns the one with a matching name.
+///
+/// @param {String} search_name  
+/// The name of the star to find.
+///
+/// @returns {Instance | String}
+/// Returns the `obj_star` instance that matches `search_name`,  
+/// or the string `"none"` if no matching star is found.
 function star_by_name(search_name){
 	with(obj_star){
 		if (name == search_name){
@@ -184,6 +192,12 @@ function star_by_name(search_name){
 }
 
 //use this to quickly make a loop through a stars planets in an unordered way
+/// @function shuffled_planet_array()
+/// @description 
+/// Returns an array of all planet indices in a random (unordered) order.
+///
+/// @returns {Array} 
+/// A shuffled array containing all planet indices from 1 to `planets`.
 function shuffled_planet_array(){
 	var _planets = [];
 	for (var i=1;i<=planets;i++){
@@ -194,6 +208,34 @@ function shuffled_planet_array(){
 
 }
 
+/// @function distance_removed_star(origional_x, origional_y, [star_offset=choose(2,3)], [disclude_hulk=true], [disclude_elder=true], [disclude_deads=true], [warp_concious=true])
+/// @description 
+/// Finds a star that is a certain distance away from the given coordinates, skipping over certain disallowed star types.
+///
+/// @param {Real} origional_x  
+/// The x-coordinate to start searching from.
+///
+/// @param {Real} origional_y  
+/// The y-coordinate to start searching from.
+///
+/// @param {Real} [star_offset=choose(2,3)]  
+/// The number of nearest stars to skip before returning a result.
+///
+/// @param {Boolean} [disclude_hulk=true]  
+/// Placeholder flag to potentially exclude hulk-type stars (not yet used).
+///
+/// @param {Boolean} [disclude_elder=true]  
+/// If `true`, excludes stars owned by the `eFACTION.Eldar` faction.
+///
+/// @param {Boolean} [disclude_deads=true]  
+/// If `true`, excludes any stars detected as dead via `is_dead_star()`.
+///
+/// @param {Boolean} [warp_concious=true]  
+/// Placeholder flag for future warp-lane aware selection logic (currently unused).
+///
+/// @returns {Instance}  
+/// Returns the `obj_star` instance found after skipping the specified number of nearby stars,  
+/// ignoring any that are disqualified by the exclusion conditions.
 function distance_removed_star(origional_x,origional_y, star_offset = choose(2,3), disclude_hulk=true, disclude_elder=true, disclude_deads=true, warp_concious=true){
 	var from = instance_nearest(origional_x,origional_y,obj_star);
 	var _deactivated = [];
@@ -235,10 +277,8 @@ function distance_removed_star(origional_x,origional_y, star_offset = choose(2,3
 
 
 function nearest_star_proper(xx,yy) {
-	var i=0;
 	var cur_star;
-	while(i<100){
-		i++;
+	for(var i=0; i<100; i++){
 		cur_star = instance_nearest(xx,yy, obj_star);
 		if (!cur_star.craftworld && !cur_star.space_hulk){
 			instance_activate_object(obj_star);
@@ -252,6 +292,7 @@ function nearest_star_proper(xx,yy) {
 
 function nearest_star_with_ownership(xx,yy, ownership, start_star="none", ignore_dead = true){
 	var nearest = "none"
+	var _deactivated = [];
 	var total_stars =  instance_number(obj_star);
 	var i=0;
 	if (!is_array(ownership)){
@@ -260,8 +301,12 @@ function nearest_star_with_ownership(xx,yy, ownership, start_star="none", ignore
 	while (nearest=="none" && i<total_stars){
 		i++;
 		var cur_star =  instance_nearest(xx,yy, obj_star);
+		if (!instance_exists(cur_star)){
+			break;
+		}
 		if (start_star!="none"){
-			if (start_star.id == cur_star.id ||( is_dead_star(cur_star) && ignore_dead)){
+			if (start_star.id == cur_star.id || (ignore_dead && is_dead_star(cur_star))){
+				array_push(_deactivated, cur_star.id);
 				instance_deactivate_object(cur_star.id);
 				continue;
 			}
@@ -269,10 +314,13 @@ function nearest_star_with_ownership(xx,yy, ownership, start_star="none", ignore
 		if (array_contains(ownership, cur_star.owner)){
 			nearest=cur_star.id;
 		} else {
+			array_push(_deactivated, cur_star.id);
 			instance_deactivate_object(cur_star.id);
 		}
 	}
-	instance_activate_object(obj_star);
+    for (i=0;i<array_length(_deactivated);i++){
+    	instance_activate_object(_deactivated[i]);
+    }
 	return nearest;
 }
 

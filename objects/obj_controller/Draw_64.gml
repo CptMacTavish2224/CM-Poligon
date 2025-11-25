@@ -17,10 +17,13 @@ if (is_test_map==true){
     draw_set_alpha(1);
 }
 // if (instance_exists(obj_turn_end)) then exit;
-
+draw_set_alpha(1);
+draw_set_valign(fa_top);
+draw_set_halign(fa_left);
 var xx = 0;
 var yy = 0;
 if (menu == MENU.Diplomacy){
+    add_draw_return_values();
     if (diplomacy > 0){
         draw_diplomacy_diplo_text();
         if (trading==true){
@@ -42,25 +45,28 @@ if (menu == MENU.Diplomacy){
             draw_character_diplomacy();
         }
     }
+    pop_draw_return_values();
 }
 // Main UI
 if (!zoomed && !zui){
     draw_sprite(spr_new_ui,menu==0,0,0);
     draw_set_color(c_white);
 
-    menu_buttons.chapter_manage.draw(34,838+y_slide, "Chapter Management",1,1,145)
-    menu_buttons.chapter_settings.draw(179,838+y_slide, "Chapter Settings",1,1,145)
-    menu_buttons.apoth.draw(357,838+y_slide, "Apothecarium")
-    menu_buttons.reclu.draw(473,838+y_slide, "Reclusium")
-    menu_buttons.lib.draw(590,838+y_slide, "Librarium")
-    menu_buttons.arm.draw(706,838+y_slide, "Armamentarium")
-    menu_buttons.recruit.draw(822,838+y_slide, "Recruitment")
-    menu_buttons.fleet.draw(938,838+y_slide, "Fleet")
-    menu_buttons.diplo.draw(1130,838+y_slide, "Diplomacy",1,1,145)
-    menu_buttons.event.draw(1275,838+y_slide, "Event Log",1,1,145)
-    menu_buttons.end_turn.draw(1420,838+y_slide, "End Turn",1,1,145);
-    menu_buttons.help.draw(1374,8+y_slide, "Help");
-    menu_buttons.menu.draw(1484,8+y_slide, "Menu");
+    if (!instance_exists(obj_popup)){
+        menu_buttons.chapter_manage.draw(34,838+y_slide, "Chapter Management",1,1,145)
+        menu_buttons.chapter_settings.draw(179,838+y_slide, "Chapter Settings",1,1,145)
+        menu_buttons.apoth.draw(357,838+y_slide, "Apothecarium")
+        menu_buttons.reclu.draw(473,838+y_slide, "Reclusium")
+        menu_buttons.lib.draw(590,838+y_slide, "Librarium")
+        menu_buttons.arm.draw(706,838+y_slide, "Armamentarium")
+        menu_buttons.recruit.draw(822,838+y_slide, "Recruitment")
+        menu_buttons.fleet.draw(938,838+y_slide, "Fleet")
+        menu_buttons.diplo.draw(1130,838+y_slide, "Diplomacy",1,1,145)
+        menu_buttons.event.draw(1275,838+y_slide, "Event Log",1,1,145)
+        menu_buttons.end_turn.draw(1420,838+y_slide, "End Turn",1,1,145);
+        menu_buttons.help.draw(1374,8+y_slide, "Help");
+        menu_buttons.menu.draw(1484,8+y_slide, "Menu");
+    }
     
     
     if (y_slide>0) then draw_set_alpha((100-(y_slide*2))/100);
@@ -79,9 +85,10 @@ if (!zoomed && !zui){
     }
        
     
-    draw_set_color(38144);
+    draw_set_color(CM_GREEN_COLOR);
     draw_set_font(fnt_menu);
     draw_set_halign(fa_center);
+    draw_set_valign(fa_top);
     // Draws the sector name
     var _sector_string = $"Sector {obj_ini.sector_name ?? "Terra Nova"}";
     draw_text(775,17,_sector_string);
@@ -100,7 +107,7 @@ if (!zoomed && !zui){
             draw_set_color(c_red);
             draw_text(998,17,string_hash_to_newline(string(min(100,floor((penitent_current/penitent_max)*100)))+"% Penitent"));
             draw_text(998,17.5,string_hash_to_newline(string(min(100,floor((penitent_current/penitent_max)*100)))+"% Penitent"));
-            draw_set_color(38144);
+            draw_set_color(CM_GREEN_COLOR);
             // TODO Need a tooltip for here to display the actual amounts
         }
     }
@@ -109,7 +116,7 @@ if (!zoomed && !zui){
         draw_set_color(255);
         draw_text(998,17,string_hash_to_newline("Renegade"));
         draw_text(998,17.5,string_hash_to_newline("Renegade"));
-        draw_set_color(38144);
+        draw_set_color(CM_GREEN_COLOR);
     }
     if (menu==0){
         if (obj_controller.imp_ships == 0 && obj_controller.turn<2){
@@ -197,14 +204,26 @@ function draw_line(x1, y1, y_slide, variable) {
 }
 
 
-if (menu == 1) {
-    if (managing != 0){
-        draw_sprite_and_unit_equip_data();
-    }
-    if (managing == -1){
-        scr_manage_task_selector();
-    }
+try{
+    if (menu == MENU.Manage) {
+        if (managing != 0){
+            draw_sprite_and_unit_equip_data();
+        }
+        if (managing == -1){
+            scr_manage_task_selector();
+        }
+        if (managing > 0){
+            company_specific_management();
+        }
 
+    } else if (menu == MENU.Armamentarium) {
+        scr_draw_armentarium_gui();
+    } else if (menu == MENU.Librarium){
+        scr_librarium_gui();
+    }
+} catch(_exception){
+    handle_exception(_exception);
+    menu = MENU.Default;
 }
 
 
