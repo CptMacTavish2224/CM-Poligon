@@ -278,7 +278,7 @@ function scr_explore_ruins() {
     }
 }
 
-/// @mixin
+/// @self Asset.GMObject.obj_popup
 function ruins_exploration_main_sequence() {
     // Begin
     /// @type {Struct.NewPlanetFeature}

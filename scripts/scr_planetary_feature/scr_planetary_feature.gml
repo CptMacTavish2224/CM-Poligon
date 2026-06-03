@@ -489,7 +489,7 @@ function discover_artifact_popup(feature) {
     }
 }
 
-/// @mixin
+/// @self Asset.GMObject.obj_star_select
 function planet_selection_action() {
     var xx = __view_get(e__VW.XView, 0) + 0;
     var yy = __view_get(e__VW.YView, 0) + 0;
@@ -624,7 +624,7 @@ function check_for_artifact_grab_mission() {
     }
 }
 
-/// @mixin
+/// @self Asset.GMObject.obj_ground_mission
 function ground_forces_collect_artifact() {
     with (obj_ground_mission) {
         scr_return_ship(pdata.system.name, self, pdata.planet);

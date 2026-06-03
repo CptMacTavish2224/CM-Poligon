@@ -818,7 +818,7 @@ function set_up_recruitment_view() {
     }
 }
 
-/// @mixin
+/// @self Asset.GMObject.obj_controller
 function scr_draw_recruit_advisor() {
     var blurp, eta, va;
     var romanNumerals;
