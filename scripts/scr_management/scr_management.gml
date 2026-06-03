@@ -476,10 +476,12 @@ function scr_management(argument0) {
                 if (unit.role() == role_names[eROLE.TERMINATOR]) {
                     num[10]++;
                 }
-                if (unit.role() == role_names[eROLE.SERGEANT]) {
+                // Count all "X Sergeant" variants (Tactical Sergeant, Biker Sergeant, etc.) but not Veteran Sergeant
+                if (string_count(role_names[eROLE.SERGEANT], unit.role()) > 0 && unit.role() != role_names[eROLE.VETERANSERGEANT]) {
                     num[11]++;
                 }
-                if (unit.role() == role_names[eROLE.VETERANSERGEANT]) {
+                // Count all "Veteran Sergeant" variants (Terminator Sergeant, Veteran Sergeant, etc.)
+                if (string_count(role_names[eROLE.VETERANSERGEANT], unit.role()) > 0) {
                     num[12]++;
                 }
                 if (unit.role() == role_names[eROLE.VETERAN]) {
