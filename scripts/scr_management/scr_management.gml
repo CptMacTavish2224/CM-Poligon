@@ -15,12 +15,7 @@ function scr_management(argument0) {
         }
 
         var pane;
-
-        pane = instance_create(700, 180 - 48, obj_managment_panel);
-        pane.company = 0;
-        pane.manage = 11;
-        pane.header = 3;
-        pane.title = "HEADQUARTERS";
+        var _command_company = collect_company(0);
 
         pane = instance_create(475, 180 - 48, obj_managment_panel);
         pane.company = 0;
@@ -28,34 +23,68 @@ function scr_management(argument0) {
         pane.header = 2;
         pane.title = "RECLUSIUM";
 
+        var _reclusium_units = _command_company.get_from({group: [SPECIALISTS_CHAPLAINS, true, true]}, true, true);
+
+        var _reclusium_units = _reclusium_units.index_roles();
+
+        pane.line = array_join(pane.line, _reclusium_units.create_plural_strings_array());
+
         pane = instance_create(275, 180 - 48, obj_managment_panel);
         pane.company = 0;
         pane.manage = 12;
         pane.header = 2;
         pane.title = "APOTHECARIUM";
 
+        var _apothecary_units = _command_company.get_from({group: [SPECIALISTS_APOTHECARIES, true, true]}, true, true);
+
+        var _apothecary_units = _apothecary_units.index_roles();
+
+        pane.line = array_join(pane.line, _apothecary_units.create_plural_strings_array());
+
         pane = instance_create(925, 180 - 48, obj_managment_panel);
         pane.company = 0;
         pane.manage = 15;
         pane.header = 2;
         pane.title = "ARMOURY";
+        var _armoury_units = _command_company.get_from({group: [SPECIALISTS_TECHS, true, true]}, true, true);
 
+        var _armoury_units = _armoury_units.index_roles();
+
+        pane.line = array_join(pane.line, _armoury_units.create_plural_strings_array());
+
+        pane = instance_create(925, 180 - 48, obj_managment_panel);
         pane = instance_create(1125, 180 - 48, obj_managment_panel);
         pane.company = 0;
         pane.manage = 13;
         pane.header = 2;
         pane.title = "LIBRARIUM";
 
+        var _lib_units = _command_company.get_from({group: [SPECIALISTS_LIBRARIANS, true, true]}, true, true);
+
+        var _lib_units = _lib_units.index_roles();
+
+        pane.line = array_join(pane.line, _lib_units.create_plural_strings_array());
+
+        pane = instance_create(700, 180 - 48, obj_managment_panel);
+        pane.company = 0;
+        pane.manage = 11;
+        pane.header = 3;
+        pane.title = "HEADQUARTERS";
+
+        var _command_units = _command_company.index_roles();
+
+        pane.line = array_join(pane.line, _command_units.create_plural_strings_array());
+
         // Coordinates declaration and text initiation
         var xx = 25, yy = 400 - 48, t;
 
         // Creates the first 10 companies using roman numerals
-        for (var i = 1; i <= 10; i++) {
-            t = string_upper(scr_convert_company_to_string(i));
+        for (var company = 1; company <= 10; company++) {
+            t = string_upper(scr_convert_company_to_string(company));
 
             var pane = instance_create(xx, yy, obj_managment_panel);
-            pane.company = i;
-            pane.manage = i;
+            pane.company = company;
+            pane.manage = company;
             pane.header = 1;
             pane.title = t;
 
@@ -509,44 +538,24 @@ function scr_management(argument0) {
 
             // Vehicles
             for (var i = 0; i < array_length(obj_ini.veh_role[company]); i++) {
-                if (obj_ini.veh_role[company][i] == "Land Raider") {
-                    num[20]++;
-                }
-                if (obj_ini.veh_role[company][i] == "Predator") {
-                    num[21]++;
-                }
-                if (obj_ini.veh_role[company][i] == "Rhino") {
-                    num[22]++;
-                }
-                if (obj_ini.veh_role[company][i] == "Land Speeder") {
-                    num[23]++;
-                }
-                if (obj_ini.veh_role[company][i] == "Whirlwind") {
-                    num[24]++;
-                }
-            }
-
-            with (obj_managment_panel) {
-                if (manage != obj_controller.temp[71]) {
-                    instance_deactivate_object(id);
-                }
-            }
-
-            q = 0;
-            for (var d = 1; d <= 24; d++) {
-                if (num[d] > 0) {
-                    q += 1;
-                    if (d == 1) {
-                        obj_managment_panel.line[q] = string(nam[d]);
-                        // obj_managment_panel.italic[q] = 1;
-                        obj_managment_panel.bold[q] = 1;
-                    } else {
-                        obj_managment_panel.line[q] = string_plural_count(nam[d], num[d], false);
+                for (var s = 0; s < array_length(nam); s++) {
+                    if (obj_ini.veh_role[company][i] == nam[s]) {
+                        num[s]++;
                     }
                 }
             }
 
-            instance_activate_object(obj_managment_panel);
+            for (var d = 0; d < 5; d++) {
+                if (num[d] > 0) {
+                    if (d == 1) {
+                        array_push(pane.line, {str1: nam[d], bold: true, italic: false});
+                        // obj_managment_panel.italic[q] = 1;
+                    } else {
+                        array_push(pane.line, nam[d], string_plural_count(nam[d], num[d], false));
+                    }
+                }
+            }
+            xx += 156;
         }
     }
 }

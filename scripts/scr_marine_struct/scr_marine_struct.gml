@@ -414,7 +414,7 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data = {}
                 variable_struct_set(self, names[i], variable_struct_get(data, names[i]));
             }
         } catch (_exception) {
-            handle_exception(_exception);
+            ERROR_HANDLER.handle_exception(_exception);
         }
     };
 
@@ -453,34 +453,32 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data = {}
     };
 
     //adds a trait to a marines trait list
-    static add_trait = function(trait,return_stat_diff = false, return_description = false) {
-
-        if (return_stat_diff){
+    static add_trait = function(trait, return_stat_diff = false, return_description = false) {
+        if (return_stat_diff) {
             var _start_stats = get_stat_line();
         }
         if (struct_exists(global.trait_list, trait)) {
             if (!array_contains(traits, trait)) {
-
                 var _return_string = "";
                 var selec_trait = global.trait_list[$ trait];
                 stat_boosts(selec_trait);
                 array_push(traits, trait);
 
-                if (return_stat_diff){
+                if (return_stat_diff) {
                     var _end_stats = get_stat_line();
 
-                    var _stat_diff = compare_stats(_end_stats,_start_stats);
+                    var _stat_diff = compare_stats(_end_stats, _start_stats);
                 }
 
-                if (return_description){
+                if (return_description) {
                     _return_string += $"{name_role()} Has gained the trait {selec_trait.display_name}";
                 }
 
-                if (return_stat_diff){
-                    _return_string +=$", {(print_stat_diffs(_stat_diff))}"
+                if (return_stat_diff) {
+                    _return_string += $", {print_stat_diffs(_stat_diff)}";
                 }
 
-                return _return_string
+                return _return_string;
             }
         }
 
@@ -671,13 +669,8 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data = {}
                 ]; //marines_promotion and demotion history
                 marine_ascension = (obj_controller.millenium * 1000) + obj_controller.year; // on what day did this marine begin to exist
             } else {
-                role_history = [
-                    [
-                        obj_ini.role[company][marine_number],
-                        "pre_game"
-                    ]
-                ];
-                marine_ascension = "pre_game"; // on what day did turn did this marine begin to exist
+                role_history = [];
+                marine_ascension = 0; // on what turn did this marine begin to exist
             }
 
             roll_psionics();
@@ -933,19 +926,24 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data = {}
     };
 
     //TODO build epithets in to marine profile
-    static add_epithet = function(epithet){
-        if (is_string(epithet)){
+    static add_epithet = function(epithet) {
+        if (is_string(epithet)) {
             epithet = {
-                title : epithet,
-                story : "",
-            }
+                title: epithet,
+                story: "",
+            };
         }
-        array_push(epithets,epithet);
-    }
+        array_push(epithets, epithet);
+    };
 
     static name = function() {
         return obj_ini.name[company][marine_number];
     }; // get marine name
+
+    static set_name = function(new_name) {
+        obj_ini.name[company][marine_number] = new_name;
+        return new_name;
+    };
 
     static gear = function(raw = false) {
         var wep = obj_ini.gear[company][marine_number];
@@ -1103,17 +1101,17 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data = {}
     };
 
     static roll_psionics = function() {
-        var _dice_count = marine_ascension == "pre_game" ? 1 : 2;
+        var _dice_count = 1;
         var _psionics_roll = roll_dice_chapter(_dice_count, 100);
 
         if (scr_has_adv("Warp Touched")) {
             if (_psionics_roll < 170) {
-                var _second_roll = roll_dice(_dice_count, 100, "high");
+                var _second_roll = roll_dice_chapter(_dice_count, 100, "high");
                 _psionics_roll = _second_roll > _psionics_roll ? _second_roll : _psionics_roll;
             }
         } else if (scr_has_disadv("Psyker Intolerant")) {
             if (_psionics_roll >= 170) {
-                var _second_roll = roll_dice(_dice_count, 100, "low");
+                var _second_roll = roll_dice_chapter(_dice_count, 100, "low");
                 _psionics_roll = _second_roll < _psionics_roll ? _second_roll : _psionics_roll;
             }
         }
@@ -1699,10 +1697,10 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data = {}
         }
         return armour_rating;
     };
-    
-    static in_squad = function(){
+
+    static in_squad = function() {
         return squad != "none";
-    }
+    };
 
     static get_squad = function() {
         return fetch_squad(squad);
@@ -1784,28 +1782,25 @@ function TTRPG_stats(faction, comp, mar, class = "marine", other_spawn_data = {}
 
     //quick way of getting name and role combined in string
     static name_role = function(include_epithet = true, include_role = true) {
-
         var _name = name();
 
-         if (include_role){
+        if (include_role) {
             var _temp_role = squad_role();
             _name = string("{0} {1}", _temp_role, _name);
         }
 
-        if (include_epithet){
+        if (include_epithet) {
             var _epithet = "";
-            if (array_length(epithets)){
+            if (array_length(epithets)) {
                 _epithet += $"{epithets[0].title}";
             }
         }
 
-        if (include_epithet && _epithet != ""){
+        if (include_epithet && _epithet != "") {
             return string("{0} {1}", _name, _epithet);
         }
 
         return _name;
-
-        
     };
 
     static controllable = function() {

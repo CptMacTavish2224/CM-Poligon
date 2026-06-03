@@ -61,7 +61,7 @@ function scr_menu_clear_up(specific_area_function) {
     return false;
 }
 
-function scr_change_menu(wanted_menu, specific_area_function = false) {
+function scr_change_menu(wanted_menu, specific_area_function = undefined) {
     var continue_sequence = false;
     if (obj_controller.menu_lock) {
         return false;
@@ -437,21 +437,14 @@ function scr_end_turn() {
                 }*/
 
                 if (ok == 1) {
+                    obj_controller.menu = 0;
+                    obj_controller.zui = 0;
+                    obj_controller.invis = false;
+
                     if (global.settings.autosave == true) {
-                        // Autosave
+                        // Autosave every 10 turns
                         if (obj_controller.turn % 10 == 0) {
-                            // save every 10 turns
-                            if (!instance_exists(obj_saveload)) {
-                                instance_create(0, 0, obj_saveload);
-                            }
-                            obj_saveload.autosaving = true;
-                            scr_save(0, 0, true);
-                            obj_controller.menu = 0;
-                            obj_controller.zui = 0;
-                            obj_controller.invis = false;
-                            with (obj_saveload) {
-                                instance_destroy();
-                            }
+                            scr_autosave();
                         }
                     }
                     obj_controller.end_turn_insights = {};

@@ -121,7 +121,7 @@
         "scout",
         "tactical"
       ],
-      "base" : "terminator",
+      "base" : "terminator"
     }
   },
 
@@ -163,7 +163,7 @@
         "scout",
         "tactical"
       ],
-      "base" : "terminator",
+      "base" : "terminator"
     }
   },
 
@@ -213,7 +213,7 @@
         "tactical"
       ],
       "base" : "veteran"
-    },
+    }
   },
 
   "devastator_squad": {
