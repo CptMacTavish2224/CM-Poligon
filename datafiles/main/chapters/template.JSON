@@ -141,7 +141,7 @@
             "10th Company"
         ],
         "flagship_name": "Flagship Name", // leave blank to autogenerate
-        /**
+        /*
         * * Default fleet composition
         * * Homeworld 
         * - 2 Battle Barges, 8 Strike cruisers, 7 Gladius, 3 Hunters
@@ -157,7 +157,7 @@
             "strike_cruisers": 0,
             "hunters": 0
         },
-        /**
+        /*
         * * Default HQ Layout (Does not include company specialists)
         * - 8 Chaplains, 8 Techmarines, 8 Apothecary, 2 Epistolary (librarian), 
         * - 2 Codiciery, 4 Lexicanum
@@ -183,7 +183,7 @@
             "devastator": 0,
             "dreadnought": 0
         },
-        /**
+        /*
         * * Default Marine strength
         * - 100 marines per company
         * use negative numbers to subtract
@@ -200,7 +200,7 @@
             "ninth": 0,
             "tenth": 0
         },
-        /**
+        /*
         * All vehicles are added to the 10th company at the start of the game
         */
         "extra_vehicles": {
@@ -217,7 +217,7 @@
             //     20
             // ]
         ],
-        /** 
+        /*
         * Provide a place to change the default name and equipment preferences of roles for this chapter
         * `custom_roles` should be used for specialist/leadership type roles, 
         * To affect an entire squad, see `custom_squads` below
@@ -274,7 +274,7 @@
             //     "wep1": "Chainaxe"
             // }
         },
-        /**
+        /*
         * * Custom squad roles, loadouts and formations
         * When companies are made, squads are formed based on these rules: 
         * - squad name: one of captain, terminator, terminator_assault, sternguard_veteran,
