@@ -9,10 +9,9 @@ function UnitGroup(units) constructor {
         units = array_shuffle(units);
     };
 
-    static pop = function(){
+    static pop = function() {
         return array_pop(units);
-    }
-
+    };
 
     static has_role = function(role) {
         for (var i = 0; i < array_length(units); i++) {
@@ -520,6 +519,9 @@ function UnitGroup(units) constructor {
         var _sorted_squads = [];
         for (var role_name = 0; role_name < _role_shuffle_length; role_name++) {
             var _wanted_role = _role_orders[role_name];
+            if (_wanted_role == "") {
+                continue;
+            }
             _match_roles.add_units(self, {role: _wanted_role}, true, -1);
             for (var i = 0; i < array_length(_match_roles.units); i++) {
                 var _unit = _match_roles.units[i];
@@ -548,15 +550,25 @@ function UnitIndex(units) constructor {
     static add_to_index = function(units) {
         for (var i = 0; i < array_length(units); i++) {
             var _unit = units[i];
-            if (!struct_exists(role_index, _unit.role())) {
-                role_index[$ _unit.role()] = [_unit];
+            var _role = _unit.role();
+            if (_role == "") {
+                LOGGER.error($"Empty role! Unit:\n{_unit}");
+                continue;
+            }
+
+            if (!struct_exists(role_index, _role)) {
+                role_index[$ _role] = [_unit];
             } else {
-                array_push(role_index[$ _unit.role()], _unit);
+                array_push(role_index[$ _role], _unit);
             }
         }
     };
 
     add_to_index(units);
+
+    static role_count = function(role) {
+        return array_length(role_index[$ role]);
+    };
 
     static has_role = function(role) {
         return struct_exists(role_index, role) && array_length(role_index[$ role]) > 0;
@@ -564,6 +576,18 @@ function UnitIndex(units) constructor {
 
     static keys = function() {
         return struct_get_names(role_index);
+    };
+
+    static hierarchy_keys = function() {
+        var _keys = keys();
+        var _all_roles = role_hierarchy();
+        for (var i = array_length(_all_roles) - 1; i >= 0; i--) {
+            if (!array_contains(_keys, _all_roles[i])) {
+                array_delete(_all_roles, i, 1);
+            }
+        }
+
+        return _all_roles;
     };
 
     static pop_role_member = function(role) {
@@ -580,6 +604,39 @@ function UnitIndex(units) constructor {
             }
         }
         return new UnitGroup(_units);
+    };
+
+    static create_plural_strings_array = function(arrange_with_hierarchy = true, allow_draw_data = true, use_names_for_heads = true) {
+        var _strings_array = [];
+        var _keys;
+        if (arrange_with_hierarchy) {
+            _keys = hierarchy_keys();
+        } else {
+            _keys = keys();
+        }
+        for (var i = 0; i < array_length(_keys); i++) {
+            var _count = role_count(_keys[i]);
+            if (_count == 0) {
+                continue;
+            }
+            if (_count == 1) {
+                if (allow_draw_data) {
+                    var _string = _keys[i];
+                    var _italic = false;
+                    if (use_names_for_heads && is_specialist(_keys[i], SPECIALISTS_HEADS) || _keys[i] == active_roles()[eROLE.CAPTAIN]) {
+                        _string = role_index[$ _keys[i]][0].name();
+                        _italic = true;
+                    }
+                    array_push(_strings_array, {str1: _string, bold: true, italic: _italic});
+                } else {
+                    array_push(_strings_array, string(_keys[i]));
+                }
+            } else {
+                array_push(_strings_array, string_plural_count(_keys[i], role_count(_keys[i]), false));
+            }
+        }
+
+        return _strings_array;
     };
 }
 
@@ -805,6 +862,14 @@ function SearchConditions(data) constructor {
     static evaluate = function(unit) {
         self.unit = unit;
         if (unit.name() == "") {
+            unit.base_group = "none";
+            // LOGGER.error($"Empty name! Unit:\n{unit}");
+            return false;
+        }
+
+        if (unit.role() == "") {
+            unit.set_name("");
+            unit.base_group = "none";
             return false;
         }
 
@@ -878,6 +943,7 @@ function collect_by_religeon(religion, sub_cult = "", location = "") {
             _add = false;
             _unit = obj_ini.TTRPG[com][i];
             if (_unit.name() == "") {
+                LOGGER.error($"Empty name! Unit:\n{_unit}");
                 continue;
             }
             if (_unit.religion == religion) {
@@ -980,7 +1046,7 @@ function group_selection(group, selection_data = {}) {
     }
     catch (_exception) {
         //handle and send player back to map
-        handle_exception(_exception);
+        ERROR_HANDLER.handle_exception(_exception);
         scr_toggle_manage();
     }
 }

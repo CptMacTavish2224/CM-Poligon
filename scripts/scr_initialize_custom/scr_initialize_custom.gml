@@ -743,7 +743,7 @@ function trial_map(trial_name) {
     }
 }
 
-/// @mixin obj_ini
+/// @self Asset.GMObject.obj_ini
 function scr_initialize_custom() {
     // LOGGER.debug("Executing scr_initialize_custom");
 
@@ -1478,6 +1478,7 @@ function scr_initialize_custom() {
 
     var _current_age = ((millenium * 1000) + year) - 10;
 
+    /// @self Asset.GMObject.obj_ini
     var _init_marine_row = function(_idx, _count, _age_val) {
         var _len = _count + 1;
         race[_idx] = array_create(_len, 1);
@@ -1504,17 +1505,6 @@ function scr_initialize_custom() {
 
     initialized = 500;
 
-    defaults_slot = 100;
-
-    function load_default_gear(_role_id, _role_name, _wep1, _wep2, _armour, _mobi, _gear) {
-        role[defaults_slot][_role_id] = _role_name;
-        wep1[defaults_slot][_role_id] = _wep1;
-        wep2[defaults_slot][_role_id] = _wep2;
-        armour[defaults_slot][_role_id] = _armour;
-        mobi[defaults_slot][_role_id] = _mobi;
-        gear[defaults_slot][_role_id] = _gear;
-        race[defaults_slot][_role_id] = 1;
-    }
     var _hi_qual_armour = "Artificer Armour";
     if (scr_has_disadv("Poor Equipment")) {
         _hi_qual_armour = STR_ANY_POWER_ARMOUR;
@@ -1828,8 +1818,6 @@ function scr_initialize_custom() {
         array_push(_swaps, _set);
     }
 
-    json_inject_swaps(squad_types, _swaps);
-
     // LOGGER.debug($"squads object for chapter {chapter_name}");
     // LOGGER.debug($"{custom_squads}");
 
@@ -1852,6 +1840,7 @@ function scr_initialize_custom() {
         }
     }
 
+    json_inject_swaps(squad_types, _swaps);
     // LOGGER.debug($"roles object for chapter {chapter_name} after setting from obj");
     // LOGGER.debug($"{custom_squads}");
 
@@ -1975,7 +1964,7 @@ function scr_initialize_custom() {
     // LOGGER.debug(squad_types);
     #endregion
 
-    for (i = 0; i <= 20; i++) {
+    for (var i = 0; i <= 20; i++) {
         if (role[defaults_slot][i] != "") {
             scr_start_allow(i, "wep1", wep1[defaults_slot][i]);
         }
@@ -2468,7 +2457,7 @@ function scr_initialize_custom() {
             for (var j = 0; j < _override_keys_count; j++) {
                 var _okey_hash = _override_keys[j];
                 var _okey_ins = new_values[$ _okey_hash];
-                LOGGER.info($"{_okey_hash}<{_okey_ins}<{old_values}");
+                // LOGGER.info($"{_okey_hash}<{_okey_ins}<{old_values}");
                 old_values[$ _okey_hash] = _okey_ins;
             }
             return old_values;
@@ -3131,7 +3120,7 @@ function add_unit_to_company(ttrpg_name, company, slot, role_name, role_id, wep1
     return spawn_unit;
 }
 
-///@mixin obj_ini
+/// @self Asset.GMObject.obj_ini
 function load_chapter_master_equipment() {
     var chapter_master_equip = {};
     switch (obj_ini.master_melee) {
