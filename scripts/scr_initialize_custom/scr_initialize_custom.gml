@@ -881,6 +881,7 @@ function scr_initialize_custom() {
     fleet_type = obj_creation.fleet_type;
 
     #region Ship Setup
+    glorianas = 0;
     battle_barges = 0;
     strike_cruisers = 0;
     gladius = 0;
@@ -939,6 +940,7 @@ function scr_initialize_custom() {
         strike_cruisers += 2;
     }
     if (struct_exists(obj_creation, "extra_ships")) {
+        glorianas = glorianas + obj_creation.extra_ships.gloriana;
         battle_barges = battle_barges + obj_creation.extra_ships.battle_barges;
         strike_cruisers = strike_cruisers + obj_creation.extra_ships.strike_cruisers;
         gladius = gladius + obj_creation.extra_ships.gladius;
@@ -949,14 +951,20 @@ function scr_initialize_custom() {
     // LOGGER.info(ship_summary_str);
     // LOGGER.debug(ship_summary_str);
 
-    if (battle_barges >= 1) {
-        for (v = 0; v < battle_barges; v++) {
-            var new_ship = new_player_ship("Battle Barge", "home");
-            if ((flagship_name != "") && (v == 0)) {
-                ship[new_ship] = flagship_name;
-            }
-        }
-    }
+    if (glorianas>=1)
+	{
+	for (v=0;v<glorianas;v++){
+		var new_ship = new_player_ship("Gloriana", "home");
+		if (flagship_name!="") and (v=0) then ship[new_ship]=flagship_name;
+	}
+	}
+	if (battle_barges>=1)
+	{
+	 	for (v=0;v<battle_barges;v++){
+	 		var new_ship = new_player_ship("Battle Barge", "home");
+		    if (flagship_name=="") && (v=0) then ship[new_ship]=flagship_name;
+		}
+	}
 
     for (var i = 0; i < strike_cruisers; i++) {
         new_player_ship("Strike Cruiser");
@@ -3090,7 +3098,7 @@ function add_unit_to_company(ttrpg_name, company, slot, role_name, role_id, wep1
         spawn_unit.add_trait("champion");
     }
     if (role_id == eROLE.APOTHECARY) {
-        spawn_unit.add_trait("soft_target");
+        spawn_unit.add_trait("scholar");
     }
     if (role_id == eROLE.LIBRARIAN) {
         if (scr_has_adv("Favoured By The Warp") && (roll_dice_unit(1, 6, "high", spawn_unit) >= 4)) {

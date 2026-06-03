@@ -1363,8 +1363,184 @@
       "admiral": ,
       "recruiter": 
     */},
-    "squad_name": "Squad", //how will any squad be referenced
-    "custom_squads":
+    "company_titles": [
+            "",
+            "1st Company",
+            "2nd Company",
+            "3rd Company",
+            "4th Company",
+            "5th Company",
+            "6th Company",
+            "7th Company",
+            "8th Company",
+            "9th Company",
+            "10th Company"
+        ],
+    "flagship_name": "Flagship Name", // leave blank to autogenerate
+        /*
+        * * Default fleet composition
+        * * Homeworld 
+        * - 2 Battle Barges, 8 Strike cruisers, 7 Gladius, 3 Hunters
+        * * Fleet based and Penitent 
+        * - 4 Battle Barges, 3 Strike Cruisers, 7 Gladius, 3 Hunters
+        * 
+        * use negative numbers to subtract ships
+        * * Stacks with advantages/disadvantages
+        */
+    "extra_ships": {
+            "battle_barges": 0,
+            "gladius": 0,
+            "strike_cruisers": 0,
+            "hunters": 0
+        },
+        /*
+        * * Default HQ Layout (Does not include company specialists)
+        * - 8 Chaplains, 8 Techmarines, 8 Apothecary, 2 Epistolary (librarian), 
+        * - 2 Codiciery, 4 Lexicanum
+        * * Default Company specialists (divided based on `load_to_ships.split_vets` setting)
+        * - 20 Terminators, 85 Veterans, 20 Devastators, 20 Assault
+        * Use negative numbers to subtract
+        * * Stacks with advantages/disadvantages
+        */
+    "extra_specialists": {
+            "chaplains": 0,
+            "chaplains_per_company": 0,
+            "techmarines": 0,
+            "techmarines_per_company": 0,
+            "apothecary": 0,
+            "apothecary_per_company": 0,
+            "epistolary": 0,
+            "epistolary_per_company": 0,
+            "codiciery": 0,
+            "lexicanum": 0,
+            "terminator": 0,
+            "assault": 0,
+            "veteran": 0,
+            "devastator": 0,
+            "dreadnought": 0
+        },
+        /*
+        * * Default Marine strength
+        * - 100 marines per company
+        * use negative numbers to subtract
+        * * Stacks with strength for non-founding chapters only
+        */
+    "extra_marines": {
+            "second": 0,
+            "third": 0,
+            "fourth": 0,
+            "fifth": 0,
+            "sixth": 0,
+            "seventh": 0,
+            "eighth": 0,
+            "ninth": 0,
+            "tenth": 0
+        },
+        /*
+        * All vehicles are added to the 10th company at the start of the game
+        */
+    "extra_vehicles": {
+            "rhino": 0,
+            "whirlwind": 0,
+            "predator": 0,
+            "land_raider": 0,
+            "land_speeder": 0
+        },
+        /** Add extra starting items ["Item Name", Number to add] */
+        "extra_equipment": [
+            // [
+            //     "Bolter",
+            //     20
+            // ]
+        ],
+        /*
+        * Provide a place to change the default name and equipment preferences of roles for this chapter
+        * `custom_roles` should be used for specialist/leadership type roles, 
+        * To affect an entire squad, see `custom_squads` below
+        */
+    "custom_roles": {
+            // "honour_guard": {
+            //     "name": "Honour Guard",
+            //     "wep1": "Power Sword",
+            //     "wep2": "Bolter"
+            // },
+            // "veteran": {
+            //     "name": "Veteran",
+            //     "wep1": "Chainaxe"
+            // },
+            // "captain": {
+            //     "name": "Captain",
+            //     "wep1": "Power Sword"
+            // },
+            // "tactical": {
+            //     "name": "Tactical"
+            // },
+            // "devastator": {
+            //     "name": "Devastator"
+            // },
+            // "assault": {
+            //     "name": "Assault",
+            //     "wep1": "Chainsword"
+            // },
+            // "scout": {
+            //     "name": "Scout",
+            //     "wep1": "Sniper Rifle"
+            // },
+            // "chaplain": {
+            //     "name": "Chaplain",
+            // },
+            // "techmarine": {
+            //     "name": "Techmarine",
+            //     "wep1": "Power Axe"
+            // },
+            // "apothecary": {
+            //     "name": "Apothecary",
+            //     "wep1": "Power Axe"
+            // },
+            // "librarian": {
+            //     "name": "Librarian",
+            //     "wep1": "Force Staff"
+            // },
+            // "sergeant": {
+            //     "name": "Sergeant",
+            //     "wep1": "Chainaxe"
+            // },
+            // "veteran_sergeant": {
+            //     "name": "Veteran Sergeant",
+            //     "wep1": "Chainaxe"
+            // }
+        },
+        /*
+        * * Custom squad roles, loadouts and formations
+        * When companies are made, squads are formed based on these rules: 
+        * - squad name: one of captain, terminator, terminator_assault, sternguard_veteran,
+                vanguard_veteran, devastator, tactical, assault, scout, scout_sniper
+        * - squad array layout [Role, Role, ...Role, type_data]
+        * - each element of the array is a default Role, and their settings.
+            - if you changed the role using `custom_roles` you need to reference the role with this new name
+            - for non-leader roles it is better to change the name of the role in the squad layout instead
+        * - unit layout [Role Name, Settings Struct]
+        * - settings struct: 
+        *   - max: The most amount of this unit is allowed per squad
+        *   - min: The squad can't be formed unless at least 1 of this unit is in it
+        *   - role: The name of the unit when it is a member of the squad. This is where you rename roles e.g. 
+                "Terminator" > "Deathwing Terminator" 
+        **  - loadout: Struct containing Required and Optional weaponry this unit can equip 
+                a required loadout always follows this syntax <loadout_slot>:[<loadout_item>,<required number>]
+				so "wep1":["Bolter",4], will mean four marines are always equipped with 4 bolters in the wep1 slot
+        *       option loadouts follow the following syntax <loudout_slot>:[[<loadout_item_list>],<allowed_number>]
+				for example [["Flamer", "Meltagun"],1], means the role can have a max of one flamer or meltagun
+					[["Plasma Pistol","Bolt Pistol"], 4] means the role can have a mix of 4 plasma pistols and bolt pistols on top
+						of all required loadout options
+                - wep1: right hand weapon
+                - wep2: left hand weapon
+                - mobi: Mobility item, e.g. Jump Packs. 
+                - armour: required armour 
+                - gear: special equipment needed for certain roles, like a Roasrius or Narthecium
+        *   - type_data: names the squad, allows certain formations 
+        */
+        "squad_name": "Squad",
+        "custom_squads":
     {/*Example how this works, showcasing the Deathwing Terminator Squads
       "deathwing_squad":
       [
@@ -1458,32 +1634,5 @@
         ]
       ]*/
     }
-/*  * Custom squad roles, loadouts and formations
-    * When companies are made, squads are formed based on these rules: 
-    * - squad name: one of captain, terminator, terminator_assault, sternguard_veteran,
-      vanguard_veteran, devastator, tactical, assault, scout, scout_sniper
-    * - squad array layout [Role, Role, ...Role, type_data]
-    * - each element of the array is a default Role, and their settings.
-      - if you changed the role using `custom_roles` you need to reference the role with this new name
-      - for non-leader roles it is better to change the name of the role in the squad layout instead
-    * - unit layout [Role Name, Settings Struct]
-    * - settings struct: 
-    *   - max: The most amount of this unit is allowed per squad
-    *   - min: The squad can't be formed unless at least 1 of this unit is in it
-    *   - role: The name of the unit when it is a member of the squad. This is where you rename roles e.g. 
-      "Terminator" > "Deathwing Terminator" 
-    **  - loadout: Struct containing Required and Optional weaponry this unit can equip 
-      a required loadout always follows this syntax <loadout_slot>:[<loadout_item>,<required number>]
-		so "wep1":["Bolter",4], will mean four marines are always equipped with 4 bolters in the wep1 slot
-    *       option loadouts follow the following syntax <loudout_slot>:[[<loadout_item_list>],<allowed_number>]
-		for example [["Flamer", "Meltagun"],1], means the role can have a max of one flamer or meltagun
-		[["Plasma Pistol","Bolt Pistol"], 4] means the role can have a mix of 4 plasma pistols and bolt pistols on top
-		of all required loadout options
-      - wep1: right hand weapon
-      - wep2: left hand weapon
-      - mobi: Mobility item, e.g. Jump Packs. 
-      - armour: required armour 
-      - gear: special equipment needed for certain roles, like a Roasrius or Narthecium
-    *   - type_data: names the squad, allows certain formations ? idk what that does yet*/
   }
 }
