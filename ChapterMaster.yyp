@@ -576,6 +576,7 @@
     {"$GMIncludedFile":"","%Name":"pauldron.png","CopyToMask":-1,"filePath":"datafiles/main/role_markings/ultramarines","name":"pauldron.png","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"base_squads.json","CopyToMask":-1,"filePath":"datafiles/main/squads","name":"base_squads.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"company_squad_builds.json","CopyToMask":-1,"filePath":"datafiles/main/squads","name":"company_squad_builds.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+    {"$GMIncludedFile":"","%Name":"lightning_warriors.json","CopyToMask":-1,"filePath":"datafiles/main/squads","name":"lightning_warriors.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"equal_scouts.json","CopyToMask":-1,"filePath":"datafiles/main/squads","name":"equal_scouts.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"equal_specialists.json","CopyToMask":-1,"filePath":"datafiles/main/squads","name":"equal_specialists.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"equal_spescout.json","CopyToMask":-1,"filePath":"datafiles/main/squads","name":"equal_spescout.json","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
