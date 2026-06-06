@@ -3275,3 +3275,4 @@ function load_chapter_master_equipment() {
     }
     return chapter_master_equip;
 }
+}
