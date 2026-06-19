@@ -73,18 +73,8 @@ function scr_company_order(company) {
 
         if (_squadless.number() > 3) {
             var _squad_index = _company_marines.index_squads();
-            var _data_match = false;
-            var _data;
-            if (struct_exists(obj_ini.chapter_squad_arrangement, "companies")) {
-                var _comp_datas = obj_ini.chapter_squad_arrangement.companies;
-                for (var i = 0; i < array_length(_comp_datas); i++) {
-                    if (_comp_datas[i].company == co) {
-                        _data_match = true;
-                        _data = _comp_datas[i];
-                    }
-                }
-            }
-            if (_data_match) {
+            var _data = resolve_company_arrangement(obj_ini.chapter_squad_arrangement, co);
+            if (_data != undefined) {
                 _squadless.organise_by_template(_data, _squad_index, _empty_index, false);
             }
 
@@ -204,6 +194,20 @@ function role_hierarchy() {
         "Death Company",
         _roles[eROLE.VETERANSERGEANT],
         _roles[eROLE.SERGEANT],
+        _roles[eROLE.TERMINATOR],
+        _roles[eROLE.VETERAN],
+        _roles[eROLE.TACTICAL],
+        _roles[eROLE.ASSAULT],
+        _roles[eROLE.DEVASTATOR],
+        _roles[eROLE.SCOUT],
+        $"Venerable {_roles[eROLE.DREADNOUGHT]}",
+        _roles[eROLE.DREADNOUGHT],
+        "Skitarii",
+        "Crusader",
+        "Ranger",
+        "Sister of Battle",
+        "Flash Git",
+        "Ork Sniper"
     ];
 
     // Dynamically collect squad-specific sergeant role variants (e.g. "Biker Sergeant", "Tactical Sergeant")
@@ -272,23 +276,6 @@ function role_hierarchy() {
             }
         }
     }
-
-    array_push(hierarchy,
-        _roles[eROLE.TERMINATOR],
-        _roles[eROLE.VETERAN],
-        _roles[eROLE.TACTICAL],
-        _roles[eROLE.ASSAULT],
-        _roles[eROLE.DEVASTATOR],
-        _roles[eROLE.SCOUT],
-        $"Venerable {_roles[eROLE.DREADNOUGHT]}",
-        _roles[eROLE.DREADNOUGHT],
-        "Skitarii",
-        "Crusader",
-        "Ranger",
-        "Sister of Battle",
-        "Flash Git",
-        "Ork Sniper"
-    );
 
     return hierarchy;
 }

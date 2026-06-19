@@ -26,7 +26,7 @@ function scr_ui_formation_bars() {
         temp[ui_formations_data.te] = 0;
         temp[ui_formations_data.te + 100] = 0;
 
-        for (var ii = 1; ii <= 17; ii++) {
+        for (var ii = 1; ii <= 18; ii++) {
             if ((ii == 1) && (bat_comm_for[_formatting] == bar)) {
                 init_combat_bars(bar, ii, ui_formations_data, 2, 0, "HQ");
             } else if ((ii == 2) && (bat_hono_for[_formatting] == bar)) {
@@ -45,6 +45,8 @@ function scr_ui_formation_bars() {
                 init_combat_bars(bar, ii, ui_formations_data, 3, 2, "Devastator");
             } else if ((ii == 9) && (bat_assa_for[_formatting] == bar)) {
                 init_combat_bars(bar, ii, ui_formations_data, 3, 5, "Assault");
+            } else if ((ii == 18) && (bat_bike_for[_formatting] == bar)) {
+                init_combat_bars(bar, ii, ui_formations_data, 2, 14, "Bikers");
             } else if ((ii == 10) && (bat_scou_for[_formatting] == bar)) {
                 init_combat_bars(bar, ii, ui_formations_data, 1, 4, "Sco");
             } else if ((ii == 11) && (bat_drea_for[_formatting] == bar)) {
@@ -74,6 +76,7 @@ function scr_ui_formation_bars() {
             if (temp[4800 + bar] > 10) {
                 bat_deva_for[bar] = 1;
                 bat_assa_for[bar] = 4;
+                bat_bike_for[bar] = 4;
                 bat_tact_for[bar] = 2;
                 bat_vete_for[bar] = 2;
                 bat_hire_for[bar] = 3;

@@ -273,6 +273,10 @@ function scr_ui_settings() {
                     tooltip = "Whirlwinds";
                     tooltip2 = "Whirlwinds are armoured fire-support capable of supporting assaults from a long range safe from enemy retaliation.";
                 }
+                if (theh.unit_id == 18) {
+                    tooltip = "Bikers";
+                    tooltip2 = "Bikers are the swift deathbringers of the Astartes Chapters. Descending upon a foe with speed impossible to follow by mortal means, they decimate enemies in close range by a powerful assortment of melee weapons or heavy ranged weapons on their Attack Bikes";
+                }
                 too_img = theh.unit_id - 1;
             }
         }

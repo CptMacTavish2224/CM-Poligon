@@ -45,13 +45,11 @@ function SquadEquipmentSorting(squad, from_armoury = true, to_armoury = true) co
     squad_type = target_squad.type;
     squad_unit_types = squad.find_squad_unit_types();
     full_squad_data = obj_ini.squad_types[$ squad_type];
-    //build a map from JSON key
     role_key_to_actual = {};
     for (var _i = 0; _i < array_length(squad_unit_types); _i++) {
-    var _key = squad_unit_types[_i];
-    var _def = full_squad_data[$ _key];
-    var _actual = struct_exists(_def, "role") ? _def.role : _key;
-    role_key_to_actual[$ _key] = _actual;
+        var _key = squad_unit_types[_i];
+        var _def = full_squad_data[$ _key];
+        role_key_to_actual[$ _key] = struct_exists(_def, "role") ? _def.role : _key;
     }
     unit_role = "";
     members_UnitGroup = squad.get_members(true);
@@ -63,6 +61,56 @@ function SquadEquipmentSorting(squad, from_armoury = true, to_armoury = true) co
     target_squad.update_fulfilment();
 
     static sort = function() {
+        // Build the set of weapon slots this squad's loadout actively manages,
+        // across all roles (required + option + random_pick).
+        // Only wep1/wep2 are cleared — other slots (armour, gear, mobi) are
+        // intentionally left as-is since they may carry meaningful defaults.
+        var _weapon_slots = ["wep1", "wep2"];
+        var _managed_slots = {};
+        for (var _ri = 0; _ri < array_length(squad_unit_types); _ri++) {
+            var _role_data = full_squad_data[$ squad_unit_types[_ri]];
+            if (!struct_exists(_role_data, "loadout")) continue;
+            var _ld = _role_data.loadout;
+            if (struct_exists(_ld, "required")) {
+                var _slots = struct_get_names(_ld.required);
+                for (var _s = 0; _s < array_length(_slots); _s++)
+                    _managed_slots[$ _slots[_s]] = true;
+            }
+            if (struct_exists(_ld, "option")) {
+                var _slots = struct_get_names(_ld.option);
+                for (var _s = 0; _s < array_length(_slots); _s++)
+                    _managed_slots[$ _slots[_s]] = true;
+            }
+            if (struct_exists(_ld, "random_pick")) {
+                var _picks = _ld.random_pick;
+                for (var _p = 0; _p < array_length(_picks); _p++) {
+                    var _slots = struct_get_names(_picks[_p]);
+                    for (var _s = 0; _s < array_length(_slots); _s++)
+                        _managed_slots[$ _slots[_s]] = true;
+                }
+            }
+        }
+        // Clear managed weapon slots only on members whose role defines a loadout,
+        // so pre-initialization defaults don't interfere with the encumbrance check.
+        // Roles without a loadout (e.g. Captain, Ancient) are skipped entirely.
+        // Search by key name (e.g. "Terminator") not the "role" field rename
+        // (e.g. "Assault Terminator") — marines are stored under the key name.
+        for (var _ri = 0; _ri < array_length(squad_unit_types); _ri++) {
+            var _role_key = squad_unit_types[_ri];
+            if (!struct_exists(full_squad_data[$ _role_key], "loadout")) continue;
+            var _role_members = members_UnitGroup.get_from({roles: [_role_key, role_key_to_actual[$ _role_key]]});
+            while (_role_members.number() > 0) {
+                var _u = _role_members.pop();
+                for (var _s = 0; _s < array_length(_weapon_slots); _s++) {
+                    if (struct_exists(_managed_slots, _weapon_slots[_s])) {
+                        var _clear = {};
+                        _clear[$ _weapon_slots[_s]] = "";
+                        _u.alter_equipment(_clear, false, false);
+                    }
+                }
+            }
+        }
+
         for (var i = 0; i < array_length(squad_unit_types); i++) {
             unit_role = squad_unit_types[i];
             role_squad_loadout();
@@ -186,7 +234,7 @@ function SquadEquipmentSorting(squad, from_armoury = true, to_armoury = true) co
 
     static equip_loudouts_specific_equip_slot = function(){
         var _actual_role = role_key_to_actual[$ unit_role];
-        var _members_with_role = members_UnitGroup.get_from({role: _actual_role});
+        var _members_with_role = members_UnitGroup.get_from({roles: [unit_role, _actual_role]});
         if (!struct_exists(current_unit_squad_data, "loadout")) {
             return;
         }
@@ -194,7 +242,7 @@ function SquadEquipmentSorting(squad, from_armoury = true, to_armoury = true) co
         var _loudouts = current_unit_squad_data[$ "loadout"];
         while (_members_with_role.number() > 0) {
             _unit = _members_with_role.pop();
-            if (_unit.role() != _actual_role) {
+            if (_unit.role() != unit_role && _unit.role() != _actual_role) {
                 continue;
             }
 
@@ -228,11 +276,11 @@ function SquadEquipmentSorting(squad, from_armoury = true, to_armoury = true) co
     //   ]
     static equip_random_pick_for_role = function(pick_options) {
         var _actual_role = role_key_to_actual[$ unit_role];
-        var _members_with_role = members_UnitGroup.get_from({role: _actual_role});
+        var _members_with_role = members_UnitGroup.get_from({roles: [unit_role, _actual_role]});
         while (_members_with_role.number() > 0) {
             var _unit = _members_with_role.pop();
             if (array_contains(ignore_units, _unit.uid)) continue;
-            if (_unit.role() != _actual_role) continue;
+            if (_unit.role() != unit_role && _unit.role() != _actual_role) continue;
 
             // Pick a random loadout category
             var _chosen = pick_options[irandom(array_length(pick_options) - 1)];
@@ -795,16 +843,98 @@ function UnitSquad(squad_type = undefined, company = 0) constructor {
     };
 }
 
-// creates the origional distribution of squads accross the chapter
-// lots of room for customisation of different chapters here
+/// @function resolve_company_arrangement
+/// @description Resolves the squad template for a specific company number from a loaded
+///              arrangement struct. Explicit per-company entries take priority; if none matches,
+///              the arrangement's default_squads array is wrapped and returned. Returns undefined
+///              if the arrangement contains neither a matching company entry nor a default_squads.
+/// @param {Struct} arrangement  A parsed squad-arrangement struct (e.g. from lightning_warriors.json).
+///                              Expected fields: optional {Array} companies, optional {Array} default_squads.
+/// @param {Real}   company_number  The 1-based company index to resolve a template for.
+/// @return {Struct|Undefined}  A company template struct with fields {Real} company and {Array} squads,
+///                             or undefined if no template can be resolved.
+function resolve_company_arrangement(arrangement, company_number) {
+    if (struct_exists(arrangement, "companies")) {
+        var _companies = arrangement.companies;
+        for (var i = 0; i < array_length(_companies); i++) {
+            if (_companies[i].company == company_number) {
+                return _companies[i];
+            }
+        }
+    }
+    if (struct_exists(arrangement, "default_squads")) {
+        return { company: company_number, squads: arrangement.default_squads };
+    }
+    return undefined;
+}
 
+/// @function apply_squad_distribution_override
+/// @description Merges a distribution_overrides entry into a loaded arrangement struct in-place.
+///              Two operations are performed:
+///                1. If the override defines default_squads, a deep clone of that array replaces
+///                   arrangement.default_squads. Cloning keeps the two references independent so
+///                   any future in-place mutation of one cannot corrupt the other.
+///                2. If the override defines a companies array, each entry is upserted into
+///                   arrangement.companies — matching on the company number field, replacing an
+///                   existing entry if found or appending if not.
+///              Squad order within default_squads and company squads arrays matters: squads that
+///              only accept their own marine role (e.g. devastator_squad, assault_squad) must be
+///              listed before squads that use alternative_roles (e.g. bike_squad, attack_bike_squad)
+///              so that specific squads claim their marines before greedy squads can absorb them.
+/// @param {Struct} arrangement  The live chapter_squad_arrangement struct to mutate.
+/// @param {Struct} override     One distribution_overrides child struct from the same JSON
+///                              (e.g. arrangement.distribution_overrides.equal_specialists).
+///                              Expected optional fields: {Array} default_squads, {Array} companies.
+/// @return {Undefined}
+function apply_squad_distribution_override(arrangement, override) {
+    if (struct_exists(override, "default_squads")) {
+        // Deep-clone so arrangement.default_squads is independent of the override sub-struct,
+        // preventing any future in-place mutation of the array from corrupting both references.
+        var _src = override.default_squads;
+        var _clone = array_create(array_length(_src));
+        for (var _i = 0; _i < array_length(_src); _i++) {
+            _clone[_i] = variable_clone(_src[_i]);
+        }
+        arrangement.default_squads = _clone;
+    }
+    if (struct_exists(override, "companies")) {
+        if (!struct_exists(arrangement, "companies")) {
+            arrangement.companies = [];
+        }
+        var _ovr_companies = override.companies;
+        for (var oi = 0; oi < array_length(_ovr_companies); oi++) {
+            var _ovr = _ovr_companies[oi];
+            var _found = false;
+            for (var ai = 0; ai < array_length(arrangement.companies); ai++) {
+                if (arrangement.companies[ai].company == _ovr.company) {
+                    arrangement.companies[ai] = _ovr;
+                    _found = true;
+                    break;
+                }
+            }
+            if (!_found) {
+                array_push(arrangement.companies, _ovr);
+            }
+        }
+    }
+}
+
+/// @function game_start_squads
+/// @description Populates obj_ini.squads at game start by iterating every company and calling
+///              organise_by_template with the resolved squad template for that company.
+///              Templates are resolved from obj_ini.chapter_squad_arrangement via
+///              resolve_company_arrangement; companies with no resolvable template are skipped.
+///              Must be called after obj_ini.chapter_squad_arrangement has been fully built
+///              (including any apply_squad_distribution_override calls) and after all marine
+///              individuals have been created by the count-based initialisation pass.
+/// @return {Undefined}
 function game_start_squads() {
     obj_ini.squads = {};
-    if (struct_exists(chapter_squad_arrangement, "companies")) {
-        var _comp_datas = chapter_squad_arrangement.companies;
-        for (var i = 0; i < array_length(_comp_datas); i++) {
-            var _company = collect_company(_comp_datas[i].company);
-            _company.organise_by_template(_comp_datas[i]);
+    for (var co = 1; co <= obj_ini.companies; co++) {
+        var _data = resolve_company_arrangement(obj_ini.chapter_squad_arrangement, co);
+        if (_data != undefined) {
+            var _company = collect_company(co);
+            _company.organise_by_template(_data);
         }
     }
 }

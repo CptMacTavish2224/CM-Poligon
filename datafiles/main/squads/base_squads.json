@@ -93,7 +93,7 @@
       }
     },
     "Terminator": {
-      "max": 4,
+      "max": 9,
       "min": 2,
       "loadout": {
         "required": {
@@ -138,7 +138,7 @@
       }
     },
     "Terminator": {
-      "max": 4,
+      "max": 9,
       "min": 2,
       "role": "Assault Terminator",
       "loadout": {
@@ -456,7 +456,7 @@
   "bike_squad": {
       "Tactical": {
         "max": 7,
-        "min": 2,
+        "min": 1,
         "role": "Biker",
         "alternative_roles": ["Assault","Devastator","Tactical"],
         "loadout": {
@@ -484,7 +484,7 @@
               "random_pick": [
                 {
                   "wep1": ["Power Sword", "Power Spear", "Power Axe", "Power Fist", "Chainaxe", "Chainsword"],
-                  "wep2": ["Volkite Serpenta", "Plasma Pistol", "Bolt Pistol", "Phobos Bolt Pistol", "Grav-Pistol", "Hand Flamer", "Infernus Pistol", "RyzPlsmPis"]
+                  "wep2": ["Volkite Serpenta", "Plasma Pistol", "Bolt Pistol", "Phobos Bolt Pistol", "Grav-Pistol", "Hand Flamer", "Infernus Pistol", "Ryza Plasma Pistol"]
                 },
                 {
                   "wep1": "Lightning Claw",
@@ -496,7 +496,8 @@
       "type_data": {
           "display_data": "Bike {squad_name}",
           "class": ["bike"],
-          "formation_options": ["assault", "tactical","devastator","scout"]
+          "formation_options": ["biker","assault", "tactical","devastator","scout"],
+          "base": "biker"
       }
   },
 
@@ -530,7 +531,7 @@
                 "mobi": ["Attack Bike", 1]
             },
             "option": {
-              "wep1": [[["Multi-Melta", "Heavy Bolter", "Plasma Cannon", "Lascannon"],1]],
+              "wep1": [[["Multi-Melta", "Plasma Cannon", "Lascannon"],1]],
               "wep2": [[["Chainsword", "Chainaxe", "Power Sword", "Power Spear", "Power Axe"],1]]
             }
         }
@@ -538,7 +539,8 @@
     "type_data": {
         "display_data": "Attack Bike {squad_name}",
         "class": ["bike"],
-        "formation_options": ["assault", "tactical", "devastator", "scout"]
+        "formation_options": ["biker","assault", "tactical", "devastator", "scout"],
+        "base": "biker"
     }
 }
 }

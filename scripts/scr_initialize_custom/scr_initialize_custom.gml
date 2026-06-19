@@ -1687,31 +1687,39 @@ function scr_initialize_custom() {
     #region Squad Loadouts
     if (scr_has_adv("Lightning Warriors")) {
         obj_ini.chapter_squad_arrangement = json_to_gamemaker(
-            working_directory + $"main\\squads\\lightning_warriors.json",
-            json_parse
-        );
+            working_directory + $"main\\squads\\lightning_warriors.json", json_parse);
+        var _dist_key = "";
+        switch (obj_creation.squad_distribution) {
+            case 1: _dist_key = "equal_specialists"; break;
+            case 2: _dist_key = "equal_scouts";      break;
+            case 3: _dist_key = "equal_spescout";    break;
+        }
+        if (_dist_key != ""
+                && struct_exists(obj_ini.chapter_squad_arrangement, "distribution_overrides")
+                && struct_exists(obj_ini.chapter_squad_arrangement.distribution_overrides, _dist_key)) {
+            apply_squad_distribution_override(
+                obj_ini.chapter_squad_arrangement,
+                obj_ini.chapter_squad_arrangement.distribution_overrides[$ _dist_key]);
+        }
     } else {
-        obj_ini.chapter_squad_arrangement = json_to_gamemaker(
-            working_directory + $"main\\squads\\company_squad_builds.json",
-            json_parse
-        );
-    switch (obj_creation.squad_distribution) {
-        case 1: // equal specialists only
-            obj_ini.chapter_squad_arrangement = json_to_gamemaker(
-                working_directory + $"main\\squads\\equal_specialists.json", json_parse);
-            break;
-        case 2: // equal scouts only
-            obj_ini.chapter_squad_arrangement = json_to_gamemaker(
-                working_directory + $"main\\squads\\equal_scouts.json", json_parse);
-            break;
-        case 3: // equal specialists and equal scouts
-            obj_ini.chapter_squad_arrangement = json_to_gamemaker(
-                working_directory + $"main\\squads\\equal_spescout.json", json_parse);
-            break;
-        default: // 0 = standard
-            obj_ini.chapter_squad_arrangement = json_to_gamemaker(
-                working_directory + $"main\\squads\\company_squad_builds.json", json_parse);
-            break;
+        switch (obj_creation.squad_distribution) {
+            case 1: // equal specialists only
+                obj_ini.chapter_squad_arrangement = json_to_gamemaker(
+                    working_directory + $"main\\squads\\equal_specialists.json", json_parse);
+                break;
+            case 2: // equal scouts only
+                obj_ini.chapter_squad_arrangement = json_to_gamemaker(
+                    working_directory + $"main\\squads\\equal_scouts.json", json_parse);
+                break;
+            case 3: // equal specialists and equal scouts
+                obj_ini.chapter_squad_arrangement = json_to_gamemaker(
+                    working_directory + $"main\\squads\\equal_spescout.json", json_parse);
+                break;
+            default: // 0 = standard
+                obj_ini.chapter_squad_arrangement = json_to_gamemaker(
+                    working_directory + $"main\\squads\\company_squad_builds.json", json_parse);
+                break;
+        }
     }
 
     var _squad_name = "Squad";
@@ -1839,13 +1847,21 @@ function scr_initialize_custom() {
     // LOGGER.debug($"{custom_squads}");
 
     if (struct_exists(obj_creation, "squad_builder")) {
+        if (!struct_exists(obj_ini.chapter_squad_arrangement, "companies")) {
+            obj_ini.chapter_squad_arrangement.companies = [];
+        }
         for (var s = 0; s < array_length(obj_creation.squad_builder); s++) {
             var _custom_build = obj_creation.squad_builder[s];
+            var _found = false;
             for (var i = 0; i < array_length(obj_ini.chapter_squad_arrangement.companies); i++) {
-                var _default_build = obj_ini.chapter_squad_arrangement.companies[i];
-                if (_custom_build.company == _default_build.company) {
+                if (obj_ini.chapter_squad_arrangement.companies[i].company == _custom_build.company) {
                     obj_ini.chapter_squad_arrangement.companies[i] = _custom_build;
+                    _found = true;
+                    break;
                 }
+            }
+            if (!_found) {
+                array_push(obj_ini.chapter_squad_arrangement.companies, _custom_build);
             }
         }
     }
@@ -2334,6 +2350,7 @@ function scr_initialize_custom() {
     var equal_scouts = (squad_distribution == 2 || squad_distribution == 3);
     obj_ini.equal_scouts = equal_scouts; // for use in squad creation later
 
+    var _lw = scr_has_adv("Lightning Warriors");
     var _moved_scouts = 0;
 
     var _coys = struct_get_names(companies);
@@ -2395,6 +2412,15 @@ function scr_initialize_custom() {
             // LOGGER.info($"equal_scouts? {equal_scouts}")
 
             if (_coy.coy >= 2 && _coy.coy <= 9) {
+                // Scout distribution logic for equal_spescout (sd==3).
+                //
+                // 10 scouts are moved from the 10th company bank into each battle company (2-9)
+                // so that the JSON template's scout_squad proportion can fill at game start.
+                // This applies regardless of whether Lightning Warriors is active; LW+equal_spescout
+                // distributes 10 scouts per company just like the non-LW case.
+                //
+                // Note: for LW + equal_scouts (sd==2) this branch is not reached at all because
+                //   sd==2 does not satisfy (sd==1 || sd==3), so it falls to the else block below.
                 if (equal_scouts) {
                     if (companies.tenth.scouts > 10) {
                         //theoretically this keeps track of moving scouts from the bank of them in 10th
@@ -2412,6 +2438,9 @@ function scr_initialize_custom() {
                 _coy.assaults = assault;
                 _coy.devastators = devastator;
             }
+            // Replace the scouts that were moved out of 10th company with an equivalent number
+            // of tacticals so the 10th's total marine count stays consistent.
+            // _moved_scouts tracks the cumulative scouts transferred to other companies above.
             if (equal_scouts && _coy.coy == 10) {
                 // theoretically this swaps moved scouts with tacticals
                 _coy.tacticals = _moved_scouts;
@@ -2423,10 +2452,12 @@ function scr_initialize_custom() {
             if (_coy.coy >= 2 && _coy.coy <= 5) {
                 if (equal_scouts) {
                     if (companies.tenth.scouts > 10) {
-                        _coy.scouts = 10;
+                        // LW needs 20 scouts per company to fill proportion:2 scout squads.
+                        // Non-LW equal_scouts uses 10 (proportion:1).
+                        _coy.scouts = _lw ? 20 : 10;
                         _moved_scouts += _coy.scouts;
                         _coy.tacticals = max(0, (_coy.total - (assault + devastator + _coy.scouts)));
-                        companies.tenth.scouts -= _moved_scouts;
+                        companies.tenth.scouts -= _coy.scouts; // fix: subtract this company's amount, not the cumulative total
                     } else {
                         // if 10th is run out somehow, revert to normal behaviour
                         _coy.tacticals = max(0, (_coy.total - (assault + devastator)));
@@ -2438,8 +2469,15 @@ function scr_initialize_custom() {
                 _coy.devastators = devastator;
             }
 
+            // Companies 6-7: only receive scouts under the non-LW equal_scouts arrangement
+            // (company_squad_builds/equal_scouts.json gives 6-7 nothing but tactical_squad
+            // when Lightning Warriors is active - lightning_warriors.json's equal_scouts
+            // override does the same: companies 6 and 7 are tactical_squad-only, with no
+            // scout_squad entry at all). Granting _coy.scouts here for LW would create scout
+            // marines that the LW template can never organise into squads, leaving them as
+            // stray squadless scouts in companies that should be scout-free.
             if (real(_coy.coy) >= 6 && real(_coy.coy) <= 7) {
-                if (equal_scouts) {
+                if (equal_scouts && !_lw) {
                     if (companies.tenth.scouts > 10) {
                         _coy.scouts = 10;
                         _moved_scouts += _coy.scouts;
@@ -2455,6 +2493,15 @@ function scr_initialize_custom() {
                 _coy.assaults = 0;
                 _coy.devastators = 0;
             }
+            // Company 8 and 9: always pure assault / devastator reserves for equal_scouts
+            // (sd==2), regardless of Lightning Warriors. Both company_squad_builds/
+            // equal_scouts.json AND lightning_warriors.json's equal_scouts override define
+            // company 8 as assault_squad-only and company 9 as devastator_squad-only - neither
+            // lists a scout_squad. The previous `_lw && equal_scouts` branches incorrectly
+            // handed these companies scout marines that the LW override's templates have no
+            // scout_squad to absorb, producing stray squadless scouts (the "all companies get
+            // scouts" symptom). Scouts for equal_scouts + LW must stay confined to companies
+            // 2-5, matching the override's default_squads scout_squad proportion.
             if (real(_coy.coy) == 8) {
                 _coy.tacticals = 0;
                 _coy.assaults = _coy.total;
@@ -2467,7 +2514,8 @@ function scr_initialize_custom() {
             }
             if (real(_coy.coy) == 10 && equal_scouts) {
                 _coy.tacticals = _moved_scouts;
-                _coy.scouts = _coy.scouts - _coy.tacticals;
+                // _coy.scouts is already the correct bank remainder after per-company
+                // deductions above — do not subtract tacticals again or it double-counts.
             }
         }
 
